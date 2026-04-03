@@ -225,10 +225,16 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     if (e.target.tagName.toLowerCase() === 'button') return;
     if (windowEl.classList.contains('maximized')) return;
     dragWin = windowEl;
-    dragOffX = e.clientX - windowEl.getBoundingClientRect().left;
-    dragOffY = e.clientY - windowEl.getBoundingClientRect().top;
-    dragTargetX = parseFloat(windowEl.style.left) || 0;
-    dragTargetY = parseFloat(windowEl.style.top) || 0;
+    const rect = windowEl.getBoundingClientRect();
+    dragOffX = e.clientX - rect.left;
+    dragOffY = e.clientY - rect.top;
+    
+    // Force absolute pixel values instead of percentages to fix jumping
+    windowEl.style.left = windowEl.offsetLeft + 'px';
+    windowEl.style.top = windowEl.offsetTop + 'px';
+    dragTargetX = windowEl.offsetLeft;
+    dragTargetY = windowEl.offsetTop;
+    
     document.body.style.userSelect = 'none';
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   });
@@ -240,24 +246,31 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     bringToFront(windowEl.id);
     const t = e.touches[0];
     dragWin = windowEl;
-    dragOffX = t.clientX - windowEl.getBoundingClientRect().left;
-    dragOffY = t.clientY - windowEl.getBoundingClientRect().top;
-    dragTargetX = parseFloat(windowEl.style.left) || 0;
-    dragTargetY = parseFloat(windowEl.style.top) || 0;
+    const rect = windowEl.getBoundingClientRect();
+    dragOffX = t.clientX - rect.left;
+    dragOffY = t.clientY - rect.top;
+    
+    windowEl.style.left = windowEl.offsetLeft + 'px';
+    windowEl.style.top = windowEl.offsetTop + 'px';
+    dragTargetX = windowEl.offsetLeft;
+    dragTargetY = windowEl.offsetTop;
+    
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   }, { passive: true });
 });
 
 document.addEventListener('mousemove', (e) => {
   if (!dragWin) return;
-  dragTargetX = e.clientX - dragOffX;
-  dragTargetY = e.clientY - dragOffY;
+  const desktopRect = desktop.getBoundingClientRect();
+  dragTargetX = e.clientX - desktopRect.left - dragOffX;
+  dragTargetY = e.clientY - desktopRect.top - dragOffY;
 });
 document.addEventListener('touchmove', (e) => {
   if (!dragWin) return;
   const t = e.touches[0];
-  dragTargetX = t.clientX - dragOffX;
-  dragTargetY = t.clientY - dragOffY;
+  const desktopRect = desktop.getBoundingClientRect();
+  dragTargetX = t.clientX - desktopRect.left - dragOffX;
+  dragTargetY = t.clientY - desktopRect.top - dragOffY;
 }, { passive: true });
 
 document.addEventListener('mouseup', () => {

@@ -31,52 +31,46 @@ textarea {
 
 /* ── Animations ── */
 @keyframes win-open {
-  0%   { transform: scale(0.85) translateY(8px); opacity: 0; }
-  55%  { transform: scale(1.025) translateY(-1px); opacity: 1; }
-  78%  { transform: scale(0.995); }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
+  0%   { transform: scale(0.95); opacity: 0; filter: blur(2px); }
+  100% { transform: scale(1); opacity: 1; filter: blur(0); }
 }
 @keyframes win-close {
-  0%   { transform: scale(1);    opacity: 1; }
-  30%  { transform: scale(1.02); opacity: 0.8; }
-  100% { transform: scale(0.88); opacity: 0; }
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0; filter: blur(2px); }
 }
 @keyframes win-minimize {
-  0%   { transform: scaleY(1) scaleX(1);   opacity: 1; }
-  40%  { transform: scaleY(0.4) scaleX(0.9); opacity: 0.6; }
-  100% { transform: scaleY(0) scaleX(0.7); opacity: 0; }
+  0%   { transform: scale(1); opacity: 1; filter: blur(0); }
+  100% { transform: scale(0.8) translateY(5vh); opacity: 0; filter: blur(2px); }
 }
 @keyframes win-maximize {
-  0%   { transform: scale(0.94); opacity: 0.7; }
-  70%  { transform: scale(1.01); }
+  0%   { transform: scale(0.97); opacity: 0.8; }
   100% { transform: scale(1); opacity: 1; }
 }
 @keyframes icon-pop {
-  0%   { transform: scale(1);    }
-  35%  { transform: scale(0.88); }
-  70%  { transform: scale(1.12); }
-  100% { transform: scale(1);    }
+  0%   { transform: scale(1); filter: brightness(1); }
+  50%  { transform: scale(0.92); filter: brightness(0.8); }
+  100% { transform: scale(1); filter: brightness(1); }
 }
 @keyframes start-slide {
-  0%   { transform: translateY(10px); opacity: 0.5; }
-  100% { transform: translateY(0);    opacity: 1;   }
+  0%   { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 @keyframes taskbar-press {
-  0%   { transform: scale(1);    }
-  40%  { transform: scale(0.93); }
-  100% { transform: scale(1);    }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.95); background: #808080; }
+  100% { transform: scale(1); }
 }
 
 /* body background matches taskbar so no white flash */
-body { background: #c0c0c0; }
+body { background: #008080; }
 
-.win-opening   { animation: win-open      0.22s cubic-bezier(0.2, 0.8, 0.4, 1) forwards; }
-.win-closing   { animation: win-close     0.15s ease-in  forwards; }
-.win-minimize  { animation: win-minimize  0.16s ease-in  forwards; }
-.win-maximize  { animation: win-maximize  0.18s ease-out forwards; }
-.icon-pop      { animation: icon-pop      0.28s ease-out; }
-.start-opening { animation: start-slide   0.14s ease-out; }
-.taskbar-press { animation: taskbar-press 0.15s ease-out; }
+.win-opening   { animation: win-open      0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.win-closing   { animation: win-close     0.18s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
+.win-minimize  { animation: win-minimize  0.22s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
+.win-maximize  { animation: win-maximize  0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.icon-pop      { animation: icon-pop      0.2s ease-out; }
+.start-opening { animation: start-slide   0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.taskbar-press { animation: taskbar-press 0.15s ease-out forwards; }
 
 /* title bar flash on focus */
 @keyframes titlebar-flash {
