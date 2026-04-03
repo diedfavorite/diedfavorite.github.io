@@ -530,15 +530,21 @@ button {
 
 .taskbar-item {
   height: 24px;
-  min-width: 100px;
-  max-width: 150px;
+  flex: 1 1 0;
+  min-width: 60px;
+  max-width: 160px;
   display: flex;
   align-items: center;
   padding: 0 5px;
+  overflow: hidden;
+  font-weight: bold;
+}
+.taskbar-item span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: bold;
+  display: block;
+  width: 100%;
 }
 
 .taskbar-item.active {
