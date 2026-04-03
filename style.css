@@ -1557,7 +1557,12 @@ button.default-btn {
    Mobile / Phone responsive
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* ── Desktop icons: small column on left ── */
+  /* ── Desktop: correct height for 44px taskbar ── */
+  #desktop {
+    height: calc(100vh - 44px) !important;
+  }
+
+  /* ── Desktop icons: compact ── */
   .desktop-icon {
     width: 52px !important;
   }
@@ -1570,7 +1575,8 @@ button.default-btn {
     font-size: 9px !important;
   }
 
-  /* ── Windows: fixed, full-screen, one at a time ── */
+  /* ── Windows: fixed full-screen, one at a time ──
+     NO z-index override — let bringToFront() handle it */
   .desktop-window {
     position: fixed !important;
     top: 0 !important;
@@ -1578,33 +1584,39 @@ button.default-btn {
     width: 100vw !important;
     height: calc(100vh - 44px) !important;
     max-height: calc(100vh - 44px) !important;
-    z-index: 1000 !important;
     overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
-  /* Scrollable window body */
+  /* Window body fills remaining space and scrolls */
   .window-body {
+    flex: 1 !important;
     overflow-y: auto !important;
-    height: calc(100vh - 44px - 22px) !important; /* minus taskbar and title bar */
+    -webkit-overflow-scrolling: touch !important;
     max-height: none !important;
+    height: auto !important;
     box-sizing: border-box !important;
   }
 
-  /* Track list takes available height */
+  /* Track lists take full available space */
   .track-list {
-    max-height: calc(100vh - 160px) !important;
+    max-height: 60vh !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
-  /* Bigger touch buttons */
+  /* Touch-friendly buttons */
   button {
     min-height: 36px !important;
     font-size: 13px !important;
+    touch-action: manipulation !important;
   }
   .media-controls button:not(.dl-btn) {
     width: 36px !important;
     height: 36px !important;
     min-width: 36px !important;
     font-size: 15px !important;
+    padding: 0 !important;
   }
   .dl-btn {
     min-width: 64px !important;
@@ -1613,12 +1625,13 @@ button.default-btn {
     padding: 4px 12px !important;
   }
 
-  /* Bigger slider for touch */
+  /* Touch-friendly slider */
   .media-slider {
     height: 20px !important;
+    touch-action: pan-x !important;
   }
 
-  /* ── Taskbar: taller for touch ── */
+  /* ── Taskbar: 44px for touch ── */
   #taskbar {
     height: 44px !important;
   }
@@ -1626,11 +1639,12 @@ button.default-btn {
     height: 38px !important;
     font-size: 13px !important;
     padding: 0 6px !important;
+    touch-action: manipulation !important;
   }
   #taskbar-items button {
     height: 36px !important;
     font-size: 12px !important;
-    max-width: 120px !important;
+    max-width: 110px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
@@ -1643,8 +1657,25 @@ button.default-btn {
     font-size: 11px !important;
   }
 
-  /* Hide tray date on very small screens to save space */
-  @media (max-width: 400px) {
+  /* ── Start menu: correct offset for 44px taskbar ── */
+  #start-menu {
+    bottom: 44px !important;
+  }
+
+  /* ── Volume popup: correct offset ── */
+  #volume-popup {
+    bottom: 48px !important;
+  }
+
+  /* ── Modal: full-width on mobile ── */
+  #license-modal > .window {
+    width: 95vw !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+  }
+
+  /* Hide tray date on very small screens */
+  @media (max-width: 380px) {
     #tray-date { display: none !important; }
   }
 }

@@ -408,7 +408,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Desktop icon dragging — single delegated mousemove/mouseup
+// Desktop icon dragging + touch open
 let dragIcon = null, iconStartX, iconStartY, iconOrigLeft, iconOrigTop, iconMoved;
 
 document.querySelectorAll('.desktop-icon').forEach(icon => {
@@ -418,6 +418,8 @@ document.querySelectorAll('.desktop-icon').forEach(icon => {
     icon.classList.add('icon-pop');
     onSelfAnimEnd(icon, () => icon.classList.remove('icon-pop'));
   });
+
+  // Mouse drag
   icon.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return;
     dragIcon = icon;
@@ -431,6 +433,19 @@ document.querySelectorAll('.desktop-icon').forEach(icon => {
     document.body.style.userSelect = 'none';
     e.stopPropagation();
   });
+
+  // Touch drag + single-tap to open on mobile
+  icon.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    dragIcon = icon;
+    iconMoved = false;
+    iconStartX = t.clientX;
+    iconStartY = t.clientY;
+    iconOrigLeft = icon.offsetLeft;
+    iconOrigTop = icon.offsetTop;
+    icon.style.zIndex = 9000;
+    icon.classList.add('dragging');
+  }, { passive: true });
 });
 
 document.addEventListener('mousemove', (e) => {
@@ -443,6 +458,17 @@ document.addEventListener('mousemove', (e) => {
   dragIcon.style.top = Math.max(0, Math.min(iconOrigTop + dy, desktop.offsetHeight - dragIcon.offsetHeight)) + 'px';
 });
 
+document.addEventListener('touchmove', (e) => {
+  if (!dragIcon) return;
+  const t = e.touches[0];
+  const dx = t.clientX - iconStartX;
+  const dy = t.clientY - iconStartY;
+  if (!iconMoved && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) iconMoved = true;
+  if (!iconMoved) return;
+  dragIcon.style.left = Math.max(0, Math.min(iconOrigLeft + dx, desktop.offsetWidth - dragIcon.offsetWidth)) + 'px';
+  dragIcon.style.top = Math.max(0, Math.min(iconOrigTop + dy, desktop.offsetHeight - dragIcon.offsetHeight)) + 'px';
+}, { passive: true });
+
 document.addEventListener('mouseup', (e) => {
   if (!dragIcon) return;
   dragIcon.style.zIndex = '';
@@ -450,6 +476,24 @@ document.addEventListener('mouseup', (e) => {
   document.body.style.userSelect = '';
   if (iconMoved) e.stopImmediatePropagation();
   dragIcon = null;
+});
+
+document.addEventListener('touchend', (e) => {
+  if (!dragIcon) return;
+  const icon = dragIcon;
+  icon.style.zIndex = '';
+  icon.classList.remove('dragging');
+  dragIcon = null;
+  if (!iconMoved) {
+    // Single tap on mobile = select + open
+    const windowId = 'window-' + icon.id.replace('icon-', '');
+    selectIcon(icon.id);
+    icon.classList.remove('icon-pop');
+    void icon.offsetWidth;
+    icon.classList.add('icon-pop');
+    onSelfAnimEnd(icon, () => icon.classList.remove('icon-pop'));
+    openWindow(windowId);
+  }
 });
 
 function switchHeroTab(tab) {
