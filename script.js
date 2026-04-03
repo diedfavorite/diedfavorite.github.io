@@ -1,8 +1,16 @@
 let highestZIndex = 100;
+const isMobile = () => window.innerWidth <= 768;
 const openWindows = new Set(['window-hero']);
 const desktop = document.getElementById('desktop');
 
 document.getElementById('window-hero').classList.add('active');
+
+// On mobile: hide hero window immediately, show a tap-to-open message
+if (isMobile()) {
+  const hero = document.getElementById('window-hero');
+  hero.classList.add('hidden');
+  openWindows.delete('window-hero');
+}
 
 function pad(n) { return n < 10 ? '0' + n : String(n); }
 
@@ -83,6 +91,18 @@ function bringToFront(id) {
 }
 
 function openWindow(id) {
+  // On mobile: close all other windows first (one window at a time)
+  if (isMobile()) {
+    openWindows.forEach(otherId => {
+      if (otherId === id) return;
+      const other = document.getElementById(otherId);
+      if (other && !other.classList.contains('hidden')) {
+        other.classList.add('hidden');
+        other.classList.remove('active');
+        openWindows.delete(otherId);
+      }
+    });
+  }
   const el = document.getElementById(id);
   if (!el) return;
   delete el.dataset.closing;
@@ -209,6 +229,19 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     document.body.style.userSelect = 'none';
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   });
+  // Touch drag support
+  titleBar.addEventListener('touchstart', (e) => {
+    if (e.target.tagName.toLowerCase() === 'button') return;
+    if (windowEl.classList.contains('maximized')) return;
+    bringToFront(windowEl.id);
+    const t = e.touches[0];
+    dragWin = windowEl;
+    dragOffX = t.clientX - windowEl.getBoundingClientRect().left;
+    dragOffY = t.clientY - windowEl.getBoundingClientRect().top;
+    dragTargetX = parseFloat(windowEl.style.left) || 0;
+    dragTargetY = parseFloat(windowEl.style.top) || 0;
+    if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
+  }, { passive: true });
 });
 
 document.addEventListener('mousemove', (e) => {
@@ -216,12 +249,19 @@ document.addEventListener('mousemove', (e) => {
   dragTargetX = e.clientX - dragOffX;
   dragTargetY = e.clientY - dragOffY;
 });
+document.addEventListener('touchmove', (e) => {
+  if (!dragWin) return;
+  const t = e.touches[0];
+  dragTargetX = t.clientX - dragOffX;
+  dragTargetY = t.clientY - dragOffY;
+}, { passive: true });
 
 document.addEventListener('mouseup', () => {
   if (!dragWin) return;
   dragWin = null;
   document.body.style.userSelect = '';
 });
+document.addEventListener('touchend', () => { dragWin = null; });
 
 function renderTaskbar() {
   const container = document.getElementById('taskbar-items');

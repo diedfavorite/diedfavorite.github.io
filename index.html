@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@diedfavorite - #2011nostalgia</title>
-  <link rel="icon" type="image/jpeg" href="favicon.jpg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="https://unpkg.com/98.css">
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 <body>
@@ -393,47 +393,32 @@
     </div>
 
     <!-- video window -->
-    <div class="window desktop-window draggable hidden" id="window-video" style="width:420px; top:15%; left:35%; overflow:hidden;">
+    <div class="window desktop-window draggable hidden" id="window-video" style="width:340px; top:15%; left:35%;">
       <div class="title-bar">
-        <div class="title-bar-text">Videos</div>
+        <div class="title-bar-text">Videos - Windows Media Player</div>
         <div class="title-bar-controls">
           <button aria-label="Minimize" onclick="minimizeWindow('window-video')"></button>
           <button aria-label="Maximize" onclick="maximizeWindow('window-video')"></button>
           <button aria-label="Close" onclick="closeWindow('window-video')"></button>
         </div>
       </div>
-      <div class="window-body" style="padding:4px; overflow:hidden;">
-        <div style="background:#000080; color:#fff; padding:4px 8px; font-weight:bold; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
-          <img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png" width="16" height="16">
-          <span id="video-status">Jessie</span>
+      <div class="window-body" style="padding:0;">
+        <!-- blue toolbar header -->
+        <div style="background:#000080; color:#fff; padding:3px 8px; font-weight:bold; display:flex; align-items:center; gap:6px;">
+          <img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png" width="14" height="14" style="image-rendering:pixelated;">
+          <span>Windows Media Player</span>
         </div>
-        <div style="display:flex; gap:0; background:#c0c0c0; overflow:hidden; width:100%;">
-          <!-- video + controls -->
-          <div style="flex:1; min-width:0; padding:4px; display:flex; flex-direction:column; gap:4px;">
-            <video id="video-main" src="videos/Jessie.mp4" playsinline
-              style="width:100%; height:160px; object-fit:contain; background:#000; box-shadow:inset 2px 2px #808080, inset -2px -2px #fff; display:block;"></video>
-            <!-- transport controls -->
-            <div style="display:flex; align-items:center; gap:2px; background:#c0c0c0; padding:1px 0;">
-              <button class="vid-btn" onclick="playMedia('video-main')" title="Play">&#9654;</button>
-              <button class="vid-btn" onclick="pauseMedia('video-main')" title="Pause"><strong>||</strong></button>
-              <button class="vid-btn" onclick="stopMedia('video-main')" title="Stop">&#9632;</button>
-              <button class="vid-btn" onclick="fullscreenVideo('video-main')" title="Fullscreen">&#9633;</button>
-              <input type="range" id="slider-video-main" class="media-slider" value="0" step="0.1"
-                oninput="seekMedia('video-main', this.value)" style="flex:1; min-width:0; margin:0 3px;">
-              <div class="media-time sunken-panel" id="time-video-main"
-                style="width:40px; flex-shrink:0; text-align:center; background:#000; color:#00ff00; font-family:'Courier New',monospace; font-size:10px; padding:2px;">00:00</div>
-            </div>
-          </div>
-          <!-- playlist panel -->
-          <div style="width:88px; flex-shrink:0; padding:4px; padding-left:0; display:flex; flex-direction:column; gap:2px; overflow:hidden;">
-            <div style="font-size:11px; font-weight:bold; margin-bottom:2px; white-space:nowrap;">Playlist</div>
-            <div class="sunken-panel playlist-item playlist-select" id="vpl-0"
-              onclick="switchVideo('videos/Jessie.mp4', 'Jessie', 0)"
-              style="background:#000080; color:#fff;">Jessie</div>
-            <div class="sunken-panel playlist-item" id="vpl-1"
-              onclick="switchVideo('videos/Speedrun.mp4', 'Speedrun', 1)">Speedrun</div>
-            <div class="sunken-panel playlist-item" id="vpl-2"
-              onclick="switchVideo('videos/New , Season.mp4', 'New Season', 2)">New Season</div>
+        <!-- black screen area -->
+        <div style="background:#000; height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; box-shadow:inset 2px 2px #333, inset -2px -2px #111;">
+          <img src="https://win98icons.alexmeub.com/icons/png/msg_warning-0.png" width="32" height="32" style="image-rendering:pixelated; opacity:0.85;">
+          <div style="color:#fff; font-size:16px; font-weight:bold; font-family:'Courier New',monospace; letter-spacing:2px;" class="cs-blink">COMING SOON</div>
+          <div style="color:#808080; font-size:10px; font-family:'Courier New',monospace;">videos loading...</div>
+        </div>
+        <!-- fake progress bar -->
+        <div style="background:#c0c0c0; padding:6px 8px;">
+          <div style="font-size:10px; margin-bottom:3px; color:#000;">Buffering...</div>
+          <div style="background:#fff; height:14px; box-shadow:inset 1px 1px #808080, inset -1px -1px #fff; overflow:hidden;">
+            <div class="cs-progress"></div>
           </div>
         </div>
       </div>
