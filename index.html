@@ -7,7 +7,7 @@
   <title>@diedfavorite - #2011nostalgia</title>
   <link rel="icon" type="image/jpeg" href="favicon.jpg">
   <link rel="stylesheet" href="https://unpkg.com/98.css">
-  <link rel="stylesheet" href="style.css?v=23">
+  <link rel="stylesheet" href="style.css?v=24">
 </head>
 
 <body>
@@ -244,7 +244,13 @@
           <button aria-label="Close" onclick="closeWindow('window-beats')"></button>
         </div>
       </div>
-      <div class="window-body">
+      <div class="window-body win95-layout">
+        <div class="win95-menubar">
+          <div class="win95-menubar-item"><u>F</u>ile</div>
+          <div class="win95-menubar-item"><u>V</u>iew</div>
+          <div class="win95-menubar-item"><u>H</u>elp</div>
+        </div>
+        <div class="win95-window-content" style="padding:4px;">
         <fieldset>
           <legend>latest beats</legend>
           <div class="track-list" id="beats-content" style="max-height: 250px; overflow-y: auto;">
@@ -322,6 +328,11 @@
             </div>
           </div>
         </fieldset>
+        </div>
+        <div class="win95-statusbar">
+          <div class="win95-statusbar-cell grow" id="beats-status">6 object(s)</div>
+          <div class="win95-statusbar-cell">Free for profit</div>
+        </div>
       </div>
     </div>
 
@@ -335,7 +346,13 @@
           <button aria-label="Close" onclick="closeWindow('window-loops')"></button>
         </div>
       </div>
-      <div class="window-body">
+      <div class="window-body win95-layout">
+        <div class="win95-menubar">
+          <div class="win95-menubar-item"><u>F</u>ile</div>
+          <div class="win95-menubar-item"><u>V</u>iew</div>
+          <div class="win95-menubar-item"><u>H</u>elp</div>
+        </div>
+        <div class="win95-window-content" style="padding:4px;">
         <fieldset>
           <legend>loops</legend>
           <div class="track-list" id="loops-content" style="max-height: 250px; overflow-y: auto;">
@@ -389,6 +406,11 @@
             </div>
           </div>
         </fieldset>
+        </div>
+        <div class="win95-statusbar">
+          <div class="win95-statusbar-cell grow" id="loops-status">4 object(s)</div>
+          <div class="win95-statusbar-cell">Free for profit</div>
+        </div>
       </div>
     </div>
 
@@ -440,31 +462,67 @@
     </div>
 
     <!-- socials window -->
-    <div class="window desktop-window draggable hidden" id="window-socials" style="width: 280px; top: 40%; left: 50%;">
+    <div class="window desktop-window draggable hidden" id="window-socials" style="width: 320px; top: 40%; left: 50%;">
       <div class="title-bar">
-        <div class="title-bar-text">social medias</div>
+        <div class="title-bar-text">@diedfavorite - Internet Explorer</div>
         <div class="title-bar-controls">
           <button aria-label="Minimize" onclick="minimizeWindow('window-socials')"></button>
           <button aria-label="Maximize" onclick="maximizeWindow('window-socials')"></button>
           <button aria-label="Close" onclick="closeWindow('window-socials')"></button>
         </div>
       </div>
-      <div class="window-body">
-        <ul class="tree-view">
-          <li><strong>Links</strong>
-            <ul>
-              <li><a href="https://soundcloud.com/diedfavorite" target="_blank"><img src="https://win98icons.alexmeub.com/icons/png/sndvol32_main-0.png" width="16" height="16" style="vertical-align:middle; margin-right:4px;">SoundCloud</a></li>
-              <li><a href="https://www.youtube.com/channel/UCBbEHHbCSTX5fPUr0oUWcsA" target="_blank"><img src="https://win98icons.alexmeub.com/icons/png/movie_maker-0.png" width="16" height="16" style="vertical-align:middle; margin-right:4px;">YouTube</a></li>
-              <li><a href="https://www.instagram.com/diedfavorite/" target="_blank"><img src="https://win98icons.alexmeub.com/icons/png/camera3-0.png" width="16" height="16" style="vertical-align:middle; margin-right:4px;">Instagram</a></li>
-              <li><a href="https://discord.gg/3BmCPz6w" target="_blank"><img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16" style="vertical-align:middle; margin-right:4px;">Discord</a></li>
-            </ul>
-          </li>
-        </ul>
+      <div class="window-body win95-layout">
+        <div class="win95-menubar">
+          <div class="win95-menubar-item"><u>F</u>ile</div>
+          <div class="win95-menubar-item"><u>E</u>dit</div>
+          <div class="win95-menubar-item"><u>V</u>iew</div>
+          <div class="win95-menubar-item">F<u>a</u>vorites</div>
+          <div class="win95-menubar-item"><u>H</u>elp</div>
+        </div>
+        <div class="win95-ie-toolbar">
+          <button class="win95-ie-nav-btn" title="Back" disabled>&#9664;</button>
+          <button class="win95-ie-nav-btn" title="Forward" disabled>&#9654;</button>
+          <button class="win95-ie-nav-btn" title="Stop" disabled>&#10005;</button>
+          <button class="win95-ie-nav-btn" title="Refresh" onclick="this.style.transform='rotate(360deg)'">&#8635;</button>
+          <span class="win95-ie-address-label">Address</span>
+          <input class="win95-ie-address-field" type="text" value="http://diedfavorite.github.io/links" readonly>
+          <button class="win95-ie-nav-btn" title="Go">Go</button>
+        </div>
+        <div class="win95-window-content" style="padding:0; background:#fff; box-shadow:inset -1px -1px #fff, inset 1px 1px #808080;">
+          <div class="win95-links-header">
+            <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16" style="image-rendering:pixelated;">
+            @diedfavorite &mdash; Social Links
+          </div>
+          <a class="win95-link-item" href="https://soundcloud.com/diedfavorite" target="_blank">
+            <img src="https://win98icons.alexmeub.com/icons/png/sndvol32_main-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <span class="link-desc"><strong>SoundCloud</strong></span>
+            <span class="link-url">soundcloud.com/diedfavorite</span>
+          </a>
+          <a class="win95-link-item" href="https://www.youtube.com/channel/UCBbEHHbCSTX5fPUr0oUWcsA" target="_blank">
+            <img src="https://win98icons.alexmeub.com/icons/png/movie_maker-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <span class="link-desc"><strong>YouTube</strong></span>
+            <span class="link-url">youtube.com/@diedfavorite</span>
+          </a>
+          <a class="win95-link-item" href="https://www.instagram.com/diedfavorite/" target="_blank">
+            <img src="https://win98icons.alexmeub.com/icons/png/camera3-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <span class="link-desc"><strong>Instagram</strong></span>
+            <span class="link-url">instagram.com/diedfavorite</span>
+          </a>
+          <a class="win95-link-item" href="https://discord.gg/3BmCPz6w" target="_blank">
+            <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <span class="link-desc"><strong>Discord</strong></span>
+            <span class="link-url">discord.gg/diedfavorite</span>
+          </a>
+        </div>
+        <div class="win95-statusbar">
+          <div class="win95-statusbar-cell grow">Done</div>
+          <div class="win95-statusbar-cell">&#127760; Internet</div>
+        </div>
       </div>
     </div>
 
     <!-- licensing window -->
-    <div class="window desktop-window draggable hidden" id="window-licensing" style="width: 320px; top: 25%; left: 45%;">
+    <div class="window desktop-window draggable hidden" id="window-licensing" style="width: 340px; top: 25%; left: 45%;">
       <div class="title-bar">
         <div class="title-bar-text">licensing.txt - Notepad</div>
         <div class="title-bar-controls">
@@ -473,9 +531,15 @@
           <button aria-label="Close" onclick="closeWindow('window-licensing')"></button>
         </div>
       </div>
-      <div class="window-body">
-        <textarea style="width: 100%; height: 200px; font-family: 'Courier New', monospace; font-size: 12px; resize: none;" readonly>
-FREE FOR PROFIT LICENSE
+      <div class="window-body win95-layout">
+        <div class="win95-menubar">
+          <div class="win95-menubar-item"><u>F</u>ile</div>
+          <div class="win95-menubar-item"><u>E</u>dit</div>
+          <div class="win95-menubar-item"><u>S</u>earch</div>
+          <div class="win95-menubar-item"><u>H</u>elp</div>
+        </div>
+        <div class="win95-window-content notepad-content">
+          <textarea style="flex:1; width:100%; min-height:200px; font-family:'Courier New',monospace; font-size:12px; resize:none; border:none; outline:none; padding:4px; box-sizing:border-box; background:#fff;" readonly>FREE FOR PROFIT LICENSE
 
 All beats and loops provided are completely FREE FOR PROFIT use.
 
@@ -483,8 +547,8 @@ REQUIREMENT:
 You MUST credit @diedfavorite wherever the song is released (title, description, or credits).
 Example: "prod. @diedfavorite"
 
-Thank you for your support.
-        </textarea>
+Thank you for your support.</textarea>
+        </div>
       </div>
     </div>
 
@@ -522,12 +586,18 @@ Thank you for your support.
           <button aria-label="Close" onclick="closeWindow('window-secrettxt')"></button>
         </div>
       </div>
-      <div class="window-body" style="padding:0;">
-        <textarea readonly
-          style="width:100%; height:160px; resize:none; border:none; background:#fff; font-family:'Courier New',monospace; font-size:12px; padding:8px; box-sizing:border-box; color:#000; outline:none;"
->@diedfavorite is the one and only</textarea>
-        <div style="padding:4px 6px; display:flex; justify-content:flex-end;">
-          <button onclick="closeWindow('window-secrettxt')">Close</button>
+      <div class="window-body win95-layout">
+        <div class="win95-menubar">
+          <div class="win95-menubar-item"><u>F</u>ile</div>
+          <div class="win95-menubar-item"><u>E</u>dit</div>
+          <div class="win95-menubar-item"><u>S</u>earch</div>
+          <div class="win95-menubar-item"><u>H</u>elp</div>
+        </div>
+        <div class="win95-window-content notepad-content">
+          <textarea readonly style="flex:1; width:100%; min-height:120px; resize:none; border:none; background:#fff; font-family:'Courier New',monospace; font-size:12px; padding:8px; box-sizing:border-box; color:#000; outline:none;">@diedfavorite is the one and only</textarea>
+        </div>
+        <div class="win95-statusbar">
+          <div class="win95-statusbar-cell grow">Ln 1, Col 35</div>
         </div>
       </div>
     </div>

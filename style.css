@@ -31,21 +31,25 @@ textarea {
 
 /* ── Animations ── */
 @keyframes win-open {
-  0%   { transform: scale(0.94); opacity: 0; }
-  65%  { transform: scale(1.03); opacity: 1; }
-  100% { transform: scale(1);    opacity: 1; }
+  0%   { transform: scale(0.85) translateY(8px); opacity: 0; }
+  55%  { transform: scale(1.025) translateY(-1px); opacity: 1; }
+  78%  { transform: scale(0.995); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 @keyframes win-close {
   0%   { transform: scale(1);    opacity: 1; }
-  100% { transform: scale(0.92); opacity: 0; }
+  30%  { transform: scale(1.02); opacity: 0.8; }
+  100% { transform: scale(0.88); opacity: 0; }
 }
 @keyframes win-minimize {
-  0%   { transform: scaleY(1);   opacity: 1; }
-  100% { transform: scaleY(0.1); opacity: 0; }
+  0%   { transform: scaleY(1) scaleX(1);   opacity: 1; }
+  40%  { transform: scaleY(0.4) scaleX(0.9); opacity: 0.6; }
+  100% { transform: scaleY(0) scaleX(0.7); opacity: 0; }
 }
 @keyframes win-maximize {
-  0%   { transform: scale(0.97); }
-  100% { transform: scale(1);    }
+  0%   { transform: scale(0.94); opacity: 0.7; }
+  70%  { transform: scale(1.01); }
+  100% { transform: scale(1); opacity: 1; }
 }
 @keyframes icon-pop {
   0%   { transform: scale(1);    }
@@ -66,10 +70,10 @@ textarea {
 /* body background matches taskbar so no white flash */
 body { background: #c0c0c0; }
 
-.win-opening   { animation: win-open      0.18s ease-out forwards; }
-.win-closing   { animation: win-close     0.12s ease-in  forwards; }
-.win-minimize  { animation: win-minimize  0.12s ease-in  forwards; }
-.win-maximize  { animation: win-maximize  0.14s ease-out forwards; }
+.win-opening   { animation: win-open      0.22s cubic-bezier(0.2, 0.8, 0.4, 1) forwards; }
+.win-closing   { animation: win-close     0.15s ease-in  forwards; }
+.win-minimize  { animation: win-minimize  0.16s ease-in  forwards; }
+.win-maximize  { animation: win-maximize  0.18s ease-out forwards; }
 .icon-pop      { animation: icon-pop      0.28s ease-out; }
 .start-opening { animation: start-slide   0.14s ease-out; }
 .taskbar-press { animation: taskbar-press 0.15s ease-out; }
@@ -1248,14 +1252,14 @@ fieldset:hover {
   animation: boot-fadeout 0.6s ease-out forwards !important;
 }
 
-/* Window resize flash (maximize/restore) */
+/* Window resize flash (maximize/restore only) */
 @keyframes win-resize-flash {
-  0%   { filter: brightness(1.2); }
-  100% { filter: brightness(1);   }
+  0%   { filter: brightness(1.15); }
+  100% { filter: brightness(1);    }
 }
-.win-maximize, .win-opening {
-  animation: win-maximize 0.14s ease-out forwards,
-             win-resize-flash 0.14s ease-out forwards !important;
+.win-maximize {
+  animation: win-maximize 0.18s ease-out forwards,
+             win-resize-flash 0.18s ease-out forwards !important;
 }
 
 /* Now-playing container pulse border */
@@ -1514,15 +1518,9 @@ button.default-btn {
    Extra Win95 animations
 ══════════════════════════════════════════ */
 
-/* Title bar shimmer when focused */
-@keyframes titlebar-shimmer {
-  0%   { background: #000080; }
-  30%  { background: #0000aa; }
-  60%  { background: #1010cc; }
-  100% { background: #000080; }
-}
+/* Active title bar: authentic solid Win95 navy — no animation */
 .window.active .title-bar {
-  animation: titlebar-shimmer 3s ease-in-out infinite !important;
+  background: #000080 !important;
 }
 
 /* Taskbar button press sink */
@@ -1787,3 +1785,228 @@ button.default-btn {
   }
 }
 
+/* ══════════════════════════════════════════════
+   WIN95 MENU BAR — used in beats/loops/notepad
+══════════════════════════════════════════════ */
+.win95-menubar {
+  display: flex;
+  background: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  padding: 0 2px;
+  gap: 0;
+  font-size: 11px;
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  flex-shrink: 0;
+  height: 20px;
+  align-items: center;
+}
+.win95-menubar-item {
+  padding: 2px 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: default !important;
+  user-select: none !important;
+  white-space: nowrap;
+}
+.win95-menubar-item:hover {
+  background: #000080;
+  color: #fff;
+}
+.win95-menubar-item .underline { text-decoration: underline; }
+
+/* ══════════════════════════════════════════════
+   WIN95 STATUS BAR
+══════════════════════════════════════════════ */
+.win95-statusbar {
+  display: flex;
+  border-top: 1px solid #808080;
+  background: #c0c0c0;
+  padding: 2px 4px;
+  gap: 4px;
+  flex-shrink: 0;
+  height: 22px;
+  align-items: center;
+  box-shadow: inset 0 1px #fff;
+}
+.win95-statusbar-cell {
+  font-size: 10px;
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  padding: 1px 6px;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+  color: #000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.win95-statusbar-cell.grow { flex: 1; }
+
+/* ══════════════════════════════════════════════
+   WIN95 IE-STYLE ADDRESS BAR (socials window)
+══════════════════════════════════════════════ */
+.win95-ie-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #c0c0c0;
+  padding: 3px 4px;
+  border-bottom: 1px solid #808080;
+  flex-shrink: 0;
+}
+.win95-ie-nav-btn {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+}
+.win95-ie-address-label {
+  font-size: 10px;
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  padding: 0 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.win95-ie-address-field {
+  flex: 1;
+  height: 20px;
+  background: #fff;
+  border: none;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #808080,
+              inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+  font-size: 11px;
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  padding: 1px 4px;
+  color: #000;
+  outline: none;
+  cursor: default !important;
+  user-select: text !important;
+}
+
+/* ══════════════════════════════════════════════
+   WIN95 WINDOW CONTENT WRAPPER
+   Add class "win95-layout" to window-body to enable
+══════════════════════════════════════════════ */
+.win95-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 !important;
+}
+.win95-window-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px;
+  background: #c0c0c0;
+}
+.win95-window-content.notepad-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ══════════════════════════════════════════════
+   SOCIAL LINKS (IE-style folder list)
+══════════════════════════════════════════════ */
+.win95-link-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  cursor: default !important;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #dfdfdf;
+}
+.win95-link-item:last-child { border-bottom: none; }
+.win95-link-item:hover {
+  background: #000080;
+  color: #fff;
+}
+.win95-link-item:hover img {
+  filter: brightness(0) invert(1);
+}
+.win95-link-item .link-desc {
+  flex: 1;
+}
+.win95-link-item .link-url {
+  font-size: 10px;
+  color: #808080;
+  white-space: nowrap;
+}
+.win95-link-item:hover .link-url { color: #b0c0e0; }
+.win95-links-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #000080;
+  color: #fff;
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+}
+
+/* ══════════════════════════════════════════════
+   TRACK LIST: alternating row tint
+══════════════════════════════════════════════ */
+.win95-media-player:nth-child(even) {
+  background: #d4d4d4;
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE: menu bar / toolbar scale up
+══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .win95-menubar {
+    height: 36px !important;
+    font-size: 14px !important;
+  }
+  .win95-menubar-item {
+    padding: 4px 14px !important;
+    font-size: 14px !important;
+  }
+  .win95-statusbar {
+    height: 30px !important;
+  }
+  .win95-statusbar-cell {
+    font-size: 13px !important;
+    padding: 3px 10px !important;
+  }
+  .win95-ie-toolbar {
+    padding: 5px 6px !important;
+    gap: 4px !important;
+  }
+  .win95-ie-nav-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    font-size: 16px !important;
+  }
+  .win95-ie-address-field {
+    height: 32px !important;
+    font-size: 13px !important;
+  }
+  .win95-link-item {
+    padding: 10px 8px !important;
+    font-size: 14px !important;
+    gap: 12px !important;
+  }
+  .win95-link-item img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .win95-links-header {
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+  }
+  .win95-window-content {
+    padding: 8px !important;
+  }
+}
