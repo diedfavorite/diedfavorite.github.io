@@ -1562,17 +1562,19 @@ button.default-btn {
     height: calc(100vh - 44px) !important;
   }
 
-  /* ── Desktop icons: compact ── */
+  /* ── Desktop icons: large enough to tap ── */
   .desktop-icon {
-    width: 52px !important;
+    width: 76px !important;
+    gap: 4px !important;
   }
   .desktop-icon img {
-    width: 24px !important;
-    height: 24px !important;
-    margin-bottom: 2px !important;
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 4px !important;
   }
   .desktop-icon span {
-    font-size: 9px !important;
+    font-size: 12px !important;
+    padding: 2px 4px !important;
   }
 
   /* ── Windows: fixed full-screen, one at a time ──
@@ -1631,30 +1633,56 @@ button.default-btn {
     touch-action: pan-x !important;
   }
 
-  /* ── Taskbar: 44px for touch ── */
+  /* ── Taskbar: tall and readable ── */
   #taskbar {
-    height: 44px !important;
+    height: 54px !important;
+    padding: 4px 6px !important;
+  }
+  #desktop {
+    height: calc(100vh - 54px) !important;
+  }
+  .desktop-window {
+    height: calc(100vh - 54px) !important;
+    max-height: calc(100vh - 54px) !important;
   }
   .start-btn {
-    height: 38px !important;
-    font-size: 13px !important;
-    padding: 0 6px !important;
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 0 10px !important;
     touch-action: manipulation !important;
+    gap: 6px !important;
+  }
+  .start-btn img, .start-icon-anim {
+    width: 24px !important;
+    height: 24px !important;
   }
   #taskbar-items button {
-    height: 36px !important;
-    font-size: 12px !important;
-    max-width: 110px !important;
+    height: 44px !important;
+    font-size: 13px !important;
+    max-width: 130px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+    padding: 0 8px !important;
   }
   #tray > div {
-    height: 36px !important;
-    padding: 2px 5px !important;
+    height: 44px !important;
+    padding: 4px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  #tray img {
+    width: 22px !important;
+    height: 22px !important;
   }
   #clock, #tray-date {
-    font-size: 11px !important;
+    font-size: 13px !important;
+  }
+  #start-menu {
+    bottom: 54px !important;
+  }
+  #volume-popup {
+    bottom: 58px !important;
   }
 
   /* ── Start menu: correct offset for 44px taskbar ── */
@@ -1682,6 +1710,20 @@ button.default-btn {
   /* Display Properties: stack fieldsets vertically */
   #window-display .window-body > div {
     flex-direction: column !important;
+  }
+
+  /* Bigger title bar for touch */
+  .title-bar {
+    height: 32px !important;
+    padding: 6px 4px !important;
+    font-size: 13px !important;
+  }
+  .title-bar-text {
+    font-size: 13px !important;
+  }
+  .title-bar-controls button {
+    width: 28px !important;
+    height: 28px !important;
   }
 
   /* Maximize button useless on mobile — hide it */
