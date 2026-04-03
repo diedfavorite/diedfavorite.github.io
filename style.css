@@ -1556,7 +1556,7 @@ button.default-btn {
 /* ══════════════════════════════════════════
    Mobile / Phone responsive
 ══════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   /* ── Desktop: correct height for 44px taskbar ── */
   #desktop {
     height: calc(100vh - 44px) !important;
@@ -1686,6 +1686,18 @@ button.default-btn {
 
   /* Maximize button useless on mobile — hide it */
   .title-bar-controls button[aria-label="Maximize"] {
+    display: none !important;
+  }
+
+  /* Hide tray display icon on mobile — too easy to tap by accident */
+  #tray > div:first-child {
+    display: none !important;
+  }
+}
+
+/* ── Also hide tray display icon on touch devices regardless of width ── */
+@media (hover: none) and (pointer: coarse) {
+  #tray > div:first-child {
     display: none !important;
   }
 }

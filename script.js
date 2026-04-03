@@ -1,5 +1,5 @@
 let highestZIndex = 100;
-const isMobile = () => window.innerWidth <= 768;
+const isMobile = () => window.innerWidth <= 900 || ('ontouchstart' in window && window.innerWidth <= 1200);
 const openWindows = new Set(['window-hero']);
 const desktop = document.getElementById('desktop');
 
@@ -726,7 +726,7 @@ document.querySelectorAll('audio, video').forEach(el => {
           screen.style.display = 'none';
           document.body.classList.remove('cursor-wait');
           // Show balloon tip after boot
-          setTimeout(() => showBalloon('Welcome! Double-click any desktop icon to open a window.', 5000), 600);
+          setTimeout(() => showBalloon(isMobile() ? 'Welcome! Tap any icon to open a window.' : 'Welcome! Double-click any desktop icon to open a window.', 5000), 600);
         }, 620);
       }, 300);
       return;
