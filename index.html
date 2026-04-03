@@ -249,6 +249,18 @@
           <legend>latest beats</legend>
           <div class="track-list" id="beats-content" style="max-height: 250px; overflow-y: auto;">
             <div class="win95-media-player">
+              <div class="media-title">windows , 150 , + 68 cents</div>
+              <audio id="audio-beats-0" src="beats/Windows , 150 , + 68 Cents.mp3"></audio>
+              <div class="media-controls">
+                <button onclick="playMedia('audio-beats-0')">&#9654;</button>
+                <button onclick="pauseMedia('audio-beats-0')"><strong>||</strong></button>
+                <button onclick="stopMedia('audio-beats-0')">&#9632;</button>
+                <button class="dl-btn" onclick="confirmDownload('beats/Windows , 150 , + 68 Cents.mp3', 'Windows , 150 , + 68 Cents.mp3')">Save</button>
+                <input type="range" class="media-slider" id="slider-audio-beats-0" value="0" step="0.1" oninput="seekMedia('audio-beats-0', this.value)">
+                <div class="media-time sunken-panel" id="time-audio-beats-0">00:00</div>
+              </div>
+            </div>
+            <div class="win95-media-player">
               <div class="media-title">children , 143.400 , + 50 cents</div>
               <audio id="audio-beats-1" src="beats/Children , 143.400 , + 50 Cents.mp3"></audio>
               <div class="media-controls">
