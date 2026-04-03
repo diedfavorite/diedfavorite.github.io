@@ -1557,24 +1557,25 @@ button.default-btn {
    Mobile / Phone responsive
 ══════════════════════════════════════════ */
 @media (max-width: 900px) {
-  /* ── Desktop: correct height for 44px taskbar ── */
-  #desktop {
-    height: calc(100vh - 44px) !important;
+  /* ── Base font size ── */
+  html, body {
+    font-size: 15px !important;
   }
 
-  /* ── Desktop icons: large enough to tap ── */
+  /* ── Desktop icons: big and tappable ── */
   .desktop-icon {
-    width: 76px !important;
-    gap: 4px !important;
+    width: 90px !important;
   }
   .desktop-icon img {
-    width: 48px !important;
-    height: 48px !important;
-    margin-bottom: 4px !important;
+    width: 56px !important;
+    height: 56px !important;
+    margin-bottom: 6px !important;
   }
   .desktop-icon span {
-    font-size: 12px !important;
-    padding: 2px 4px !important;
+    font-size: 13px !important;
+    padding: 3px 5px !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
   }
 
   /* ── Windows: fixed full-screen, one at a time ──
@@ -1607,76 +1608,107 @@ button.default-btn {
     -webkit-overflow-scrolling: touch !important;
   }
 
-  /* Touch-friendly buttons */
+  /* Touch-friendly buttons — all bigger */
   button {
-    min-height: 36px !important;
-    font-size: 13px !important;
+    min-height: 44px !important;
+    font-size: 15px !important;
     touch-action: manipulation !important;
   }
   .media-controls button:not(.dl-btn) {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    font-size: 15px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    font-size: 18px !important;
     padding: 0 !important;
   }
   .dl-btn {
-    min-width: 64px !important;
-    height: 36px !important;
-    font-size: 13px !important;
-    padding: 4px 12px !important;
+    min-width: 80px !important;
+    height: 44px !important;
+    font-size: 15px !important;
+    padding: 4px 14px !important;
   }
 
   /* Touch-friendly slider */
   .media-slider {
-    height: 20px !important;
+    height: 28px !important;
     touch-action: pan-x !important;
+  }
+
+  /* Start menu items bigger */
+  .menu-item {
+    padding: 12px 8px !important;
+    font-size: 15px !important;
+    gap: 10px !important;
+  }
+  .menu-item img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Window content text bigger */
+  .window-body, .window-body * {
+    font-size: 14px !important;
+  }
+  .media-title {
+    font-size: 14px !important;
+    padding: 4px 2px !important;
+  }
+  .media-time {
+    font-size: 14px !important;
+    min-width: 56px !important;
   }
 
   /* ── Taskbar: tall and readable ── */
   #taskbar {
-    height: 54px !important;
-    padding: 4px 6px !important;
+    height: 62px !important;
+    padding: 6px 8px !important;
   }
   #desktop {
-    height: calc(100vh - 54px) !important;
+    height: calc(100vh - 62px) !important;
   }
   .desktop-window {
-    height: calc(100vh - 54px) !important;
-    max-height: calc(100vh - 54px) !important;
+    height: calc(100vh - 62px) !important;
+    max-height: calc(100vh - 62px) !important;
   }
   .start-btn {
-    height: 46px !important;
-    font-size: 15px !important;
-    padding: 0 10px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    padding: 0 12px !important;
     touch-action: manipulation !important;
-    gap: 6px !important;
+    gap: 8px !important;
   }
   .start-btn img, .start-icon-anim {
-    width: 24px !important;
-    height: 24px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
   #taskbar-items button {
-    height: 44px !important;
-    font-size: 13px !important;
-    max-width: 130px !important;
+    height: 50px !important;
+    font-size: 14px !important;
+    max-width: 140px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    padding: 0 8px !important;
+    padding: 0 10px !important;
   }
   #tray > div {
-    height: 44px !important;
-    padding: 4px 8px !important;
+    height: 50px !important;
+    padding: 4px 10px !important;
     display: flex !important;
     align-items: center !important;
   }
   #tray img {
-    width: 22px !important;
-    height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
   }
   #clock, #tray-date {
-    font-size: 13px !important;
+    font-size: 14px !important;
+  }
+  #start-menu {
+    bottom: 62px !important;
+  }
+  #volume-popup {
+    bottom: 66px !important;
   }
   #start-menu {
     bottom: 54px !important;
@@ -1714,16 +1746,16 @@ button.default-btn {
 
   /* Bigger title bar for touch */
   .title-bar {
-    height: 32px !important;
-    padding: 6px 4px !important;
-    font-size: 13px !important;
+    height: 38px !important;
+    padding: 8px 6px !important;
+    line-height: 22px !important;
   }
   .title-bar-text {
-    font-size: 13px !important;
+    font-size: 15px !important;
   }
   .title-bar-controls button {
-    width: 28px !important;
-    height: 28px !important;
+    width: 30px !important;
+    height: 30px !important;
   }
 
   /* Maximize button useless on mobile — hide it */
