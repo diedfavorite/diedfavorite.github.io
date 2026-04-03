@@ -1642,15 +1642,28 @@ button.default-btn {
     touch-action: pan-x !important;
   }
 
-  /* Start menu items bigger */
+  /* Start menu: scrollable, max height fits screen */
+  #start-menu {
+    max-height: calc(100vh - 80px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    flex-direction: column !important;
+    width: 220px !important;
+  }
+  /* Hide the vertical banner on mobile to save space */
+  #start-menu > div:first-child {
+    display: none !important;
+  }
+
+  /* Start menu items: compact enough to fit */
   .menu-item {
-    padding: 12px 8px !important;
+    padding: 10px 8px !important;
     font-size: 15px !important;
     gap: 10px !important;
   }
   .menu-item img {
-    width: 32px !important;
-    height: 32px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
 
   /* Window content text bigger */
