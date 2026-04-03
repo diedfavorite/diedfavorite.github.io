@@ -1562,13 +1562,13 @@ button.default-btn {
     font-size: 15px !important;
   }
 
-  /* ── Desktop icons: big and tappable ── */
+  /* ── Desktop icons: 3-column grid, big and tappable ── */
   .desktop-icon {
-    width: 90px !important;
+    width: 100px !important;
   }
   .desktop-icon img {
-    width: 56px !important;
-    height: 56px !important;
+    width: 64px !important;
+    height: 64px !important;
     margin-bottom: 6px !important;
   }
   .desktop-icon span {
@@ -1576,7 +1576,16 @@ button.default-btn {
     padding: 3px 5px !important;
     line-height: 1.3 !important;
     word-break: break-word !important;
+    text-align: center !important;
   }
+
+  /* Re-grid icons into 3 columns × 2 rows */
+  #icon-beats     { top: 16px  !important; left: calc(50vw - 165px) !important; }
+  #icon-loops     { top: 16px  !important; left: calc(50vw - 55px)  !important; }
+  #icon-video     { top: 16px  !important; left: calc(50vw + 55px)  !important; }
+  #icon-socials   { top: 155px !important; left: calc(50vw - 165px) !important; }
+  #icon-licensing { top: 155px !important; left: calc(50vw - 55px)  !important; }
+  #icon-recyclebin{ top: 155px !important; left: calc(50vw + 55px)  !important; }
 
   /* ── Windows: fixed full-screen, one at a time ── */
   .desktop-window {
