@@ -1678,5 +1678,15 @@ button.default-btn {
   @media (max-width: 380px) {
     #tray-date { display: none !important; }
   }
+
+  /* Display Properties: stack fieldsets vertically */
+  #window-display .window-body > div {
+    flex-direction: column !important;
+  }
+
+  /* Maximize button useless on mobile — hide it */
+  .title-bar-controls button[aria-label="Maximize"] {
+    display: none !important;
+  }
 }
 

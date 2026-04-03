@@ -91,6 +91,9 @@ function bringToFront(id) {
 }
 
 function openWindow(id) {
+  // Always close start menu when opening a window
+  document.getElementById('start-menu')?.classList.add('hidden');
+
   // On mobile: close all other windows first (one window at a time)
   if (isMobile()) {
     openWindows.forEach(otherId => {
@@ -229,8 +232,9 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     document.body.style.userSelect = 'none';
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   });
-  // Touch drag support
+  // Touch drag support (disabled on mobile — windows are CSS-locked full-screen)
   titleBar.addEventListener('touchstart', (e) => {
+    if (isMobile()) { bringToFront(windowEl.id); return; }
     if (e.target.tagName.toLowerCase() === 'button') return;
     if (windowEl.classList.contains('maximized')) return;
     bringToFront(windowEl.id);
