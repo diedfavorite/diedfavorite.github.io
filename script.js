@@ -1039,4 +1039,30 @@ window.addEventListener('resize', () => {
   if (window.innerWidth > window.innerHeight && isMobile()) {
      hideContextMenu();
   }
+  checkRotationNotice();
 });
+
+// Safety net: Force show/hide rotate notice based on orientation on mobile
+function checkRotationNotice() {
+  const notice = document.getElementById('rotate-notice');
+  if (!notice) return;
+  
+  // If portrait and small screen, ensure it's visible if CSS missed it
+  if (window.innerHeight > window.innerWidth && window.innerWidth < 1000) {
+    if (isMobile()) {
+      notice.style.display = 'flex';
+      // Hide other core UI just in case
+      document.getElementById('desktop').style.display = 'none';
+      document.getElementById('taskbar').style.display = 'none';
+    }
+  } else {
+    // Landscape or desktop - reset styles to let CSS take over or show UI
+    notice.style.display = '';
+    document.getElementById('desktop').style.display = '';
+    document.getElementById('taskbar').style.display = '';
+  }
+}
+
+// Run on boot
+setTimeout(checkRotationNotice, 500);
+

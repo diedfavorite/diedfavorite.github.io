@@ -2023,12 +2023,13 @@ button.default-btn {
   }
 }
 
-/* Mobile Rotate Notice (v8) */
-@media screen and (max-width: 900px) and (orientation: portrait) {
+/* Mobile Rotate Notice (v9) - More robust for high-res Androids */
+@media screen and (orientation: portrait) and (max-width: 1200px), 
+       screen and (max-aspect-ratio: 1/1) and (max-width: 1200px) {
   #rotate-notice {
     display: flex !important;
   }
-  #desktop, #taskbar, #start-menu, .window {
+  #desktop, #taskbar, #start-menu, .window, #boot-screen {
     display: none !important;
   }
 }
