@@ -12,13 +12,14 @@
 
 <body>
 
-  <!-- Mobile Rotate Notice -->
+  <!-- Mobile Rotate Notice (v8) -->
   <div id="rotate-notice">
-    <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" width="48" height="48" style="image-rendering:pixelated; margin-bottom: 20px; animation: icon-pop 1s infinite alternate;">
-    <h2 style="font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; font-size: 16px; margin-bottom: 10px;">Please Rotate Your Device</h2>
-    <p style="font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; font-size: 12px; line-height: 1.5;">For the best Windows 95 experience,<br>please use landscape orientation.</p>
-    <div style="margin-top: 20px; padding: 10px; border: 2px inset #dfdfdf; background: #c0c0c0; color: #000; box-shadow: inset 1px 1px #fff, inset -1px -1px #808080;">
-       This site is optimized for horizontal viewing.
+    <!-- Use brand logo for the rotate notice! -->
+    <img src="logo.png" width="80" height="80" style="margin-bottom: 25px; animation: icon-pop 1.5s infinite alternate;">
+    <h2 style="font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; font-size: 18px; margin-bottom: 12px; color: #fff;">Please Rotate Your Device</h2>
+    <p style="font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #fff;">For the best experience on @diedfavorite,<br>please switch to landscape orientation.</p>
+    <div style="margin-top: 25px; padding: 12px; border: 2px inset #dfdfdf; background: #c0c0c0; color: #000; box-shadow: inset 1px 1px #fff, inset -1px -1px #808080; font-size: 13px;">
+       System will automatically load the desktop in horizontal mode.
     </div>
   </div>  <!-- Win95 Boot Screen -->
   <div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0;">
@@ -57,27 +58,27 @@
     <!-- desktop shortcut icons with win95 aesthetic -->
     <div class="desktop-icon" id="icon-beats" onclick="selectIcon('icon-beats')" ondblclick="openWindow('window-beats')"
       style="top:20px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-0.png" alt="beats">
+      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_player-0.png" alt="beats">
       <span>beats</span>
     </div>
     <div class="desktop-icon" id="icon-loops" onclick="selectIcon('icon-loops')" ondblclick="openWindow('window-loops')"
       style="top:110px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-0.png" alt="loops">
+      <img src="https://win98icons.alexmeub.com/icons/png/mmsys_cp-0.png" alt="loops">
       <span>loops</span>
     </div>
     <div class="desktop-icon" id="icon-video" onclick="selectIcon('icon-video')" ondblclick="openWindow('window-video')"
       style="top:200px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png" alt="videos">
+      <img src="https://win98icons.alexmeub.com/icons/png/video_camera-0.png" alt="videos">
       <span>videos</span>
     </div>
     <div class="desktop-icon" id="icon-socials" onclick="selectIcon('icon-socials')"
       ondblclick="openWindow('window-socials')" style="top:290px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" alt="social medias">
+      <img src="https://win98icons.alexmeub.com/icons/png/network_neighborhood-0.png" alt="social medias">
       <span>social medias</span>
     </div>
     <div class="desktop-icon" id="icon-licensing" onclick="selectIcon('icon-licensing')"
       ondblclick="openWindow('window-licensing')" style="top:380px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/write_wordpad-0.png" alt="licensing">
+      <img src="https://win98icons.alexmeub.com/icons/png/notepad-0.png" alt="licensing">
       <span>licensing.txt</span>
     </div>
     <div class="desktop-icon" id="icon-recyclebin" onclick="selectIcon('icon-recyclebin')"

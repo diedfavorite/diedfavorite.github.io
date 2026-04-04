@@ -2013,24 +2013,26 @@ button.default-btn {
   }
 }
 
-/* Mobile Orientation Best Experience Suggstion */
+/* Mobile Rotate Notice (v8) */
 @media screen and (max-width: 900px) and (orientation: portrait) {
   #rotate-notice {
-    display: none !important; /* Hiding until we move to a better suggestion-only model */
+    display: flex !important;
   }
   #desktop, #taskbar, #start-menu, .window {
-    display: block !important; /* Full desktop now allowed in portrait */
+    display: none !important;
   }
 }
+
 @media screen and (max-width: 900px) {
   .window {
-    width: 90% !important; /* Scale windows for mobile width */
-    left: 5% !important;
+    width: 94% !important; /* Scale windows for mobile width */
+    left: 3% !important;
   }
   .desktop-icon {
     transform: scale(0.85); /* Slightly smaller icons for small screens */
   }
 }
+
 
 #rotate-notice {
   display: none;
