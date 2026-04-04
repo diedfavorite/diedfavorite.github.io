@@ -434,8 +434,18 @@ video::-webkit-media-controls { text-transform: none !important; }
 }
 
 .draggable {
-  touch-action: none;
+  touch-action: pan-x pan-y pinch-zoom; /* Allow gestures but support custom drag */
 }
+
+/* Ensure buttons always receive touch events */
+.title-bar-controls button, 
+.window-body button,
+.taskbar-item,
+.start-btn {
+  touch-action: auto !important;
+  pointer-events: auto !important;
+}
+
 
 
 /* Fieldset Win95 style */
@@ -2049,3 +2059,16 @@ button.default-btn {
   padding: 20px;
   box-sizing: border-box;
 }
+
+@keyframes screen-rotate {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(0deg); }
+  80% { transform: rotate(-90deg); }
+  100% { transform: rotate(-90deg); }
+}
+
+.rotate-icon-anim {
+  animation: screen-rotate 2s infinite ease-in-out;
+  image-rendering: pixelated;
+}
+

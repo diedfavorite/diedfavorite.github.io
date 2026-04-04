@@ -843,8 +843,8 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     touchOffY = t.clientY - rect.top;
     touchDragActive = true;
     bringToFront(windowEl.id);
-    e.preventDefault();
-  }, { passive: false });
+    // Removed e.preventDefault() to allow the 'click' event to reach buttons
+  }, { passive: true });
 
   titleBar.addEventListener('touchmove', (e) => {
     if (!touchDragActive) return;
@@ -853,8 +853,9 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     const newTop  = Math.max(0, Math.min(t.clientY - touchOffY, window.innerHeight - 60));
     windowEl.style.left = newLeft + 'px';
     windowEl.style.top  = newTop  + 'px';
-    e.preventDefault();
+    if (e.cancelable) e.preventDefault();
   }, { passive: false });
+
 
   titleBar.addEventListener('touchend', () => {
     touchDragActive = false;
@@ -1014,4 +1015,28 @@ applyLang(getBestLocale());
 window.addEventListener('languagechange', () => {
   applyLang(getBestLocale());
   showBalloon('⌨ Language: ' + _currentLangFull, 2500);
+});
+// Universal orientation change handler
+window.addEventListener('orientationchange', () => {
+  hideContextMenu();
+  document.getElementById('start-menu')?.classList.add('hidden');
+  document.getElementById('volume-popup')?.classList.add('hidden');
+  
+  // Re-calculate window positions if they go off-screen
+  setTimeout(() => {
+    openWindows.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el || el.classList.contains('hidden')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.left > window.innerWidth - 40) el.style.left = (window.innerWidth - 300) + 'px';
+      if (rect.top > window.innerHeight - 40) el.style.top = '20px';
+    });
+  }, 300);
+});
+
+// Also listen to resize for Android Chrome support
+window.addEventListener('resize', () => {
+  if (window.innerWidth > window.innerHeight && isMobile()) {
+     hideContextMenu();
+  }
 });
