@@ -5,12 +5,9 @@ const desktop = document.getElementById('desktop');
 
 document.getElementById('window-hero').classList.add('active');
 
-// On mobile: hide hero window immediately, show a tap-to-open message
-if (isMobile()) {
-  const hero = document.getElementById('window-hero');
-  hero.classList.add('hidden');
-  openWindows.delete('window-hero');
-}
+// No special window hiding on mobile startup anymore - full desktop parity
+// if (isMobile()) { ... }
+
 
 function pad(n) { return n < 10 ? '0' + n : String(n); }
 
@@ -94,18 +91,8 @@ function openWindow(id) {
   // Always close start menu when opening a window
   document.getElementById('start-menu')?.classList.add('hidden');
 
-  // On mobile: close all other windows first (one window at a time)
-  if (isMobile()) {
-    openWindows.forEach(otherId => {
-      if (otherId === id) return;
-      const other = document.getElementById(otherId);
-      if (other && !other.classList.contains('hidden')) {
-        other.classList.add('hidden');
-        other.classList.remove('active');
-        openWindows.delete(otherId);
-      }
-    });
-  }
+  // Full window management on all devices
+
   const el = document.getElementById(id);
   if (!el) return;
   delete el.dataset.closing;
@@ -238,10 +225,10 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
     document.body.style.userSelect = 'none';
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   });
-  // Touch drag support (disabled on mobile — windows are CSS-locked full-screen)
+  // Touch drag support - enabled for all devices
   titleBar.addEventListener('touchstart', (e) => {
-    if (isMobile()) { bringToFront(windowEl.id); return; }
     if (e.target.tagName.toLowerCase() === 'button') return;
+
     if (windowEl.classList.contains('maximized')) return;
     bringToFront(windowEl.id);
     const t = e.touches[0];

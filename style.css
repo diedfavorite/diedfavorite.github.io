@@ -372,7 +372,9 @@ video::-webkit-media-controls { text-transform: none !important; }
   cursor: default;
   position: absolute;
   user-select: none;
+  touch-action: none;
 }
+
 
 .desktop-icon span {
   padding: 1px 2px;
@@ -428,7 +430,13 @@ video::-webkit-media-controls { text-transform: none !important; }
 .window-body {
   background: #c0c0c0 !important;
   padding: 6px !important;
+  touch-action: auto;
 }
+
+.draggable {
+  touch-action: none;
+}
+
 
 /* Fieldset Win95 style */
 fieldset {
@@ -2005,16 +2013,25 @@ button.default-btn {
   }
 }
 
-/* Mobile Rotate Notice */
+/* Mobile Orientation Best Experience Suggstion */
 @media screen and (max-width: 900px) and (orientation: portrait) {
   #rotate-notice {
-    display: flex !important;
+    display: none !important; /* Hiding until we move to a better suggestion-only model */
   }
   #desktop, #taskbar, #start-menu, .window {
-    display: none !important;
+    display: block !important; /* Full desktop now allowed in portrait */
   }
-  body { background: #008080; }
 }
+@media screen and (max-width: 900px) {
+  .window {
+    width: 90% !important; /* Scale windows for mobile width */
+    left: 5% !important;
+  }
+  .desktop-icon {
+    transform: scale(0.85); /* Slightly smaller icons for small screens */
+  }
+}
+
 #rotate-notice {
   display: none;
   position: fixed;
