@@ -2004,3 +2004,29 @@ button.default-btn {
     padding: 8px !important;
   }
 }
+
+/* Mobile Rotate Notice */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  #rotate-notice {
+    display: flex !important;
+  }
+  #desktop, #taskbar, #start-menu, .window {
+    display: none !important;
+  }
+  body { background: #008080; }
+}
+#rotate-notice {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: #008080;
+  color: white;
+  z-index: 999999999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
