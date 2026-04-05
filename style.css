@@ -111,7 +111,7 @@ button:active { animation: btn-press 0.12s ease-out; }
 }
 .tab-slide { animation: tab-slide 0.15s ease-out; }
 
-/* icon hover lift handled below */
+/* icon hover bounce — see .desktop-icon:hover below */
 
 /* clock tick pulse */
 @keyframes clock-tick {
@@ -255,8 +255,19 @@ button:active { animation: btn-press 0.12s ease-out; }
 }
 .win-shake { animation: win-shake 0.3s ease-out; }
 
-/* desktop icon hover lift */
-.desktop-icon:not(.dragging):hover { transform: translateY(-3px) scale(1.05); }
+/* desktop icon hover bounce */
+@keyframes icon-hover-bounce {
+  0%   { transform: translateY(0)    scale(1);    }
+  30%  { transform: translateY(-6px) scale(1.04); }
+  55%  { transform: translateY(-2px) scale(1.02); }
+  75%  { transform: translateY(-5px) scale(1.03); }
+  90%  { transform: translateY(-2px) scale(1.01); }
+  100% { transform: translateY(-4px) scale(1.03); }
+}
+.desktop-icon:not(.dragging):hover {
+  animation: icon-hover-bounce 0.4s cubic-bezier(0.33,1,0.68,1) forwards;
+  filter: drop-shadow(0 4px 3px rgba(0,0,0,0.35));
+}
 
 /* taskbar new window flash */
 @keyframes tb-new {
@@ -1232,11 +1243,7 @@ body::after {
   z-index: 9999998;
 }
 
-/* Desktop icon float on hover — gentler */
-.desktop-icon:not(.dragging):hover {
-  transform: translateY(-4px) scale(1.06) !important;
-  filter: drop-shadow(0 4px 2px rgba(0,0,0,0.4));
-}
+/* Desktop icon hover — handled by keyframe above */
 
 /* Win95 fieldset hover border highlight */
 fieldset:hover {
