@@ -27,24 +27,25 @@ function focusLastOpenWindow() {
 }
 
 let _lastMinute = -1;
+const _clockEl = document.getElementById('clock');
+const _trayDateEl = document.getElementById('tray-date');
+const _days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const _months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function updateTray() {
   const now = new Date();
   let h = now.getHours();
   const ampm = h >= 12 ? 'pm' : 'am';
   h = h % 12 || 12;
   const min = now.getMinutes();
-  const clock = document.getElementById('clock');
-  clock.innerText = h + ':' + pad(min) + ' ' + ampm;
+  _clockEl.innerText = h + ':' + pad(min) + ' ' + ampm;
   if (min !== _lastMinute) {
     _lastMinute = min;
-    clock.classList.remove('clock-tick');
-    void clock.offsetWidth;
-    clock.classList.add('clock-tick');
-    onSelfAnimEnd(clock, () => clock.classList.remove('clock-tick'));
+    _clockEl.classList.remove('clock-tick');
+    void _clockEl.offsetWidth;
+    _clockEl.classList.add('clock-tick');
+    onSelfAnimEnd(_clockEl, () => _clockEl.classList.remove('clock-tick'));
+    _trayDateEl.innerText = _days[now.getDay()] + ' ' + _months[now.getMonth()] + ' ' + now.getDate();
   }
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  document.getElementById('tray-date').innerText = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate();
 }
 updateTray();
 setInterval(updateTray, 1000);
@@ -377,9 +378,11 @@ let dragRafId = null;
 function dragAnimLoop() {
   if (!dragWin) { dragRafId = null; return; }
   const winW = dragWin.offsetWidth;
-  const titleH = dragWin.querySelector('.title-bar').offsetHeight;
-  const clampedX = Math.max(-(winW - 60), Math.min(dragTargetX, desktop.offsetWidth - 60));
-  const clampedY = Math.max(0, Math.min(dragTargetY, desktop.offsetHeight - titleH));
+  const titleH = dragWin._titleBar ? dragWin._titleBar.offsetHeight : 28;
+  const deskW = desktop.offsetWidth;
+  const deskH = desktop.offsetHeight;
+  const clampedX = Math.max(-(winW - 60), Math.min(dragTargetX, deskW - 60));
+  const clampedY = Math.max(0, Math.min(dragTargetY, deskH - titleH));
   const curX = parseFloat(dragWin.style.left) || 0;
   const curY = parseFloat(dragWin.style.top) || 0;
   dragWin.style.left = (curX + (clampedX - curX) * 0.18) + 'px';
@@ -390,6 +393,7 @@ function dragAnimLoop() {
 document.querySelectorAll('.draggable').forEach(windowEl => {
   const titleBar = windowEl.querySelector('.title-bar');
   if (!titleBar) return;
+  windowEl._titleBar = titleBar; // cache for drag loop
   windowEl.addEventListener('mousedown', () => bringToFront(windowEl.id));
   titleBar.addEventListener('mousedown', (e) => {
     if (e.target.tagName.toLowerCase() === 'button') return;

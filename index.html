@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@diedfavorite - #2011nostalgia</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="dns-prefetch" href="https://win98icons.alexmeub.com">
+  <link rel="preconnect" href="https://win98icons.alexmeub.com" crossorigin>
   <link rel="stylesheet" href="https://unpkg.com/98.css">
-  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="style.css?v=33">
 </head>
 
 <body>
@@ -22,7 +24,7 @@
   </div>  <!-- Win95 Boot Screen -->
   <div id="boot-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0;">
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px; width:min(320px, 90vw);">
-      <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="48" height="48" style="image-rendering:pixelated;" id="boot-logo">
+      <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="48" height="48" style="image-rendering:pixelated;" id="boot-logo" loading="lazy" decoding="async">
       <div style="color:#c0c0c0; font-family:Arial,sans-serif; font-size:18px; font-weight:bold; letter-spacing:2px;">Windows <span style="color:#fff;">95</span></div>
       <!-- Brand credit block -->
       <div style="border:1px solid #333; padding:8px 18px; text-align:center; background:#0a0a0a;">
@@ -53,7 +55,7 @@
 
         <!-- Title bar -->
         <div style="background:linear-gradient(90deg,#000080 0%,#1a1aaa 50%,#000080 100%); padding:4px 6px; display:flex; align-items:center; gap:6px; flex-shrink:0;">
-          <img src="https://win98icons.alexmeub.com/icons/png/hourglass-0.png" width="14" height="14" style="image-rendering:pixelated; animation:hourglass-spin 1.4s steps(2,end) infinite;" onerror="this.style.display='none'">
+          <img src="https://win98icons.alexmeub.com/icons/png/hourglass-0.png" width="14" height="14" style="image-rendering:pixelated; animation:hourglass-spin 1.4s steps(2,end) infinite;" onerror="this.style.display='none'" loading="lazy" decoding="async">
           <span style="color:#fff; font-family:'Pixelated MS Sans Serif',Arial,sans-serif; font-size:11px; font-weight:bold; flex:1; letter-spacing:0.3px;">Please Stand By</span>
           <div style="width:14px; height:12px; background:#c0c0c0; box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:bold; color:#000; flex-shrink:0;">✕</div>
         </div>
@@ -63,7 +65,7 @@
 
           <!-- Icon + message row -->
           <div style="display:flex; align-items:center; gap:14px; width:100%;">
-            <img src="https://win98icons.alexmeub.com/icons/png/hourglass-0.png" width="32" height="32" style="image-rendering:pixelated; animation:hourglass-spin 1.4s steps(2,end) infinite; flex-shrink:0;" onerror="this.src='https://win98icons.alexmeub.com/icons/png/time_date-0.png'">
+            <img src="https://win98icons.alexmeub.com/icons/png/hourglass-0.png" width="32" height="32" style="image-rendering:pixelated; animation:hourglass-spin 1.4s steps(2,end) infinite; flex-shrink:0;" onerror="this.src='https://win98icons.alexmeub.com/icons/png/time_date-0.png'" loading="lazy" decoding="async">
             <div style="display:flex; flex-direction:column; gap:4px;">
               <div style="font-family:'Pixelated MS Sans Serif',Arial,sans-serif; font-size:11px; color:#000; font-weight:bold;" id="shutdown-msg">Windows is shutting down...</div>
               <div style="font-family:'Courier New',monospace; font-size:9px; color:#808080;" id="shutdown-sub">Please wait...</div>
@@ -113,32 +115,32 @@
     <!-- desktop shortcut icons with win95 aesthetic -->
     <div class="desktop-icon" id="icon-beats" onclick="selectIcon('icon-beats')" ondblclick="openWindow('window-beats')"
       style="top:20px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" alt="">
+      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" alt="" loading="lazy" decoding="async">
       <span>beats</span>
     </div>
     <div class="desktop-icon" id="icon-loops" onclick="selectIcon('icon-loops')" ondblclick="openWindow('window-loops')"
       style="top:110px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" alt="">
+      <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" alt="" loading="lazy" decoding="async">
       <span>loops</span>
     </div>
     <div class="desktop-icon" id="icon-video" onclick="selectIcon('icon-video')" ondblclick="openWindow('window-video')"
       style="top:200px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" alt="">
+      <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" alt="" loading="lazy" decoding="async">
       <span>videos</span>
     </div>
     <div class="desktop-icon" id="icon-socials" onclick="selectIcon('icon-socials')"
       ondblclick="openWindow('window-socials')" style="top:290px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" alt="">
+      <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" alt="" loading="lazy" decoding="async">
       <span>social medias</span>
     </div>
     <div class="desktop-icon" id="icon-licensing" onclick="selectIcon('icon-licensing')"
       ondblclick="openWindow('window-licensing')" style="top:380px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/notepad-0.png" alt="">
+      <img src="https://win98icons.alexmeub.com/icons/png/notepad-0.png" alt="" loading="lazy" decoding="async">
       <span>licensing.txt</span>
     </div>
     <div class="desktop-icon" id="icon-recyclebin" onclick="selectIcon('icon-recyclebin')"
       ondblclick="openWindow('window-recyclebin')" style="top:470px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-0.png" alt="recycle bin">
+      <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-0.png" alt="recycle bin" loading="lazy" decoding="async">
       <span>recycle bin</span>
     </div>
 
@@ -157,7 +159,7 @@
         <!-- Top header strip -->
         <div style="background: #000080; padding: 8px 12px; display: flex; align-items: center; gap: 10px;">
           <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="32" height="32"
-            style="image-rendering: pixelated;" class="spin-logo">
+            style="image-rendering: pixelated;" class="spin-logo" loading="lazy" decoding="async">
           <div style="color: #fff; font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;">Welcome to
             @diedfavorite</div>
         </div>
@@ -186,7 +188,7 @@
               style="background-color: #ffffe1; border: 1px solid #000; padding: 8px; box-shadow: inset 1px 1px #fff;">
               <div
                 style="display: flex; align-items: center; gap: 5px; font-weight: bold; margin-bottom: 6px; font-size: 11px;">
-                <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16">
+                <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16" loading="lazy" decoding="async">
                 Did you know...
               </div>
               <div style="margin: 0; font-size: 11px; line-height: 1.5; color: #000;">
@@ -212,22 +214,22 @@
               <legend style="font-size: 11px;">What's New</legend>
               <div style="display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 11px;">
                 <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" width="16" height="16"
-                  style="margin-top:1px; flex-shrink:0;">
+                  style="margin-top:1px; flex-shrink:0;" loading="lazy" decoding="async">
                 <span>New beats and loops added &mdash; check the Beats &amp; Loops windows for audition tracks.</span>
               </div>
               <div style="display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 11px;">
                 <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="16" height="16"
-                  style="margin-top:1px; flex-shrink:0;">
+                  style="margin-top:1px; flex-shrink:0;" loading="lazy" decoding="async">
                 <span>New videos available &mdash; open the Videos window to watch the latest visual releases.</span>
               </div>
               <div style="display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 11px;">
                 <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16"
-                  style="margin-top:1px; flex-shrink:0;">
+                  style="margin-top:1px; flex-shrink:0;" loading="lazy" decoding="async">
                 <span>Follow on Instagram, SoundCloud, and YouTube for updates.</span>
               </div>
               <div style="display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 11px;">
                 <img src="https://win98icons.alexmeub.com/icons/png/directory_open_cool-0.png" width="16" height="16"
-                  style="margin-top:1px; flex-shrink:0;">
+                  style="margin-top:1px; flex-shrink:0;" loading="lazy" decoding="async">
                 <span>Double-click any desktop icon to open its window. Drag windows anywhere to rearrange your
                   desktop.</span>
               </div>
@@ -239,32 +241,32 @@
             <button onclick="openWindow('window-beats')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
                 src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" width="14"
-                height="14">Beats</button>
+                height="14" loading="lazy" decoding="async">Beats</button>
             <button onclick="openWindow('window-loops')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
                 src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" width="14"
-                height="14">Loops</button>
+                height="14" loading="lazy" decoding="async">Loops</button>
             <button onclick="openWindow('window-video')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
-                src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="14" height="14">Videos</button>
+                src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="14" height="14" loading="lazy" decoding="async">Videos</button>
             <button onclick="openWindow('window-socials')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
                 src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="14"
-                height="14">Social Medias</button>
+                height="14" loading="lazy" decoding="async">Social Medias</button>
             <hr
               style="width:100%; border: none; border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 2px 0;">
             <button onclick="window.open('https://soundcloud.com/diedfavorite','_blank')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img src="https://win98icons.alexmeub.com/icons/png/sndvol32_main-0.png" width="14"
-                height="14">SoundCloud</button>
+                height="14" loading="lazy" decoding="async">SoundCloud</button>
             <button onclick="window.open('https://www.youtube.com/channel/UCBbEHHbCSTX5fPUr0oUWcsA','_blank')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img src="https://win98icons.alexmeub.com/icons/png/movie_maker-0.png" width="14"
-                height="14">YouTube</button>
+                height="14" loading="lazy" decoding="async">YouTube</button>
             <button onclick="window.open('https://www.instagram.com/diedfavorite/','_blank')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img src="https://win98icons.alexmeub.com/icons/png/camera3-0.png" width="14"
-                height="14">Instagram</button>
+                height="14" loading="lazy" decoding="async">Instagram</button>
             <button onclick="window.open('https://discord.gg/3BmCPz6w','_blank')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="14"
-                height="14">Discord</button>
+                height="14" loading="lazy" decoding="async">Discord</button>
             <hr
               style="width:100%; border: none; border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 2px 0;">
             <button onclick="closeWindow('window-hero')" style="width:100%;">Close</button>
@@ -275,7 +277,7 @@
         <div id="tab-whatsnew"
           style="display: none; padding: 20px 16px; min-height: 195px; align-items: center; justify-content: center;">
           <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: #000;">
-            <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16">
+            <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16" loading="lazy" decoding="async">
             nothin is new
           </div>
         </div>
@@ -284,7 +286,7 @@
         <div id="tab-online"
           style="display: none; padding: 20px 16px; min-height: 195px; align-items: center; justify-content: center;">
           <div style="display: flex; align-items: center; gap: 8px; font-size: 11px;">
-            <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16">
+            <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16" loading="lazy" decoding="async">
             <span>@diedfavorite - online</span>
           </div>
         </div>
@@ -334,7 +336,7 @@
               <div class="media-title">
                 <span style="display:inline-block; background:#000080; color:#fff; font-size:9px; font-family:Arial,sans-serif; padding:0 4px; margin-right:5px; font-weight:bold; letter-spacing:0.5px; vertical-align:middle;">&#128204; Pin by @diedfavorite</span>windows , 150 , + 68 cents
               </div>
-              <audio id="audio-beats-0" src="beats/Windows , 150 , + 68 Cents.mp3"></audio>
+              <audio id="audio-beats-0" src="beats/Windows , 150 , + 68 Cents.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-0')">&#9654;</button>
                 <button onclick="pauseMedia('audio-beats-0')"><strong>||</strong></button>
@@ -346,7 +348,7 @@
             </div>
             <div class="win95-media-player">
               <div class="media-title">claude , code , 160 , + 50 cents</div>
-              <audio id="audio-beats-2" src="beats/Claude , Code , 160 , + 50 Cents.mp3"></audio>
+              <audio id="audio-beats-2" src="beats/Claude , Code , 160 , + 50 Cents.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-2')">&#9654;</button>
                 <button onclick="pauseMedia('audio-beats-2')"><strong>||</strong></button>
@@ -359,7 +361,7 @@
 
             <div class="win95-media-player">
               <div class="media-title">speedrun , 140 , + 50 cents</div>
-              <audio id="audio-beats-5" src="beats/Speedrun , 140 , + 50 Cents.mp3"></audio>
+              <audio id="audio-beats-5" src="beats/Speedrun , 140 , + 50 Cents.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-5')">&#9654;</button>
                 <button onclick="pauseMedia('audio-beats-5')"><strong>||</strong></button>
@@ -371,7 +373,7 @@
             </div>
             <div class="win95-media-player">
               <div class="media-title">out , sight , 140 , - 24 cents</div>
-              <audio id="audio-beats-6" src="beats/Out , Sight , 140 , - 24 Cents.mp3"></audio>
+              <audio id="audio-beats-6" src="beats/Out , Sight , 140 , - 24 Cents.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-6')">&#9654;</button>
                 <button onclick="pauseMedia('audio-beats-6')"><strong>||</strong></button>
@@ -413,7 +415,7 @@
           <div class="track-list" id="loops-content" style="max-height: 250px; overflow-y: auto;">
             <div class="win95-media-player">
               <div class="media-title">children , 4 bars loop</div>
-              <audio id="audio-loops-1" src="loops/Children , 4 Bars Loop , Each Stems , Spacing 1 Bar.mp3"></audio>
+              <audio id="audio-loops-1" src="loops/Children , 4 Bars Loop , Each Stems , Spacing 1 Bar.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-loops-1')">&#9654;</button>
                 <button onclick="pauseMedia('audio-loops-1')"><strong>||</strong></button>
@@ -425,7 +427,7 @@
             </div>
             <div class="win95-media-player">
               <div class="media-title">claude , code , 4 bars loop</div>
-              <audio id="audio-loops-4" src="loops/Claude , Code , 4 Bars Loop.mp3"></audio>
+              <audio id="audio-loops-4" src="loops/Claude , Code , 4 Bars Loop.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-loops-4')">&#9654;</button>
                 <button onclick="pauseMedia('audio-loops-4')"><strong>||</strong></button>
@@ -437,7 +439,7 @@
             </div>
             <div class="win95-media-player">
               <div class="media-title">jessie , 4 bars loop</div>
-              <audio id="audio-loops-2" src="loops/Jessie , 4 Bars Loop , Each Stems , Spacing 1 Bar.mp3"></audio>
+              <audio id="audio-loops-2" src="loops/Jessie , 4 Bars Loop , Each Stems , Spacing 1 Bar.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-loops-2')">&#9654;</button>
                 <button onclick="pauseMedia('audio-loops-2')"><strong>||</strong></button>
@@ -449,7 +451,7 @@
             </div>
             <div class="win95-media-player">
               <div class="media-title">windows , 4 bars loop</div>
-              <audio id="audio-loops-3" src="loops/Windows , 4 Bars Loop , 150 , +50 Cents.wav"></audio>
+              <audio id="audio-loops-3" src="loops/Windows , 4 Bars Loop , 150 , +50 Cents.wav" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-loops-3')">&#9654;</button>
                 <button onclick="pauseMedia('audio-loops-3')"><strong>||</strong></button>
@@ -461,7 +463,7 @@
             </div>
             <div class="win95-media-player">
               <div class="media-title">out , sight , loop , 140 , - 24 cents</div>
-              <audio id="audio-loops-5" src="loops/Out , Sight , Loop , 140 , - 24 Cents.mp3"></audio>
+              <audio id="audio-loops-5" src="loops/Out , Sight , Loop , 140 , - 24 Cents.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-loops-5')">&#9654;</button>
                 <button onclick="pauseMedia('audio-loops-5')"><strong>||</strong></button>
@@ -494,13 +496,13 @@
       <div class="window-body" style="padding:0; overflow:hidden;">
         <!-- blue toolbar -->
         <div style="background:#000080; color:#fff; padding:4px 8px; font-weight:bold; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
-          <img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png" width="16" height="16" style="image-rendering:pixelated;">
+          <img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
           <span id="video-status">Jessie</span>
         </div>
         <div style="display:flex; gap:0; background:#c0c0c0; overflow:hidden; width:100%;">
           <!-- video + controls -->
           <div style="flex:1; min-width:0; padding:4px; display:flex; flex-direction:column; gap:4px;">
-            <video id="video-main" src="videos/Jessie.mp4" playsinline
+            <video id="video-main" src="videos/Jessie.mp4" playsinline preload="none"
               style="width:100%; height:160px; object-fit:contain; background:#000; box-shadow:inset 2px 2px #808080, inset -2px -2px #fff; display:block;"></video>
             <div style="display:flex; align-items:center; gap:2px; background:#c0c0c0; padding:1px 0;">
               <button class="vid-btn" onclick="playMedia('video-main')" title="Play">&#9654;</button>
@@ -557,26 +559,26 @@
         </div>
         <div class="win95-window-content" style="padding:0; background:#fff; box-shadow:inset -1px -1px #fff, inset 1px 1px #808080;">
           <div class="win95-links-header">
-            <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16" style="image-rendering:pixelated;">
+            <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
             @diedfavorite &mdash; Social Links
           </div>
           <a class="win95-link-item" href="https://soundcloud.com/diedfavorite" target="_blank">
-            <img src="https://win98icons.alexmeub.com/icons/png/sndvol32_main-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <img src="https://win98icons.alexmeub.com/icons/png/sndvol32_main-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" loading="lazy" decoding="async">
             <span class="link-desc"><strong>SoundCloud</strong></span>
             <span class="link-url">soundcloud.com/diedfavorite</span>
           </a>
           <a class="win95-link-item" href="https://www.youtube.com/channel/UCBbEHHbCSTX5fPUr0oUWcsA" target="_blank">
-            <img src="https://win98icons.alexmeub.com/icons/png/movie_maker-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <img src="https://win98icons.alexmeub.com/icons/png/movie_maker-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" loading="lazy" decoding="async">
             <span class="link-desc"><strong>YouTube</strong></span>
             <span class="link-url">youtube.com/@diedfavorite</span>
           </a>
           <a class="win95-link-item" href="https://www.instagram.com/diedfavorite/" target="_blank">
-            <img src="https://win98icons.alexmeub.com/icons/png/camera3-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <img src="https://win98icons.alexmeub.com/icons/png/camera3-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" loading="lazy" decoding="async">
             <span class="link-desc"><strong>Instagram</strong></span>
             <span class="link-url">instagram.com/diedfavorite</span>
           </a>
           <a class="win95-link-item" href="https://discord.gg/3BmCPz6w" target="_blank">
-            <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;">
+            <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" loading="lazy" decoding="async">
             <span class="link-desc"><strong>Discord</strong></span>
             <span class="link-url">discord.gg/diedfavorite</span>
           </a>
@@ -633,7 +635,7 @@ Thank you for your support.</textarea>
         <div style="background:#fff; box-shadow:inset -1px -1px #fff,inset 1px 1px #808080,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a; min-height:120px; padding:2px; display:flex; flex-direction:column; align-items:stretch; gap:0;">
           <!-- secret.txt file row (Explorer list-view style) -->
           <div class="recycle-file explorer-row" ondblclick="openWindow('window-secrettxt')" onclick="selectRecycleFile(this)" title="secret.txt">
-            <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" onerror="this.src='https://win98icons.alexmeub.com/icons/png/write_wordpad-0.png'">
+            <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" onerror="this.src='https://win98icons.alexmeub.com/icons/png/write_wordpad-0.png'" loading="lazy" decoding="async">
             <span>secret.txt</span>
           </div>
         </div>
@@ -751,28 +753,28 @@ Thank you for your support.</textarea>
     <!-- menu items -->
     <div style="flex:1; display:flex; flex-direction:column; padding:2px;">
       <div class="menu-item" onclick="openWindow('window-beats')">
-        <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" width="24" height="24">
+        <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" width="24" height="24" loading="lazy" decoding="async">
         <span>Beats</span>
       </div>
       <div class="menu-item" onclick="openWindow('window-loops')">
-        <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" width="24" height="24">
+        <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" width="24" height="24" loading="lazy" decoding="async">
         <span>Loops</span>
       </div>
       <div class="menu-item" onclick="openWindow('window-video')">
-        <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="24" height="24">
+        <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="24" height="24" loading="lazy" decoding="async">
         <span>Videos</span>
       </div>
       <div class="menu-item" onclick="openWindow('window-socials')">
-        <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="24" height="24">
+        <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="24" height="24" loading="lazy" decoding="async">
         <span>Social Medias</span>
       </div>
       <div class="menu-item" onclick="openWindow('window-display')">
-        <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" width="24" height="24">
+        <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" width="24" height="24" loading="lazy" decoding="async">
         <span>Display Properties</span>
       </div>
       <div class="menu-divider"></div>
       <div class="menu-item" onclick="shutDown()">
-        <img src="https://win98icons.alexmeub.com/icons/png/shut_down_normal-0.png" width="24" height="24">
+        <img src="https://win98icons.alexmeub.com/icons/png/shut_down_normal-0.png" width="24" height="24" loading="lazy" decoding="async">
         <span>Shut Down...</span>
       </div>
     </div>
@@ -789,7 +791,7 @@ Thank you for your support.</textarea>
   <div id="taskbar">
     <!-- START BUTTON -->
     <button class="start-btn" id="start-btn" onclick="toggleStartMenu()">
-      <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="start" class="start-icon-anim">
+      <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="start" class="start-icon-anim" loading="lazy" decoding="async">
       <strong>Start</strong>
     </button>
     <div class="taskbar-divider"></div>
@@ -799,20 +801,20 @@ Thank you for your support.</textarea>
       <div class="ql-icon" onclick="showDesktop()" title="Show Desktop">
         <img src="https://win98icons.alexmeub.com/icons/png/desktop-0.png" width="16" height="16"
           style="image-rendering:pixelated;"
-          onerror="this.src='https://win98icons.alexmeub.com/icons/png/directory_open_cool-0.png'">
+          onerror="this.src='https://win98icons.alexmeub.com/icons/png/directory_open_cool-0.png'" loading="lazy" decoding="async">
       </div>
       <div class="ql-sep"></div>
       <div class="ql-icon" onclick="openWindow('window-beats')" title="Beats">
-        <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" width="16" height="16" style="image-rendering:pixelated;">
+        <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-3.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
       </div>
       <div class="ql-icon" onclick="openWindow('window-loops')" title="Loops">
-        <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" width="16" height="16" style="image-rendering:pixelated;">
+        <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
       </div>
       <div class="ql-icon" onclick="openWindow('window-video')" title="Videos">
-        <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="16" height="16" style="image-rendering:pixelated;">
+        <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
       </div>
       <div class="ql-icon" onclick="openWindow('window-socials')" title="Social Medias">
-        <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16" style="image-rendering:pixelated;">
+        <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
       </div>
     </div>
     <div class="taskbar-divider"></div>
@@ -840,17 +842,17 @@ Thank you for your support.</textarea>
       <div class="tray-cell" title="No print jobs" onclick="showBalloon('No documents are waiting to print.',2500)">
         <img src="https://win98icons.alexmeub.com/icons/png/printer-0.png" width="16" height="16"
           style="image-rendering:pixelated;"
-          onerror="this.src='https://win98icons.alexmeub.com/icons/png/printer_text-0.png'">
+          onerror="this.src='https://win98icons.alexmeub.com/icons/png/printer_text-0.png'" loading="lazy" decoding="async">
       </div>
 
       <!-- Display -->
       <div class="tray-cell" onclick="openWindow('window-display')" title="Display Properties">
-        <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" width="16" height="16" style="image-rendering:pixelated;">
+        <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
       </div>
 
       <!-- Volume -->
       <div class="tray-cell" onclick="toggleVolumePopup(event)" title="Volume Control">
-        <img id="vol-icon" src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays-0.png" width="16" height="16" style="image-rendering:pixelated;">
+        <img id="vol-icon" src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
       </div>
 
       <!-- Language indicator -->
@@ -923,7 +925,7 @@ Thank you for your support.</textarea>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 
 </html>

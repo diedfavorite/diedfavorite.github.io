@@ -479,6 +479,8 @@ button {
 
 .desktop-window {
   position: absolute;
+  contain: layout style;
+  will-change: transform, opacity;
 }
 
 .desktop-window.maximized {
@@ -720,6 +722,7 @@ button {
   left: 0;
   width: 200px;
   z-index: 99999;
+  will-change: transform, opacity;
   display: flex;
   flex-direction: row;
   padding: 2px;
@@ -2384,5 +2387,19 @@ fieldset:hover {
 .rotate-icon-anim {
   animation: screen-rotate 2s infinite ease-in-out;
   image-rendering: pixelated;
+}
+
+/* ── Performance: GPU compositing for draggable windows ── */
+.desktop-window.dragging {
+  will-change: left, top;
+}
+
+/* ── Accessibility + low-end device: reduce motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
