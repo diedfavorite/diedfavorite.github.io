@@ -321,6 +321,7 @@ function updateMediaTime(id) {
 
 function playMedia(id) {
   const media = document.getElementById(id);
+  if (!media) return;
   document.querySelectorAll('audio, video').forEach(el => {
     if (el.id !== id) {
       el.pause();
@@ -328,11 +329,10 @@ function playMedia(id) {
       if (t) t.classList.remove('playing');
     }
   });
-  if (media) {
-    media.play();
-    const title = media.closest('.win95-media-player')?.querySelector('.media-title');
-    if (title) title.classList.add('playing');
-  }
+  const p = media.play();
+  if (p !== undefined) p.catch(() => {});
+  const title = media.closest('.win95-media-player')?.querySelector('.media-title');
+  if (title) title.classList.add('playing');
 }
 
 function pauseMedia(id) {
