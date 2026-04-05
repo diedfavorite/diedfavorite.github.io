@@ -51,13 +51,17 @@ textarea {
   50%  { transform: scale(0.92); filter: brightness(0.8); }
   100% { transform: scale(1); filter: brightness(1); }
 }
+/* Start menu anchored to button corner — expands from / collapses to button */
 @keyframes start-slide {
-  0%   { transform: scale(0) translateY(30px); opacity: 0; }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
+  0%   { transform: scale(0.03, 0.03); opacity: 0; filter: blur(3px); }
+  52%  { transform: scale(1.05, 1.04); opacity: 1; filter: blur(0); }
+  72%  { transform: scale(0.97, 1.01); }
+  100% { transform: scale(1, 1); }
 }
 @keyframes start-close-connected {
-  0%   { transform: scale(1) translateY(0); opacity: 1; }
-  100% { transform: scale(0) translateY(30px); opacity: 0; }
+  0%   { transform: scale(1, 1); opacity: 1; filter: blur(0); }
+  16%  { transform: scale(1.05, 0.95); } /* squeeze anticipation */
+  100% { transform: scale(0.02, 0.02); opacity: 0; filter: blur(3px); }
 }
 @keyframes taskbar-press {
   0%   { transform: scale(1); }
@@ -73,8 +77,10 @@ body { background: #008080; }
 .win-minimize  { animation: win-minimize  0.22s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
 .win-maximize  { animation: win-maximize  0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .icon-pop      { animation: icon-pop      0.2s ease-out; }
-.start-opening { animation: start-slide            0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.start-closing { animation: start-close-connected 0.12s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
+.start-opening { animation: start-slide           0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.start-closing { animation: start-close-connected 0.2s  cubic-bezier(0.55, 0, 1, 0.7) forwards; }
+/* Anchor all start-menu transforms to the bottom-left (= Start button position) */
+#start-menu { transform-origin: bottom left !important; }
 .taskbar-press { animation: taskbar-press 0.15s ease-out forwards; }
 
 /* title bar flash on focus */
