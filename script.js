@@ -891,6 +891,24 @@ document.querySelectorAll('audio, video').forEach(el => {
 function shutDown() {
   closeStartMenu();
 
+  // Fade out all playing audio/video over 500ms
+  const mediaEls = Array.from(document.querySelectorAll('audio, video')).filter(m => !m.paused);
+  if (mediaEls.length) {
+    const startVols = mediaEls.map(m => m.volume);
+    const steps = 25;
+    let tick = 0;
+    const fadeInterval = setInterval(() => {
+      tick++;
+      mediaEls.forEach((m, i) => {
+        m.volume = Math.max(0, startVols[i] * (1 - tick / steps));
+      });
+      if (tick >= steps) {
+        clearInterval(fadeInterval);
+        mediaEls.forEach(m => m.pause());
+      }
+    }, 500 / steps);
+  }
+
   setTimeout(() => {
     // Step 1: fade desktop + taskbar to black
     document.getElementById('desktop')?.classList.add('desktop-shutdown-fade');
