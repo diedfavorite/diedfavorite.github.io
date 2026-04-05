@@ -1579,6 +1579,67 @@ button.default-btn {
 }
 
 /* ══════════════════════════════════════════
+   Win95 Polish: Smooth Animation Enhancements
+══════════════════════════════════════════ */
+
+/* Window open: subtle CRT power-on brightness flash */
+@keyframes win-open {
+  0%   { transform: scale(0.94); opacity: 0;   filter: blur(3px) brightness(1.6); }
+  18%  { transform: scale(0.97); opacity: 0.7; filter: blur(1px) brightness(1.1); }
+  100% { transform: scale(1);    opacity: 1;   filter: blur(0)   brightness(1);   }
+}
+
+/* Now-playing entrance: slide in from right with elastic settle */
+@keyframes np-enter {
+  0%   { transform: scaleX(0.4) translateX(20px); opacity: 0; }
+  60%  { transform: scaleX(1.04) translateX(-2px); opacity: 1; }
+  100% { transform: scaleX(1) translateX(0);       opacity: 1; }
+}
+.np-entering {
+  animation: np-enter 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* Playing track row: Win95-style active indicator (Winamp-like) */
+.win95-media-player:has(.media-title.playing) {
+  border-left: 3px solid #000080 !important;
+  background: #f0f0ff !important;
+}
+
+/* Media slider thumb: highlight while playing */
+.win95-media-player:has(.media-title.playing) .media-slider::-webkit-slider-thumb {
+  background: #000080 !important;
+}
+
+/* Taskbar item: brief blue flash when newly activated */
+@keyframes taskbar-wake {
+  0%,15% { background: #000080 !important; color: #fff !important; }
+  100%   { background: #c0c0c0 !important; color: #000 !important; }
+}
+.taskbar-wake {
+  animation: taskbar-wake 0.35s ease-out forwards !important;
+}
+
+/* Window close: quick shrink + fade, feels snappier */
+@keyframes win-close {
+  0%   { transform: scale(1);    opacity: 1; filter: blur(0);   }
+  40%  { transform: scale(0.97); opacity: 0.7; }
+  100% { transform: scale(0.92); opacity: 0; filter: blur(3px); }
+}
+
+/* Window minimize: fall toward taskbar */
+@keyframes win-minimize {
+  0%   { transform: scale(1) translateY(0);     opacity: 1; filter: blur(0);   }
+  100% { transform: scale(0.7) translateY(8vh); opacity: 0; filter: blur(2px); }
+}
+
+/* Status bar text pop on update */
+@keyframes status-pop {
+  0%   { color: #000080; }
+  100% { color: #000;    }
+}
+.status-pop { animation: status-pop 0.4s ease-out; }
+
+/* ══════════════════════════════════════════
    Mobile / Phone responsive
 ══════════════════════════════════════════ */
 @media (max-width: 900px) {

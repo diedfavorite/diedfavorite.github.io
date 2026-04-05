@@ -669,6 +669,10 @@ function updateNowPlayingTicker(text, windowId) {
       textEl.classList.add('marquee');
       container.style.display = 'flex';
       container.style.cursor = 'pointer';
+      container.classList.remove('np-entering');
+      void container.offsetWidth;
+      container.classList.add('np-entering');
+      setTimeout(() => container.classList.remove('np-entering'), 300);
     } else {
       nowPlayingWindowId = null;
       container.style.display = 'none';
