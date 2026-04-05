@@ -884,12 +884,13 @@ function shutDown() {
       function nextStep() {
         if (i >= steps.length) {
           // Phase 2 — "safe to turn off"
+          p1.style.transition = 'opacity 0.35s';
           p1.style.opacity = '0';
           setTimeout(() => {
             p1.style.display = 'none';
             p2.style.display = 'flex';
             p2.classList.add('shutdown-p2-in');
-          }, 400);
+          }, 380);
           screen.addEventListener('click', () => location.reload(), { once: true });
           return;
         }

@@ -7,7 +7,7 @@
   <title>@diedfavorite - #2011nostalgia</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/98.css">
-  <link rel="stylesheet" href="style.css?v=28">
+  <link rel="stylesheet" href="style.css?v=29">
 </head>
 
 <body>
@@ -43,33 +43,36 @@
 
 
   <!-- Shutdown Screen -->
-  <div id="shutdown-screen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:99999998; flex-direction:column; align-items:center; justify-content:center;">
+  <div id="shutdown-screen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000080; z-index:99999998; flex-direction:column; align-items:center; justify-content:center; gap:0;">
 
-    <!-- Phase 1: Shutting down -->
-    <div id="shutdown-p1" style="display:flex; flex-direction:column; align-items:center; gap:14px; width:min(320px,90vw); transition:opacity 0.4s;">
-      <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="48" height="48" style="image-rendering:pixelated; animation:shutdown-logo 2s ease-in-out infinite;" id="shutdown-logo">
-      <div style="color:#c0c0c0; font-family:Arial,sans-serif; font-size:18px; font-weight:bold; letter-spacing:2px;">Windows <span style="color:#fff;">95</span></div>
-      <div style="border:1px solid #333; padding:8px 18px; text-align:center; background:#0a0a0a;">
-        <div style="color:#808080; font-family:'Courier New',monospace; font-size:9px; letter-spacing:1px; margin-bottom:4px;">Shutting down</div>
-        <div style="color:#fff; font-family:Arial,sans-serif; font-size:15px; font-weight:bold; letter-spacing:1px;">@diedfavorite</div>
-        <div style="color:#404040; font-family:'Courier New',monospace; font-size:10px; letter-spacing:2px; margin-top:3px;">#2011nostalgia</div>
+    <!-- Phase 1: Win95 "Please Stand By" dialog box -->
+    <div id="shutdown-p1" style="display:flex; flex-direction:column; width:min(300px,88vw); box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #fff, 4px 4px 0 #000;">
+
+      <!-- Title bar -->
+      <div style="background:#000080; padding:3px 6px; display:flex; align-items:center; gap:6px; flex-shrink:0;">
+        <img src="https://win98icons.alexmeub.com/icons/png/hourglass-0.png" width="14" height="14" style="image-rendering:pixelated; animation:hourglass-spin 1.2s steps(2) infinite;" onerror="this.style.display='none'">
+        <span style="color:#fff; font-family:'Pixelated MS Sans Serif',Arial,sans-serif; font-size:11px; font-weight:bold; flex:1;">Please Stand By</span>
       </div>
-      <div style="color:#808080; font-family:Arial,sans-serif; font-size:11px; letter-spacing:1px;" id="shutdown-msg">Saving your settings...</div>
-      <div style="width:100%; background:#1a1a1a; box-shadow:inset 1px 1px #000, inset -1px -1px #333; height:14px; overflow:hidden; position:relative;">
-        <div id="shutdown-bar" style="height:100%; width:0%; background:#606060; position:relative; transition:width 0.3s ease-out;">
-          <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg,#606060 0px,#606060 10px,#484848 10px,#484848 20px); animation:boot-stripe 0.5s linear infinite;"></div>
+
+      <!-- Dialog body -->
+      <div style="background:#c0c0c0; padding:16px 18px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+        <img src="https://win98icons.alexmeub.com/icons/png/hourglass-0.png" width="32" height="32" style="image-rendering:pixelated; animation:hourglass-spin 1.2s steps(2) infinite;" onerror="this.style.display='none'">
+        <div style="font-family:'Pixelated MS Sans Serif',Arial,sans-serif; font-size:11px; text-align:center; color:#000;" id="shutdown-msg">Windows is shutting down...</div>
+        <!-- Win95 sunken progress bar -->
+        <div style="width:100%; box-shadow:inset -1px -1px #fff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a; height:16px; background:#fff; overflow:hidden; padding:2px; box-sizing:border-box;">
+          <div id="shutdown-bar" style="height:100%; width:0%; background:#000080; transition:width 0.35s ease-out;"></div>
         </div>
+        <div style="font-family:'Courier New',monospace; font-size:9px; color:#808080;" id="shutdown-sub">Please wait...</div>
       </div>
-      <div style="color:#444; font-family:'Courier New',monospace; font-size:9px;" id="shutdown-sub">Please wait...</div>
     </div>
 
-    <!-- Phase 2: Safe to turn off -->
-    <div id="shutdown-p2" style="display:none; flex-direction:column; align-items:center; gap:16px; text-align:center; padding:40px;">
-      <div style="color:#c0c0c0; font-family:'Courier New',monospace; font-size:15px; line-height:1.9; letter-spacing:0.5px;">
+    <!-- Phase 2: Safe to turn off — stark centered text on navy -->
+    <div id="shutdown-p2" style="display:none; flex-direction:column; align-items:center; gap:20px; text-align:center;">
+      <div style="color:#fff; font-family:'Pixelated MS Sans Serif',Arial,sans-serif; font-size:13px; line-height:2; letter-spacing:0.3px;">
         It is now safe to turn off<br>your computer.
       </div>
-      <div style="color:#444; font-family:'Courier New',monospace; font-size:10px; letter-spacing:1px; margin-top:8px;">
-        Click anywhere to restart <span style="border-right:2px solid #666; display:inline-block; animation:bsod-blink 1s step-end infinite;">&#8203;</span>
+      <div style="color:#aaaaff; font-family:'Courier New',monospace; font-size:10px; letter-spacing:1px;">
+        Click anywhere to restart <span style="border-right:2px solid #aaaaff; display:inline-block; animation:bsod-blink 1s step-end infinite;">&#8203;</span>
       </div>
     </div>
   </div>

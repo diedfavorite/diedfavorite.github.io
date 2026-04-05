@@ -1675,18 +1675,34 @@ button.default-btn {
   animation: desktop-shutdown 0.5s ease-in forwards !important;
 }
 
-/* ── Shutdown logo pulse ── */
-@keyframes shutdown-logo {
-  0%, 100% { opacity: 0.9; filter: brightness(1); transform: scale(1); }
-  50%       { opacity: 0.5; filter: brightness(0.6); transform: scale(0.95); }
+/* ── Shutdown dialog drop-in ── */
+@keyframes shutdown-dialog-in {
+  0%   { opacity: 0; transform: scale(0.88) translateY(-12px); }
+  65%  { transform: scale(1.03) translateY(2px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); }
+}
+#shutdown-p1 { animation: shutdown-dialog-in 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+/* ── Hourglass flip ── */
+@keyframes hourglass-spin {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(180deg); }
+  100% { transform: rotate(180deg); }
 }
 
 /* ── Shutdown phase 2 fade in ── */
 @keyframes shutdown-p2-enter {
-  0%   { opacity: 0; transform: translateY(8px); }
+  0%   { opacity: 0; transform: translateY(10px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-.shutdown-p2-in { animation: shutdown-p2-enter 0.6s ease-out forwards; }
+.shutdown-p2-in { animation: shutdown-p2-enter 0.5s ease-out forwards; }
+
+/* ── Shutdown screen background fade in ── */
+@keyframes shutdown-bg-in {
+  0%   { background: #000; }
+  100% { background: #000080; }
+}
+#shutdown-screen { animation: shutdown-bg-in 0.6s ease-out forwards; }
 
 /* ══════════════════════════════════════════
    COMPREHENSIVE ELEMENT ANIMATION PASS
