@@ -760,7 +760,7 @@ Thank you for your support.</textarea>
     <div class="taskbar-divider"></div>
 
     <!-- NOW PLAYING -->
-    <div id="now-playing-container" style="display:none; align-items:center; gap:4px; padding:0 4px; box-shadow:inset -1px -1px #fff, inset 1px 1px #808080; background:#000; height:22px; width:150px; overflow:hidden; flex-shrink:0; cursor:default; margin-right:4px;">
+    <div id="now-playing-container" onclick="focusNowPlayingWindow()" title="Click to open player window" style="display:none; align-items:center; gap:4px; padding:0 4px; box-shadow:inset -1px -1px #fff, inset 1px 1px #808080; background:#000; height:22px; width:150px; overflow:hidden; flex-shrink:0; cursor:default; margin-right:4px; user-select:none;">
       <span style="flex-shrink:0; color:#00ff00; font-family:'Courier New',monospace; font-size:9px; white-space:nowrap; letter-spacing:0.5px; text-shadow: 0 0 6px #00ff00, 0 0 12px #00cc00;">▶ now playing</span>
       <div style="width:100%; overflow:hidden;">
         <span id="now-playing-text" style="color:#00ff00; font-family:'Courier New', monospace; font-size:10px; white-space:nowrap; display:inline-block;"></span>

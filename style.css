@@ -1282,6 +1282,15 @@ fieldset:hover {
 #now-playing-container[style*="flex"] {
   animation: np-border-pulse 2s ease-in-out infinite;
 }
+#now-playing-container:hover {
+  box-shadow: inset -1px -1px #00ff00, inset 1px 1px #004400 !important;
+  background: #001800 !important;
+  animation: none !important;
+}
+#now-playing-container:active {
+  box-shadow: inset 1px 1px #00ff00, inset -1px -1px #004400 !important;
+  background: #002800 !important;
+}
 
 /* Win95 scrollbar button arrows (more authentic) */
 ::-webkit-scrollbar-button:single-button:vertical:decrement {

@@ -655,34 +655,55 @@ document.querySelectorAll('audio, video').forEach(media => {
   }
 });
 
-function updateNowPlayingTicker(text) {
+let nowPlayingWindowId = null;
+
+function updateNowPlayingTicker(text, windowId) {
   const container = document.getElementById('now-playing-container');
   const textEl = document.getElementById('now-playing-text');
   if (container && textEl) {
     if (text) {
+      nowPlayingWindowId = windowId || null;
       textEl.innerText = text + "  ***  " + text;
       textEl.classList.remove('marquee');
       void textEl.offsetWidth;
       textEl.classList.add('marquee');
       container.style.display = 'flex';
+      container.style.cursor = 'pointer';
     } else {
+      nowPlayingWindowId = null;
       container.style.display = 'none';
+      container.style.cursor = 'default';
       textEl.innerText = '';
       textEl.classList.remove('marquee');
     }
   }
 }
 
+function focusNowPlayingWindow() {
+  if (!nowPlayingWindowId) return;
+  const win = document.getElementById(nowPlayingWindowId);
+  if (!win) return;
+  if (win.classList.contains('hidden') || win.classList.contains('minimized')) {
+    openWindow(nowPlayingWindowId);
+  } else {
+    bringToFront(nowPlayingWindowId);
+  }
+}
+
 document.querySelectorAll('audio, video').forEach(el => {
   el.addEventListener('play', () => {
     let title = '';
+    let winId = null;
     const titleEl = el.closest('.win95-media-player')?.querySelector('.media-title');
     if (titleEl) {
-       title = titleEl.innerText;
+      title = titleEl.innerText.replace(/^\s*📌 Pin by @diedfavorite\s*/i, '').trim();
+      if (el.closest('#window-beats')) winId = 'window-beats';
+      else if (el.closest('#window-loops')) winId = 'window-loops';
     } else if (el.id === 'video-main') {
-       title = document.getElementById('video-status')?.innerText || 'video';
+      title = document.getElementById('video-status')?.innerText || 'video';
+      winId = 'window-video';
     }
-    updateNowPlayingTicker(title);
+    updateNowPlayingTicker(title, winId);
   });
   el.addEventListener('pause', () => {
     let anyPlaying = false;
