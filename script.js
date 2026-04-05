@@ -254,11 +254,41 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Ctrl / Cmd key toggles Start menu
+// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
+  // Ctrl / Cmd → toggle Start menu
   if (e.key === 'Control' || e.key === 'Meta') {
     e.preventDefault();
     toggleStartMenu();
+    return;
+  }
+
+  // Arrow keys → window management
+  // Don't intercept when typing or scrolling inside window content
+  if (e.target.matches('input, textarea, select')) return;
+  if (e.target.closest('.window-body, .win95-window-content')) return;
+  if (!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) return;
+  e.preventDefault();
+
+  const wins = Array.from(openWindows);
+  if (wins.length === 0) return;
+
+  const activeEl = document.querySelector('.desktop-window.active');
+  const activeId = activeEl?.id ?? null;
+  const idx = activeId ? wins.indexOf(activeId) : 0;
+
+  if (e.key === 'ArrowUp') {
+    // Restore / bring active window to front
+    if (activeId) openWindow(activeId);
+  } else if (e.key === 'ArrowDown') {
+    // Minimize active window
+    if (activeId) minimizeWindow(activeId);
+  } else if (e.key === 'ArrowLeft') {
+    // Focus previous window (wraps)
+    openWindow(wins[(idx - 1 + wins.length) % wins.length]);
+  } else if (e.key === 'ArrowRight') {
+    // Focus next window (wraps)
+    openWindow(wins[(idx + 1) % wins.length]);
   }
 });
 
