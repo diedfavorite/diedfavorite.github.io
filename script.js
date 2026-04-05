@@ -981,6 +981,39 @@ document.querySelectorAll('audio, video').forEach(el => {
 })();
 
 /* ══════════════════════════════════════════
+   ABOUT DIALOG
+══════════════════════════════════════════ */
+function openAbout() {
+  const existing = document.getElementById('about-dialog');
+  if (existing) { existing.remove(); }
+
+  const dlg = document.createElement('div');
+  dlg.id = 'about-dialog';
+  dlg.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999990;display:flex;align-items:center;justify-content:center;';
+
+  dlg.innerHTML = `
+    <div class="window" style="width:260px;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px #808080,inset 2px 2px #fff,4px 4px 0 #000;">
+      <div class="title-bar" style="background:linear-gradient(90deg,#000080,#1a1aaa 50%,#000080);">
+        <div class="title-bar-text" style="color:#fff;font-size:11px;">About @diedfavorite</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="document.getElementById('about-dialog').remove()"></button>
+        </div>
+      </div>
+      <div class="window-body" style="padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
+        <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="32" height="32" style="image-rendering:pixelated;" loading="lazy" decoding="async">
+        <div style="font-size:13px;font-weight:bold;font-family:'Pixelated MS Sans Serif',Arial,sans-serif;">@diedfavorite</div>
+        <div style="font-size:11px;color:#444;">#2011nostalgia</div>
+        <div style="width:100%;height:0;border-top:1px solid #808080;border-bottom:1px solid #fff;"></div>
+        <div style="font-size:11px;line-height:1.6;">© 2026 @diedfavorite<br>All rights reserved.</div>
+        <button onclick="document.getElementById('about-dialog').remove()" style="margin-top:4px;padding:2px 24px;">OK</button>
+      </div>
+    </div>`;
+
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.remove(); });
+  document.body.appendChild(dlg);
+}
+
+/* ══════════════════════════════════════════
    WIN95 SHUTDOWN SEQUENCE
 ══════════════════════════════════════════ */
 function shutDown() {
@@ -1103,11 +1136,12 @@ function showBalloon(text, duration = 4000) {
   }, duration);
 }
 
-// Show balloon when a track starts playing
+// Show balloon when a track starts playing (strip Pin badge text)
 document.querySelectorAll('audio, video').forEach(el => {
   el.addEventListener('play', () => {
     const titleEl = el.closest('.win95-media-player')?.querySelector('.media-title');
-    const label   = titleEl ? titleEl.innerText : (document.getElementById('video-status')?.innerText || '');
+    let label = titleEl ? titleEl.innerText : (document.getElementById('video-status')?.innerText || '');
+    label = label.replace(/^\s*📌\s*Pin\b[^\n]*/i, '').trim();
     if (label) showBalloon('♪ Now Playing: ' + label, 3500);
   });
 });
