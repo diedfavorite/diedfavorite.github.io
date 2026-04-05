@@ -55,9 +55,9 @@ textarea {
   0%   { transform: translateY(10px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
-@keyframes start-slide-close {
-  0%   { transform: translateY(0) scaleY(1); opacity: 1; }
-  100% { transform: translateY(8px) scaleY(0.88); opacity: 0; }
+@keyframes start-close-smooth {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
 }
 @keyframes taskbar-press {
   0%   { transform: scale(1); }
@@ -74,7 +74,7 @@ body { background: #008080; }
 .win-maximize  { animation: win-maximize  0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .icon-pop      { animation: icon-pop      0.2s ease-out; }
 .start-opening { animation: start-slide       0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.start-closing { animation: start-slide-close 0.13s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
+.start-closing { animation: start-close-smooth 0.18s cubic-bezier(0.4, 0, 1, 1) forwards; }
 .taskbar-press { animation: taskbar-press 0.15s ease-out forwards; }
 
 /* title bar flash on focus */
