@@ -52,12 +52,12 @@ textarea {
   100% { transform: scale(1); filter: brightness(1); }
 }
 @keyframes start-slide {
-  0%   { transform: translateY(10px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0%   { transform: scale(0.01) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
-@keyframes start-close-smooth {
-  0%   { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(12px); opacity: 0; }
+@keyframes start-close-connected {
+  0%   { transform: scale(1) translateY(0); opacity: 1; }
+  100% { transform: scale(0.01) translateY(20px); opacity: 0; }
 }
 @keyframes taskbar-press {
   0%   { transform: scale(1); }
@@ -73,8 +73,8 @@ body { background: #008080; }
 .win-minimize  { animation: win-minimize  0.22s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
 .win-maximize  { animation: win-maximize  0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .icon-pop      { animation: icon-pop      0.2s ease-out; }
-.start-opening { animation: start-slide       0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.start-closing { animation: start-close-smooth 0.18s cubic-bezier(0.4, 0, 1, 1) forwards; }
+.start-opening { animation: start-slide            0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.start-closing { animation: start-close-connected 0.16s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
 .taskbar-press { animation: taskbar-press 0.15s ease-out forwards; }
 
 /* title bar flash on focus */
@@ -723,6 +723,7 @@ button {
   padding: 2px;
   background-color: #c0c0c0;
   box-shadow: inset 1px 1px #dfdfdf, 1px 0 #000, 0 1px #000, 1px 1px #000, inset -1px -1px #808080;
+  transform-origin: bottom left;
 }
 
 .start-banner {
