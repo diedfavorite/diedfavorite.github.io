@@ -261,8 +261,10 @@
         <fieldset>
           <legend>latest beats</legend>
           <div class="track-list" id="beats-content" style="max-height: 250px; overflow-y: auto;">
-            <div class="win95-media-player">
-              <div class="media-title">windows , 150 , + 68 cents</div>
+            <div class="win95-media-player" style="border-left: 3px solid #000080;">
+              <div class="media-title">
+                <span style="display:inline-block; background:#000080; color:#fff; font-size:9px; font-family:Arial,sans-serif; padding:0 4px; margin-right:5px; font-weight:bold; letter-spacing:0.5px; vertical-align:middle;">&#128204; Pin by @diedfavorite</span>windows , 150 , + 68 cents
+              </div>
               <audio id="audio-beats-0" src="beats/Windows , 150 , + 68 Cents.mp3"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-0')">&#9654;</button>
@@ -271,18 +273,6 @@
                 <button class="dl-btn" onclick="confirmDownload('beats/Windows , 150 , + 68 Cents.mp3', 'Windows , 150 , + 68 Cents.mp3')">Save</button>
                 <input type="range" class="media-slider" id="slider-audio-beats-0" value="0" step="0.1" oninput="seekMedia('audio-beats-0', this.value)">
                 <div class="media-time sunken-panel" id="time-audio-beats-0">00:00</div>
-              </div>
-            </div>
-            <div class="win95-media-player">
-              <div class="media-title">children , 143.400 , + 50 cents</div>
-              <audio id="audio-beats-1" src="beats/Children , 143.400 , + 50 Cents.mp3"></audio>
-              <div class="media-controls">
-                <button onclick="playMedia('audio-beats-1')">&#9654;</button>
-                <button onclick="pauseMedia('audio-beats-1')"><strong>||</strong></button>
-                <button onclick="stopMedia('audio-beats-1')">&#9632;</button>
-                <button class="dl-btn" onclick="confirmDownload('beats/Children , 143.400 , + 50 Cents.mp3', 'Children , 143.400 , + 50 Cents.mp3')">Save</button>
-                <input type="range" class="media-slider" id="slider-audio-beats-1" value="0" step="0.1" oninput="seekMedia('audio-beats-1', this.value)">
-                <div class="media-time sunken-panel" id="time-audio-beats-1">00:00</div>
               </div>
             </div>
             <div class="win95-media-player">
@@ -295,18 +285,6 @@
                 <button class="dl-btn" onclick="confirmDownload('beats/Claude , Code , 160 , + 50 Cents.mp3', 'Claude , Code , 160 , + 50 Cents.mp3')">Save</button>
                 <input type="range" class="media-slider" id="slider-audio-beats-2" value="0" step="0.1" oninput="seekMedia('audio-beats-2', this.value)">
                 <div class="media-time sunken-panel" id="time-audio-beats-2">00:00</div>
-              </div>
-            </div>
-            <div class="win95-media-player">
-              <div class="media-title">jessie , 140 , + 50 cents</div>
-              <audio id="audio-beats-3" src="beats/Jessie , 140 , + 50 Cents.mp3"></audio>
-              <div class="media-controls">
-                <button onclick="playMedia('audio-beats-3')">&#9654;</button>
-                <button onclick="pauseMedia('audio-beats-3')"><strong>||</strong></button>
-                <button onclick="stopMedia('audio-beats-3')">&#9632;</button>
-                <button class="dl-btn" onclick="confirmDownload('beats/Jessie , 140 , + 50 Cents.mp3', 'Jessie , 140 , + 50 Cents.mp3')">Save</button>
-                <input type="range" class="media-slider" id="slider-audio-beats-3" value="0" step="0.1" oninput="seekMedia('audio-beats-3', this.value)">
-                <div class="media-time sunken-panel" id="time-audio-beats-3">00:00</div>
               </div>
             </div>
             <div class="win95-media-player">
@@ -333,11 +311,23 @@
                 <div class="media-time sunken-panel" id="time-audio-beats-5">00:00</div>
               </div>
             </div>
+            <div class="win95-media-player">
+              <div class="media-title">out , sight , 140 , - 24 cents</div>
+              <audio id="audio-beats-6" src="beats/Out , Sight , 140 , - 24 Cents.mp3"></audio>
+              <div class="media-controls">
+                <button onclick="playMedia('audio-beats-6')">&#9654;</button>
+                <button onclick="pauseMedia('audio-beats-6')"><strong>||</strong></button>
+                <button onclick="stopMedia('audio-beats-6')">&#9632;</button>
+                <button class="dl-btn" onclick="confirmDownload('beats/Out , Sight , 140 , - 24 Cents.mp3', 'Out , Sight , 140 , - 24 Cents.mp3')">Save</button>
+                <input type="range" class="media-slider" id="slider-audio-beats-6" value="0" step="0.1" oninput="seekMedia('audio-beats-6', this.value)">
+                <div class="media-time sunken-panel" id="time-audio-beats-6">00:00</div>
+              </div>
+            </div>
           </div>
         </fieldset>
         </div>
         <div class="win95-statusbar">
-          <div class="win95-statusbar-cell grow" id="beats-status">6 object(s)</div>
+          <div class="win95-statusbar-cell grow" id="beats-status">5 object(s)</div>
           <div class="win95-statusbar-cell">Free for profit</div>
         </div>
       </div>
@@ -411,11 +401,23 @@
                 <div class="media-time sunken-panel" id="time-audio-loops-3">00:00</div>
               </div>
             </div>
+            <div class="win95-media-player">
+              <div class="media-title">out , sight , loop , 140 , - 24 cents</div>
+              <audio id="audio-loops-5" src="loops/Out , Sight , Loop , 140 , - 24 Cents.mp3"></audio>
+              <div class="media-controls">
+                <button onclick="playMedia('audio-loops-5')">&#9654;</button>
+                <button onclick="pauseMedia('audio-loops-5')"><strong>||</strong></button>
+                <button onclick="stopMedia('audio-loops-5')">&#9632;</button>
+                <button class="dl-btn" onclick="confirmDownload('loops/Out , Sight , Loop , 140 , - 24 Cents.mp3', 'Out , Sight , Loop , 140 , - 24 Cents.mp3')">Save</button>
+                <input type="range" class="media-slider" id="slider-audio-loops-5" value="0" step="0.1" oninput="seekMedia('audio-loops-5', this.value)">
+                <div class="media-time sunken-panel" id="time-audio-loops-5">00:00</div>
+              </div>
+            </div>
           </div>
         </fieldset>
         </div>
         <div class="win95-statusbar">
-          <div class="win95-statusbar-cell grow" id="loops-status">4 object(s)</div>
+          <div class="win95-statusbar-cell grow" id="loops-status">5 object(s)</div>
           <div class="win95-statusbar-cell">Free for profit</div>
         </div>
       </div>
