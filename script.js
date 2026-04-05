@@ -59,6 +59,16 @@ function selectIcon(id) {
   onSelfAnimEnd(el, () => el.classList.remove('icon-select-flash'));
 }
 
+// Desktop icon double-click bounce feedback
+document.querySelectorAll('.desktop-icon').forEach(icon => {
+  icon.addEventListener('dblclick', () => {
+    icon.classList.remove('icon-opening');
+    void icon.offsetWidth;
+    icon.classList.add('icon-opening');
+    onSelfAnimEnd(icon, () => icon.classList.remove('icon-opening'));
+  });
+});
+
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.desktop-icon')) deselectAllIcons();
   if (!e.target.closest('.recycle-file')) {
@@ -296,6 +306,8 @@ function renderTaskbar() {
         openWindow(id);
       }
     };
+    btn.classList.add('taskbar-item-enter');
+    requestAnimationFrame(() => onSelfAnimEnd(btn, () => btn.classList.remove('taskbar-item-enter')));
     container.appendChild(btn);
   });
 }
@@ -750,6 +762,17 @@ document.querySelectorAll('audio, video').forEach(el => {
         setTimeout(() => {
           screen.style.display = 'none';
           document.body.classList.remove('cursor-wait');
+          // Staggered desktop icon entrance after boot
+          document.querySelectorAll('.desktop-icon').forEach((icon, i) => {
+            icon.style.opacity = '0';
+            setTimeout(() => {
+              icon.style.opacity = '';
+              icon.classList.remove('icon-enter');
+              void icon.offsetWidth;
+              icon.classList.add('icon-enter');
+              onSelfAnimEnd(icon, () => icon.classList.remove('icon-enter'));
+            }, i * 70 + 80);
+          });
           // Show balloon tip after boot
           setTimeout(() => showBalloon(isMobile() ? 'Welcome! Tap any icon to open a window.' : 'Welcome! Double-click any desktop icon to open a window.', 5000), 600);
         }, 620);
@@ -771,6 +794,14 @@ document.querySelectorAll('audio, video').forEach(el => {
 ══════════════════════════════════════════ */
 let balloonTimer = null;
 
+// IE toolbar refresh button animation
+function ieRefresh(btn) {
+  btn.classList.remove('ie-refreshing');
+  void btn.offsetWidth;
+  btn.classList.add('ie-refreshing');
+  onSelfAnimEnd(btn, () => btn.classList.remove('ie-refreshing'));
+}
+
 function showBalloon(text, duration = 4000) {
   const tip  = document.getElementById('balloon-tip');
   const textEl = document.getElementById('balloon-text');
@@ -785,11 +816,16 @@ function showBalloon(text, duration = 4000) {
   }
 
   textEl.innerText = text;
+  tip.classList.remove('balloon-hiding');
   tip.style.display = 'block';
 
   if (balloonTimer) clearTimeout(balloonTimer);
   balloonTimer = setTimeout(() => {
-    tip.style.display = 'none';
+    tip.classList.add('balloon-hiding');
+    onSelfAnimEnd(tip, () => {
+      tip.style.display = 'none';
+      tip.classList.remove('balloon-hiding');
+    });
   }, duration);
 }
 
