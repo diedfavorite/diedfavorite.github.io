@@ -254,6 +254,14 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// Ctrl / Cmd key toggles Start menu
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Control' || e.key === 'Meta') {
+    e.preventDefault();
+    toggleStartMenu();
+  }
+});
+
 // Window dragging with delay/echo effect (like music delay)
 let dragWin = null, dragOffX, dragOffY;
 let dragTargetX = 0, dragTargetY = 0;
