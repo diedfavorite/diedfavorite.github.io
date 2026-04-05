@@ -168,9 +168,37 @@ function maximizeWindow(id) {
   bringToFront(id);
 }
 
+// Point the menu's transform-origin exactly at the Start button's center,
+// so scale animations grow from / collapse to the button itself.
+function anchorMenuToButton() {
+  const btn  = document.getElementById('start-btn');
+  const menu = document.getElementById('start-menu');
+  if (!btn || !menu) return;
+
+  const btnRect = btn.getBoundingClientRect();
+  const btnCX   = btnRect.left + btnRect.width  / 2;
+  const btnCY   = btnRect.top  + btnRect.height / 2;
+
+  // If menu is hidden we can't read its rect — briefly unhide (invisible) to measure
+  let menuRect = menu.getBoundingClientRect();
+  if (!menuRect.height) {
+    menu.style.visibility = 'hidden';
+    menu.classList.remove('hidden');
+    menuRect = menu.getBoundingClientRect();
+    menu.classList.add('hidden');
+    menu.style.visibility = '';
+  }
+
+  // Button center expressed in the menu's own coordinate space
+  const ox = btnCX - menuRect.left;
+  const oy = btnCY - menuRect.top;
+  menu.style.transformOrigin = `${ox}px ${oy}px`;
+}
+
 function closeStartMenu() {
   const menu = document.getElementById('start-menu');
   if (!menu || menu.classList.contains('hidden') || menu.dataset.closing) return;
+  anchorMenuToButton();
   menu.dataset.closing = '1';
   menu.classList.remove('start-opening');
   menu.classList.add('start-closing');
@@ -184,6 +212,7 @@ function closeStartMenu() {
 function toggleStartMenu() {
   const menu = document.getElementById('start-menu');
   if (menu.classList.contains('hidden')) {
+    anchorMenuToButton();
     menu.classList.remove('hidden');
     menu.classList.remove('start-opening');
     void menu.offsetWidth;
