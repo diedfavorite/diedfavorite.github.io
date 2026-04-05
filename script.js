@@ -980,8 +980,8 @@ function openAbout() {
   dlg.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999990;display:flex;align-items:center;justify-content:center;';
 
   dlg.innerHTML = `
-    <div class="window" style="width:260px;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px #808080,inset 2px 2px #fff,4px 4px 0 #000;">
-      <div class="title-bar" style="background:linear-gradient(90deg,#000080,#1a1aaa 50%,#000080);">
+    <div class="window active" style="width:260px;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px #808080,inset 2px 2px #fff,4px 4px 0 #000;">
+      <div class="title-bar">
         <div class="title-bar-text" style="color:#fff;font-size:11px;">About @diedfavorite</div>
         <div class="title-bar-controls">
           <button aria-label="Close" onclick="document.getElementById('about-dialog').remove()"></button>
