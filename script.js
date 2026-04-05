@@ -285,22 +285,10 @@ document.addEventListener('keydown', (e) => {
     _ctrlUsedWithKey = true;
   }
 
-  // ── Ctrl+Esc → Shut Down ─────────────────────────────────────
-  if (e.key === 'Escape' && (e.ctrlKey || e.metaKey)) {
+  // ── Escape → Shut Down ──────────────────────────────────────
+  if (e.key === 'Escape') {
     e.preventDefault();
     shutDown();
-    return;
-  }
-
-  // ── Escape → close Start menu first, then active window ─────
-  if (e.key === 'Escape') {
-    const menu = document.getElementById('start-menu');
-    if (menu && !menu.classList.contains('hidden')) {
-      closeStartMenu();
-    } else {
-      const activeEl = document.querySelector('.desktop-window.active');
-      if (activeEl) closeWindow(activeEl.id);
-    }
     return;
   }
 
