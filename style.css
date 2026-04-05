@@ -30,79 +30,77 @@ textarea {
 }
 
 /* ── Animations ── */
+/* Win95 windows snap open/close — no blur, minimal scale, very fast */
 @keyframes win-open {
-  0%   { transform: scale(0.95); opacity: 0; filter: blur(2px); }
-  100% { transform: scale(1); opacity: 1; filter: blur(0); }
+  0%   { transform: scale(0.97); opacity: 0; }
+  100% { transform: scale(1);    opacity: 1; }
 }
 @keyframes win-close {
-  0%   { transform: scale(1); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0; filter: blur(2px); }
+  0%   { transform: scale(1);    opacity: 1; }
+  100% { transform: scale(0.97); opacity: 0; }
 }
 @keyframes win-minimize {
-  0%   { transform: scale(1); opacity: 1; filter: blur(0); }
-  100% { transform: scale(0.8) translateY(5vh); opacity: 0; filter: blur(2px); }
+  0%   { transform: scale(1) translateY(0);   opacity: 1; }
+  100% { transform: scale(0.9) translateY(3vh); opacity: 0; }
 }
 @keyframes win-maximize {
-  0%   { transform: scale(0.97); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
+  0%   { opacity: 0.7; }
+  100% { opacity: 1;   }
 }
+/* Win95 icon double-click — simple dim, no scale */
 @keyframes icon-pop {
-  0%   { transform: scale(1); filter: brightness(1); }
-  50%  { transform: scale(0.92); filter: brightness(0.8); }
-  100% { transform: scale(1); filter: brightness(1); }
+  0%   { opacity: 1;   }
+  50%  { opacity: 0.5; }
+  100% { opacity: 1;   }
 }
+/* Start menu — instant appear, no slide */
 @keyframes start-slide {
-  0%   { transform: translateY(10px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
+/* Taskbar press — border invert flash, no scale */
 @keyframes taskbar-press {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(0.95); background: #808080; }
-  100% { transform: scale(1); }
+  0%,100% { box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+                        inset -2px -2px #dfdfdf, inset 2px 2px #808080; }
+  50%     { background: #a0a0a0; }
 }
 
 /* body background matches taskbar so no white flash */
 body { background: #008080; }
 
-.win-opening   { animation: win-open      0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.win-closing   { animation: win-close     0.18s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
-.win-minimize  { animation: win-minimize  0.22s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
-.win-maximize  { animation: win-maximize  0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.icon-pop      { animation: icon-pop      0.2s ease-out; }
-.start-opening { animation: start-slide   0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.taskbar-press { animation: taskbar-press 0.15s ease-out forwards; }
+.win-opening   { animation: win-open     0.10s linear           forwards; }
+.win-closing   { animation: win-close    0.08s linear           forwards; }
+.win-minimize  { animation: win-minimize 0.12s ease-in          forwards; }
+.win-maximize  { animation: win-maximize 0.10s linear           forwards; }
+.icon-pop      { animation: icon-pop     0.18s ease-out; }
+.start-opening { animation: start-slide  0.08s linear           forwards; }
+.taskbar-press { animation: taskbar-press 0.12s ease-out        forwards; }
 
-/* title bar flash on focus */
+/* title bar flash on focus — colour swap, not brightness */
 @keyframes titlebar-flash {
-  0%   { filter: brightness(2.5); }
-  100% { filter: brightness(1);   }
+  0%,40% { filter: invert(1); }
+  100%   { filter: invert(0); }
 }
 .titlebar-flash .title-bar {
-  animation: titlebar-flash 0.22s ease-out;
+  animation: titlebar-flash 0.18s steps(2, end);
 }
 
-/* button press */
-@keyframes btn-press {
-  0%   { transform: scale(1);    }
-  40%  { transform: scale(0.92); }
-  100% { transform: scale(1);    }
-}
-button:active { animation: btn-press 0.12s ease-out; }
+/* button press — Win95 shifts content via padding, no scale */
+button:active { animation: none; }
 
-/* context menu + volume popup pop-in */
+/* context menu / volume popup — simple fade, no scale bounce */
 @keyframes popup-in {
-  0%   { transform: scale(0.9) translateY(4px); opacity: 0.4; }
-  70%  { transform: scale(1.03);                opacity: 1;   }
-  100% { transform: scale(1)   translateY(0);   opacity: 1;   }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
-.popup-in { animation: popup-in 0.14s ease-out; }
+.popup-in { animation: popup-in 0.08s linear; }
 
-/* tab panel slide-in */
+/* tab panel — instant swap, Win95 had no slide */
 @keyframes tab-slide {
-  0%   { opacity: 0; transform: translateX(8px); }
-  100% { opacity: 1; transform: translateX(0);   }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
-.tab-slide { animation: tab-slide 0.15s ease-out; }
+.tab-slide { animation: tab-slide 0.06s linear; }
 
 /* icon hover lift handled below */
 
@@ -114,22 +112,22 @@ button:active { animation: btn-press 0.12s ease-out; }
 }
 .clock-tick { animation: clock-tick 0.12s ease-out; }
 
-/* playlist item highlight flash */
+/* playlist item highlight — Win95 used invert, not brightness */
 @keyframes playlist-select {
-  0%   { filter: brightness(2); }
-  100% { filter: brightness(1); }
+  0%,40% { filter: invert(1); }
+  100%   { filter: invert(0); }
 }
-.playlist-select { animation: playlist-select 0.2s ease-out; }
+.playlist-select { animation: playlist-select 0.15s steps(2, end); }
 
-/* tray icon hover */
-#tray img:hover { transform: scale(1.2); }
+/* tray icon hover — no scale in Win95 */
+#tray img:hover { transform: none; }
 
-/* start menu items stagger */
+/* start menu items — Win95 menus appear all at once, no stagger */
 @keyframes menu-item-in {
-  0%   { opacity: 0; transform: translateX(-8px); }
-  100% { opacity: 1; transform: translateX(0);    }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
-.menu-item-anim { animation: menu-item-in 0.12s ease-out both; }
+.menu-item-anim { animation: menu-item-in 0.06s linear both; }
 
 /* beat/loop track hover */
 .win95-media-player {
@@ -180,22 +178,20 @@ button:active { animation: btn-press 0.12s ease-out; }
   white-space: nowrap;
   flex-shrink: 0;
 }
-@keyframes track-hover {
-  0%   { box-shadow: inset 1px 1px #fff, inset -1px -1px #808080; }
-  50%  { box-shadow: inset 1px 1px #000080, inset -1px -1px #000080; }
-  100% { box-shadow: inset 1px 1px #fff, inset -1px -1px #808080; }
+/* Win95 track rows: no animated hover — static highlight only */
+
+/* title bar control buttons hover — Win95 uses border invert, not brightness */
+.title-bar-controls button:hover {
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+              inset -2px -2px #dfdfdf, inset 2px 2px #808080;
 }
-.win95-media-player:hover { animation: track-hover 0.3s ease-out; }
 
-/* title bar control buttons hover */
-.title-bar-controls button:hover { filter: brightness(1.3); }
-
-/* icon select flash */
+/* icon select flash — Win95 used invert/highlight, not brightness */
 @keyframes icon-select-flash {
-  0%   { filter: brightness(1.8); }
-  100% { filter: brightness(1);   }
+  0%,40% { filter: invert(1) brightness(1.5); }
+  100%   { filter: invert(0); }
 }
-.icon-select-flash { animation: icon-select-flash 0.18s ease-out; }
+.icon-select-flash { animation: icon-select-flash 0.15s steps(2, end); }
 
 /* color swatches in Display Properties */
 .bg-swatch {
@@ -208,14 +204,12 @@ button:active { animation: btn-press 0.12s ease-out; }
   outline: 2px solid #000080;
 }
 
-/* background swatch select bounce */
+/* background swatch select — Win95 just inverts border, no bounce */
 @keyframes swatch-select {
-  0%   { transform: scale(1);    }
-  40%  { transform: scale(0.88); }
-  80%  { transform: scale(1.08); }
-  100% { transform: scale(1);    }
+  0%,40% { box-shadow: inset 2px 2px #fff, inset -2px -2px #0a0a0a; }
+  100%   { box-shadow: inset -1px -1px #fff, inset 1px 1px #000; }
 }
-.swatch-pop { animation: swatch-select 0.22s ease-out; }
+.swatch-pop { animation: swatch-select 0.12s steps(2, end); }
 
 /* media time flash on seek */
 @keyframes time-flash {
@@ -224,19 +218,19 @@ button:active { animation: btn-press 0.12s ease-out; }
 }
 .time-flash { animation: time-flash 0.2s ease-out; }
 
-/* playing pulse on audio player title */
-@keyframes playing-pulse {
-  0%,100% { opacity: 1;   }
-  50%     { opacity: 0.5; }
+/* playing track — static Win95 row highlight (no pulsing opacity) */
+.media-title.playing { color: #000080; font-weight: bold; }
+.win95-media-player:has(.media-title.playing) {
+  background: #c8d4e8 !important;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
 }
-.media-title.playing { animation: playing-pulse 0.8s ease-in-out infinite; color: #000080; }
 
-/* volume label flash */
+/* volume label flash — simple invert, no scale */
 @keyframes vol-flash {
-  0%   { color: #000080; transform: scale(1.3); }
-  100% { color: #000;    transform: scale(1);   }
+  0%,40% { background: #000080; color: #fff; }
+  100%   { background: transparent; color: #000; }
 }
-.vol-flash { animation: vol-flash 0.2s ease-out; }
+.vol-flash { animation: vol-flash 0.18s steps(2, end); }
 
 /* window shake (close blocked) */
 @keyframes win-shake {
@@ -248,15 +242,15 @@ button:active { animation: btn-press 0.12s ease-out; }
 }
 .win-shake { animation: win-shake 0.3s ease-out; }
 
-/* desktop icon hover lift */
-.desktop-icon:not(.dragging):hover { transform: translateY(-3px) scale(1.05); }
+/* desktop icon hover — Win95 had no drop shadow or scale, just slight lift */
+.desktop-icon:not(.dragging):hover { transform: translateY(-2px); }
 
-/* taskbar new window flash */
+/* taskbar new window flash — Win95 flashes button label colour */
 @keyframes tb-new {
-  0%,100% { background: #c0c0c0; }
+  0%,100% { background: #c0c0c0; color: #000; }
   50%     { background: #000080; color: #fff; }
 }
-.tb-new { animation: tb-new 0.35s ease-out 2; }
+.tb-new { animation: tb-new 0.25s steps(2, end) 3; }
 
 /* scrollbar Win95 style */
 ::-webkit-scrollbar { width: 16px; height: 16px; }
@@ -662,7 +656,7 @@ button {
 }
 .ql-icon:hover {
   box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
-  background: #d4d0c8;
+  background: #c0c0c0;
 }
 .ql-icon:active {
   box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
@@ -1178,16 +1172,17 @@ button:active {
   animation: icon-dot-blink 0.8s step-end infinite;
 }
 
-/* Quick-launch icon hover pop */
+/* Quick-launch icon hover — Win95: no scale/brightness, just sunken border */
 #taskbar div img:hover {
-  transform: scale(1.25) translateY(-2px) !important;
-  filter: brightness(1.2);
+  transform: none !important;
+  filter: none !important;
 }
 
-/* Taskbar item hover — slight brightening */
+/* Taskbar item hover — Win95 raises border, doesn't fill */
 .taskbar-item:hover:not(.active) {
-  background: #d4d0c8 !important;
-  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff !important;
+  background: #c0c0c0 !important;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff,
+              inset -2px -2px #0a0a0a, inset 2px 2px #dfdfdf !important;
 }
 
 /* Taskbar active item — properly sunken, like Win95 pressed button */
@@ -1221,21 +1216,17 @@ body::after {
   z-index: 9999998;
 }
 
-/* Desktop icon float on hover — gentler */
+/* Desktop icon hover — Win95: no shadow, no scale, tiny lift */
 .desktop-icon:not(.dragging):hover {
-  transform: translateY(-4px) scale(1.06) !important;
-  filter: drop-shadow(0 4px 2px rgba(0,0,0,0.4));
+  transform: translateY(-2px) !important;
+  filter: none !important;
 }
 
-/* Win95 fieldset hover border highlight */
-fieldset:hover {
-  box-shadow: inset -1px -1px #fff, inset 1px 1px #000080,
-              inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a !important;
-}
+/* Win95 fieldset — borders never change on hover */
 
-/* Media player row hover — inset highlight */
+/* Media player row hover — simple background tint, no animation */
 .win95-media-player:hover {
-  background: #d0d0d0 !important;
+  background: #d4d4d4 !important;
 }
 
 /* Start button: active (pressed) state */
@@ -1244,14 +1235,16 @@ fieldset:hover {
               inset -2px -2px #dfdfdf, inset 2px 2px #808080 !important;
   padding-left: 6px !important;
 }
+/* Start button hover — Win95 doesn't brighten, just border state */
 .start-btn:hover {
-  filter: brightness(1.05);
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #dfdfdf,
+              inset -2px -2px #0a0a0a, inset 2px 2px #fff;
 }
 
-/* Tray icons: hover lift */
+/* Tray icons hover — Win95 shows sunken border, no fill */
 #tray > div:hover {
-  background: #d0d0d0 !important;
-  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff !important;
+  background: #c0c0c0 !important;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff !important;
 }
 
 /* Boot screen fade out */
@@ -1264,32 +1257,22 @@ fieldset:hover {
   animation: boot-fadeout 0.6s ease-out forwards !important;
 }
 
-/* Window resize flash (maximize/restore only) */
-@keyframes win-resize-flash {
-  0%   { filter: brightness(1.15); }
-  100% { filter: brightness(1);    }
-}
+/* Window maximize — just opacity flash, no brightness filter */
 .win-maximize {
-  animation: win-maximize 0.18s ease-out forwards,
-             win-resize-flash 0.18s ease-out forwards !important;
+  animation: win-maximize 0.10s linear forwards !important;
 }
 
-/* Now-playing container pulse border */
-@keyframes np-border-pulse {
-  0%, 100% { box-shadow: inset -1px -1px #fff, inset 1px 1px #808080; }
-  50%       { box-shadow: inset -1px -1px #00ff00, inset 1px 1px #004400; }
-}
+/* Now-playing container — static LED panel, no pulse */
 #now-playing-container[style*="flex"] {
-  animation: np-border-pulse 2s ease-in-out infinite;
+  box-shadow: inset 1px 1px #004400, inset -1px -1px #00aa00;
 }
 #now-playing-container:hover {
-  box-shadow: inset -1px -1px #00ff00, inset 1px 1px #004400 !important;
-  background: #001800 !important;
-  animation: none !important;
+  box-shadow: inset 1px 1px #008800, inset -1px -1px #00ff00 !important;
+  background: #001400 !important;
 }
 #now-playing-container:active {
-  box-shadow: inset 1px 1px #00ff00, inset -1px -1px #004400 !important;
-  background: #002800 !important;
+  box-shadow: inset 2px 2px #004400, inset -1px -1px #00ff00 !important;
+  background: #002400 !important;
 }
 
 /* Win95 scrollbar button arrows (more authentic) */
@@ -1483,7 +1466,7 @@ button.default-btn {
   padding: 2px !important;
   box-shadow: none !important;
 }
-.ql-icon:hover { box-shadow: inset -1px -1px #808080, inset 1px 1px #fff !important; background: #d4d0c8 !important; }
+.ql-icon:hover { box-shadow: inset -1px -1px #808080, inset 1px 1px #fff !important; background: #c0c0c0 !important; }
 .ql-icon:active { box-shadow: inset -1px -1px #fff, inset 1px 1px #808080 !important; padding: 3px 1px 1px 3px !important; }
 
 /* ── Video transport (compact 22×22) ── */
@@ -1550,28 +1533,19 @@ button.default-btn {
   padding-top: 3px !important;
 }
 
-/* Desktop icon shadow pulse on hover */
-@keyframes icon-shadow-pulse {
-  0%   { filter: drop-shadow(0 0 0px transparent); }
-  50%  { filter: drop-shadow(0 0 4px #000080); }
-  100% { filter: drop-shadow(0 0 0px transparent); }
-}
-.desktop-icon:hover img {
-  animation: icon-shadow-pulse 0.6s ease-out;
-}
+/* No icon drop-shadow on hover — Win95 icons had no glow */
+.desktop-icon:hover img { animation: none; }
 
-/* Window focus ring flash */
+/* Window focus flash when new — border colour blink */
 @keyframes win-focus-flash {
-  0%   { box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #fff; }
-  40%  { box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #000080, inset 2px 2px #6060ff; }
-  100% { box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #fff; }
+  0%,100% { box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf,
+                        inset -2px -2px #808080, inset 2px 2px #fff; }
+  50%     { box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf,
+                        inset -2px -2px #000080, inset 2px 2px #000080; }
 }
-.window.tb-new { animation: win-focus-flash 0.35s ease-out; }
+.window.tb-new { animation: win-focus-flash 0.2s steps(2, end) 2; }
 
-/* Fieldset legend color flash on track hover */
-.win95-media-player:hover .media-title {
-  color: #000080;
-}
+/* No color change on hover — Win95 track lists don't highlight title text */
 
 /* Start button active press */
 .start-btn:active {
@@ -1858,6 +1832,7 @@ button.default-btn {
   color: #000;
   white-space: nowrap;
   flex-shrink: 0;
+  margin-right: 2px;
 }
 .win95-statusbar-cell.grow { flex: 1; }
 
