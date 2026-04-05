@@ -168,18 +168,19 @@ function maximizeWindow(id) {
   bringToFront(id);
 }
 
-// Point the menu's transform-origin exactly at the Start button's center,
-// so scale animations grow from / collapse to the button itself.
+// Point the menu's transform-origin at the Start button's TOP edge center —
+// the exact line where the button and menu visually connect.
 function anchorMenuToButton() {
   const btn  = document.getElementById('start-btn');
   const menu = document.getElementById('start-menu');
   if (!btn || !menu) return;
 
   const btnRect = btn.getBoundingClientRect();
-  const btnCX   = btnRect.left + btnRect.width  / 2;
-  const btnCY   = btnRect.top  + btnRect.height / 2;
+  // Horizontal: center of the button  |  Vertical: top of the button (= where menu exits)
+  const btnX = btnRect.left + btnRect.width / 2;
+  const btnY = btnRect.top;
 
-  // If menu is hidden we can't read its rect — briefly unhide (invisible) to measure
+  // If menu is hidden, briefly unhide (invisible) to read its rect
   let menuRect = menu.getBoundingClientRect();
   if (!menuRect.height) {
     menu.style.visibility = 'hidden';
@@ -189,9 +190,8 @@ function anchorMenuToButton() {
     menu.style.visibility = '';
   }
 
-  // Button center expressed in the menu's own coordinate space
-  const ox = btnCX - menuRect.left;
-  const oy = btnCY - menuRect.top;
+  const ox = btnX - menuRect.left;   // horiz center of button, relative to menu left
+  const oy = btnY - menuRect.top;    // button's top edge = menu's bottom edge (connection point)
   menu.style.transformOrigin = `${ox}px ${oy}px`;
 }
 
@@ -206,6 +206,14 @@ function closeStartMenu() {
     delete menu.dataset.closing;
     menu.classList.remove('start-closing');
     menu.classList.add('hidden');
+    // Button absorbs the menu back — brief pulse
+    const btn = document.getElementById('start-btn');
+    if (btn) {
+      btn.classList.remove('start-btn-absorb');
+      void btn.offsetWidth;
+      btn.classList.add('start-btn-absorb');
+      onSelfAnimEnd(btn, () => btn.classList.remove('start-btn-absorb'));
+    }
   });
 }
 
@@ -213,6 +221,14 @@ function toggleStartMenu() {
   const menu = document.getElementById('start-menu');
   if (menu.classList.contains('hidden')) {
     anchorMenuToButton();
+    // Button ejects the menu — brief push flash
+    const btn = document.getElementById('start-btn');
+    if (btn) {
+      btn.classList.remove('start-btn-eject');
+      void btn.offsetWidth;
+      btn.classList.add('start-btn-eject');
+      onSelfAnimEnd(btn, () => btn.classList.remove('start-btn-eject'));
+    }
     menu.classList.remove('hidden');
     menu.classList.remove('start-opening');
     void menu.offsetWidth;
@@ -830,6 +846,63 @@ document.querySelectorAll('audio, video').forEach(el => {
   // Small initial delay so page can render
   setTimeout(nextStep, 200);
 })();
+
+/* ══════════════════════════════════════════
+   WIN95 SHUTDOWN SEQUENCE
+══════════════════════════════════════════ */
+function shutDown() {
+  closeStartMenu();
+
+  setTimeout(() => {
+    // Fade desktop to black
+    const desktop = document.getElementById('desktop');
+    const taskbar  = document.getElementById('taskbar');
+    desktop.classList.add('desktop-shutdown-fade');
+    taskbar.classList.add('desktop-shutdown-fade');
+
+    setTimeout(() => {
+      const screen = document.getElementById('shutdown-screen');
+      const p1     = document.getElementById('shutdown-p1');
+      const p2     = document.getElementById('shutdown-p2');
+      const bar    = document.getElementById('shutdown-bar');
+      const msg    = document.getElementById('shutdown-msg');
+      const sub    = document.getElementById('shutdown-sub');
+      if (!screen) return;
+
+      screen.style.display = 'flex';
+
+      const steps = [
+        { pct: 15,  msg: 'Saving your settings...',       sub: 'Writing profile data...',        delay: 550 },
+        { pct: 35,  msg: 'Windows is shutting down...',   sub: 'Closing applications...',        delay: 480 },
+        { pct: 55,  msg: 'Windows is shutting down...',   sub: 'Stopping background services...', delay: 420 },
+        { pct: 72,  msg: 'Windows is shutting down...',   sub: 'Saving disk cache...',           delay: 400 },
+        { pct: 88,  msg: 'Windows is shutting down...',   sub: 'Flushing write buffers...',      delay: 380 },
+        { pct: 100, msg: 'Please wait...',                sub: '',                               delay: 500 },
+      ];
+
+      let i = 0;
+      function nextStep() {
+        if (i >= steps.length) {
+          // Phase 2 — "safe to turn off"
+          p1.style.opacity = '0';
+          setTimeout(() => {
+            p1.style.display = 'none';
+            p2.style.display = 'flex';
+            p2.classList.add('shutdown-p2-in');
+          }, 400);
+          screen.addEventListener('click', () => location.reload(), { once: true });
+          return;
+        }
+        const step = steps[i++];
+        bar.style.width  = step.pct + '%';
+        msg.innerText    = step.msg;
+        sub.innerText    = step.sub;
+        setTimeout(nextStep, step.delay);
+      }
+      nextStep();
+    }, 500);
+  }, 250);
+}
 
 /* ══════════════════════════════════════════
    WIN95 BALLOON TOOLTIP SYSTEM

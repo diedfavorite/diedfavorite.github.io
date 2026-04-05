@@ -1649,6 +1649,45 @@ button.default-btn {
 }
 .status-pop { animation: status-pop 0.4s ease-out; }
 
+/* ── Start button eject (menu bursts out) ── */
+@keyframes start-btn-eject {
+  0%   { filter: brightness(1);    transform: scale(1); }
+  30%  { filter: brightness(1.6);  transform: scale(0.93); }
+  65%  { filter: brightness(1.2);  transform: scale(1.04); }
+  100% { filter: brightness(1);    transform: scale(1); }
+}
+.start-btn-eject { animation: start-btn-eject 0.22s ease-out; }
+
+/* ── Start button absorb (menu sucked back in) ── */
+@keyframes start-btn-absorb {
+  0%   { filter: brightness(1);   transform: scale(1); }
+  40%  { filter: brightness(1.8); transform: scale(1.06); }
+  100% { filter: brightness(1);   transform: scale(1); }
+}
+.start-btn-absorb { animation: start-btn-absorb 0.2s ease-out; }
+
+/* ── Desktop fade to black on shutdown ── */
+@keyframes desktop-shutdown {
+  0%   { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+.desktop-shutdown-fade {
+  animation: desktop-shutdown 0.5s ease-in forwards !important;
+}
+
+/* ── Shutdown logo pulse ── */
+@keyframes shutdown-logo {
+  0%, 100% { opacity: 0.9; filter: brightness(1); transform: scale(1); }
+  50%       { opacity: 0.5; filter: brightness(0.6); transform: scale(0.95); }
+}
+
+/* ── Shutdown phase 2 fade in ── */
+@keyframes shutdown-p2-enter {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.shutdown-p2-in { animation: shutdown-p2-enter 0.6s ease-out forwards; }
+
 /* ══════════════════════════════════════════
    COMPREHENSIVE ELEMENT ANIMATION PASS
    Every interactive element gets motion.
