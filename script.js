@@ -254,19 +254,105 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Keyboard shortcuts
+// ═══════════════════════════════════════
+//  KEYBOARD SHORTCUTS
+// ═══════════════════════════════════════
+const WINDOW_HOTKEYS = {
+  '1': 'window-hero',
+  '2': 'window-beats',
+  '3': 'window-loops',
+  '4': 'window-video',
+  '5': 'window-socials',
+  '6': 'window-licensing',
+};
+
 document.addEventListener('keydown', (e) => {
-  // Ctrl / Cmd → toggle Start menu
-  if (e.key === 'Control' || e.key === 'Meta') {
+  const inField   = e.target.matches('input, textarea, select');
+  const inContent = e.target.closest('.window-body, .win95-window-content');
+
+  // ── Ctrl / Cmd → toggle Start menu ──────────────────────────
+  if ((e.key === 'Control' || e.key === 'Meta') && !e.altKey) {
     e.preventDefault();
     toggleStartMenu();
     return;
   }
 
-  // Arrow keys → window management
-  // Don't intercept when typing or scrolling inside window content
-  if (e.target.matches('input, textarea, select')) return;
-  if (e.target.closest('.window-body, .win95-window-content')) return;
+  // ── Escape → close Start menu first, then active window ─────
+  if (e.key === 'Escape') {
+    const menu = document.getElementById('start-menu');
+    if (menu && !menu.classList.contains('hidden')) {
+      closeStartMenu();
+    } else {
+      const activeEl = document.querySelector('.desktop-window.active');
+      if (activeEl) closeWindow(activeEl.id);
+    }
+    return;
+  }
+
+  // ── Alt+F4 → close active window (classic Win95) ────────────
+  if (e.altKey && e.key === 'F4') {
+    e.preventDefault();
+    const activeEl = document.querySelector('.desktop-window.active');
+    if (activeEl) closeWindow(activeEl.id);
+    return;
+  }
+
+  // ── F-keys (work even inside content) ───────────────────────
+  if (e.key === 'F1') { e.preventDefault(); openWindow('window-hero');    return; }
+  if (e.key === 'F5') { e.preventDefault(); location.reload();            return; }
+
+  // ── Space → play / pause active media in focused window ─────
+  if (e.key === ' ' && !inField) {
+    e.preventDefault();
+    const activeEl = document.querySelector('.desktop-window.active');
+    if (activeEl) {
+      const playingMedia = activeEl.querySelector('audio:not([paused]), video:not([paused])');
+      const anyMedia     = activeEl.querySelector('audio, video');
+      if (playingMedia && !playingMedia.paused) {
+        pauseMedia(playingMedia.id);
+      } else if (anyMedia) {
+        playMedia(anyMedia.id);
+      }
+    }
+    return;
+  }
+
+  // Skip everything below when typing in a field or window content
+  if (inField || inContent) return;
+
+  // ── M → maximize / restore active window ────────────────────
+  if (e.key === 'm' || e.key === 'M') {
+    const activeEl = document.querySelector('.desktop-window.active');
+    if (activeEl) maximizeWindow(activeEl.id);
+    return;
+  }
+
+  // ── D → show desktop (minimize all) ────────────────────────
+  if (e.key === 'd' || e.key === 'D') {
+    showDesktop();
+    return;
+  }
+
+  // ── R → open Recycle Bin ────────────────────────────────────
+  if (e.key === 'r' || e.key === 'R') {
+    openWindow('window-recyclebin');
+    return;
+  }
+
+  // ── P → open Display Properties ────────────────────────────
+  if (e.key === 'p' || e.key === 'P') {
+    openWindow('window-display');
+    return;
+  }
+
+  // ── Number keys 1–6 → open specific windows ─────────────────
+  if (WINDOW_HOTKEYS[e.key]) {
+    e.preventDefault();
+    openWindow(WINDOW_HOTKEYS[e.key]);
+    return;
+  }
+
+  // ── Arrow keys → window management ──────────────────────────
   if (!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) return;
   e.preventDefault();
 
@@ -275,21 +361,12 @@ document.addEventListener('keydown', (e) => {
 
   const activeEl = document.querySelector('.desktop-window.active');
   const activeId = activeEl?.id ?? null;
-  const idx = activeId ? wins.indexOf(activeId) : 0;
+  const idx      = activeId ? wins.indexOf(activeId) : 0;
 
-  if (e.key === 'ArrowUp') {
-    // Restore / bring active window to front
-    if (activeId) openWindow(activeId);
-  } else if (e.key === 'ArrowDown') {
-    // Minimize active window
-    if (activeId) minimizeWindow(activeId);
-  } else if (e.key === 'ArrowLeft') {
-    // Focus previous window (wraps)
-    openWindow(wins[(idx - 1 + wins.length) % wins.length]);
-  } else if (e.key === 'ArrowRight') {
-    // Focus next window (wraps)
-    openWindow(wins[(idx + 1) % wins.length]);
-  }
+  if      (e.key === 'ArrowUp')    { if (activeId) openWindow(activeId); }
+  else if (e.key === 'ArrowDown')  { if (activeId) minimizeWindow(activeId); }
+  else if (e.key === 'ArrowLeft')  { openWindow(wins[(idx - 1 + wins.length) % wins.length]); }
+  else if (e.key === 'ArrowRight') { openWindow(wins[(idx + 1) % wins.length]); }
 });
 
 // Window dragging with delay/echo effect (like music delay)
