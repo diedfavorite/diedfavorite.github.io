@@ -891,7 +891,8 @@ document.querySelectorAll('audio, video').forEach(el => {
     let winId = null;
     const titleEl = el.closest('.win95-media-player')?.querySelector('.media-title');
     if (titleEl) {
-      title = titleEl.innerText.replace(/^\s*📌 Pin by @diedfavorite\s*/i, '').trim();
+      titleEl.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE) title += node.textContent; });
+      title = title.trim() || titleEl.innerText.trim();
       if (el.closest('#window-beats')) winId = 'window-beats';
       else if (el.closest('#window-loops')) winId = 'window-loops';
     } else if (el.id === 'video-main') {
@@ -1128,8 +1129,16 @@ function showBalloon(text, duration = 4000) {
 document.querySelectorAll('audio, video').forEach(el => {
   el.addEventListener('play', () => {
     const titleEl = el.closest('.win95-media-player')?.querySelector('.media-title');
-    let label = titleEl ? titleEl.innerText : (document.getElementById('video-status')?.innerText || '');
-    label = label.replace(/^\s*📌\s*Pin\b[^\n]*/i, '').trim();
+    let label = '';
+    if (titleEl) {
+      // Collect only text nodes, skipping badge <span> children
+      titleEl.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) label += node.textContent;
+      });
+      label = label.trim() || titleEl.innerText.trim();
+    } else {
+      label = document.getElementById('video-status')?.innerText || '';
+    }
     if (label) showBalloon('♪ Now Playing: ' + label, 3500);
   });
 });
