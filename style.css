@@ -1673,34 +1673,58 @@ button.default-btn {
   animation: desktop-shutdown 0.5s ease-in forwards !important;
 }
 
-/* ── Shutdown dialog drop-in ── */
-@keyframes shutdown-dialog-in {
-  0%   { opacity: 0; transform: scale(0.88) translateY(-12px); }
-  65%  { transform: scale(1.03) translateY(2px); opacity: 1; }
+/* ── Shutdown: dialog spring in ── */
+@keyframes sd-dialog-enter {
+  0%   { opacity: 0; transform: scale(0.84) translateY(20px); }
+  60%  { opacity: 1; transform: scale(1.04) translateY(-3px); }
+  80%  { transform: scale(0.98) translateY(1px); }
   100% { transform: scale(1) translateY(0); }
 }
-#shutdown-p1 { animation: shutdown-dialog-in 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
+.sd-dialog-in { animation: sd-dialog-enter 0.38s cubic-bezier(0.16,1,0.3,1) forwards; }
 
-/* ── Hourglass flip ── */
+/* ── Shutdown: progress bar animated sheen ── */
+@keyframes bar-sheen {
+  0%   { left: -100%; }
+  60%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* ── Shutdown: message text flash on change ── */
+@keyframes sd-msg-change {
+  0%   { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.sd-msg-flash { animation: sd-msg-change 0.2s ease-out; }
+
+/* ── Shutdown: hourglass flip ── */
 @keyframes hourglass-spin {
-  0%   { transform: rotate(0deg); }
-  50%  { transform: rotate(180deg); }
-  100% { transform: rotate(180deg); }
+  0%   { transform: rotate(0deg)   scaleY(1); }
+  48%  { transform: rotate(0deg)   scaleY(1); }
+  52%  { transform: rotate(180deg) scaleY(0.1); }
+  55%  { transform: rotate(180deg) scaleY(1); }
+  100% { transform: rotate(180deg) scaleY(1); }
 }
 
-/* ── Shutdown phase 2 fade in ── */
-@keyframes shutdown-p2-enter {
-  0%   { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* ── Shutdown: CRT monitor power-off collapse ── */
+@keyframes crt-off {
+  0%   { clip-path: inset(0% 0% 0% 0%);             filter: brightness(1); }
+  40%  { clip-path: inset(46% 0% 46% 0%);            filter: brightness(3) saturate(0); }
+  65%  { clip-path: inset(49.2% 25% 49.2% 25%);      filter: brightness(4) saturate(0); }
+  82%  { clip-path: inset(49.8% 44% 49.8% 44%);      filter: brightness(2); }
+  95%  { clip-path: inset(49.95% 49.5% 49.95% 49.5%); filter: brightness(0.5); }
+  100% { clip-path: inset(50% 50% 50% 50%);           filter: brightness(0); opacity: 0; }
 }
-.shutdown-p2-in { animation: shutdown-p2-enter 0.5s ease-out forwards; }
+.crt-off {
+  animation: crt-off 0.72s cubic-bezier(0.5, 0, 1, 0.85) forwards;
+}
 
-/* ── Shutdown screen background fade in ── */
-@keyframes shutdown-bg-in {
-  0%   { background: #000; }
-  100% { background: #000080; }
+/* ── Shutdown: phase 2 "safe to turn off" fade in ── */
+@keyframes sd-p2-enter {
+  0%   { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
 }
-#shutdown-screen { animation: shutdown-bg-in 0.6s ease-out forwards; }
+.sd-p2-in { animation: sd-p2-enter 1.2s ease-out forwards; }
 
 /* ══════════════════════════════════════════
    COMPREHENSIVE ELEMENT ANIMATION PASS

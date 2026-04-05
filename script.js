@@ -854,55 +854,62 @@ function shutDown() {
   closeStartMenu();
 
   setTimeout(() => {
-    // Fade desktop to black
-    const desktop = document.getElementById('desktop');
-    const taskbar  = document.getElementById('taskbar');
-    desktop.classList.add('desktop-shutdown-fade');
-    taskbar.classList.add('desktop-shutdown-fade');
+    // Step 1: fade desktop + taskbar to black
+    document.getElementById('desktop')?.classList.add('desktop-shutdown-fade');
+    document.getElementById('taskbar')?.classList.add('desktop-shutdown-fade');
 
     setTimeout(() => {
-      const screen = document.getElementById('shutdown-screen');
-      const p1     = document.getElementById('shutdown-p1');
-      const p2     = document.getElementById('shutdown-p2');
-      const bar    = document.getElementById('shutdown-bar');
-      const msg    = document.getElementById('shutdown-msg');
-      const sub    = document.getElementById('shutdown-sub');
+      const screen  = document.getElementById('shutdown-screen');
+      const crtWrap = document.getElementById('sd-crt-wrap');
+      const p1      = document.getElementById('shutdown-p1');
+      const p2      = document.getElementById('shutdown-p2');
+      const bar     = document.getElementById('shutdown-bar');
+      const msg     = document.getElementById('shutdown-msg');
+      const sub     = document.getElementById('shutdown-sub');
       if (!screen) return;
 
-      screen.style.display = 'flex';
+      // Step 2: show shutdown screen, animate dialog in
+      screen.style.display = 'block';
+      p1.classList.add('sd-dialog-in');
 
       const steps = [
-        { pct: 15,  msg: 'Saving your settings...',       sub: 'Writing profile data...',        delay: 550 },
-        { pct: 35,  msg: 'Windows is shutting down...',   sub: 'Closing applications...',        delay: 480 },
-        { pct: 55,  msg: 'Windows is shutting down...',   sub: 'Stopping background services...', delay: 420 },
-        { pct: 72,  msg: 'Windows is shutting down...',   sub: 'Saving disk cache...',           delay: 400 },
-        { pct: 88,  msg: 'Windows is shutting down...',   sub: 'Flushing write buffers...',      delay: 380 },
-        { pct: 100, msg: 'Please wait...',                sub: '',                               delay: 500 },
+        { pct: 12,  msg: 'Saving your settings...',      sub: 'Writing profile data...',         delay: 600 },
+        { pct: 30,  msg: 'Windows is shutting down...',  sub: 'Closing applications...',         delay: 520 },
+        { pct: 50,  msg: 'Windows is shutting down...',  sub: 'Stopping background services...', delay: 460 },
+        { pct: 68,  msg: 'Windows is shutting down...',  sub: 'Saving disk cache...',            delay: 420 },
+        { pct: 84,  msg: 'Windows is shutting down...',  sub: 'Flushing write buffers...',       delay: 380 },
+        { pct: 100, msg: 'Please wait...',               sub: '',                                delay: 550 },
       ];
 
-      let i = 0;
+      let si = 0;
       function nextStep() {
-        if (i >= steps.length) {
-          // Phase 2 — "safe to turn off"
-          p1.style.transition = 'opacity 0.35s';
-          p1.style.opacity = '0';
+        if (si >= steps.length) {
+          // Step 3: brief pause at 100%, then CRT collapse
           setTimeout(() => {
-            p1.style.display = 'none';
-            p2.style.display = 'flex';
-            p2.classList.add('shutdown-p2-in');
-          }, 380);
-          screen.addEventListener('click', () => location.reload(), { once: true });
+            crtWrap.classList.add('crt-off');
+            // Step 4: after CRT collapses, reveal phase 2 on black
+            setTimeout(() => {
+              crtWrap.style.display = 'none';
+              p2.style.display = 'flex';
+              p2.classList.add('sd-p2-in');
+              screen.addEventListener('click', () => location.reload(), { once: true });
+            }, 750);
+          }, 500);
           return;
         }
-        const step = steps[i++];
-        bar.style.width  = step.pct + '%';
-        msg.innerText    = step.msg;
-        sub.innerText    = step.sub;
+        const step = steps[si++];
+        // Animate message change with a brief flash
+        msg.classList.remove('sd-msg-flash');
+        void msg.offsetWidth;
+        msg.classList.add('sd-msg-flash');
+        msg.innerText = step.msg;
+        sub.innerText = step.sub;
+        bar.style.width = step.pct + '%';
         setTimeout(nextStep, step.delay);
       }
       nextStep();
-    }, 500);
-  }, 250);
+    }, 480);
+  }, 220);
 }
 
 /* ══════════════════════════════════════════
