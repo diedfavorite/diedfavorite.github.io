@@ -267,14 +267,28 @@ const WINDOW_HOTKEYS = {
   '6': 'window-licensing',
 };
 
+// Track Ctrl/Cmd solo vs combo (so Ctrl+Esc → shutdown, not start menu)
+let _ctrlUsedWithKey = false;
+document.addEventListener('keyup', (e) => {
+  if ((e.key === 'Control' || e.key === 'Meta') && !_ctrlUsedWithKey) {
+    toggleStartMenu();
+  }
+  if (e.key === 'Control' || e.key === 'Meta') _ctrlUsedWithKey = false;
+});
+
 document.addEventListener('keydown', (e) => {
   const inField   = e.target.matches('input, textarea, select');
   const inContent = e.target.closest('.window-body, .win95-window-content');
 
-  // ── Ctrl / Cmd → toggle Start menu ──────────────────────────
-  if ((e.key === 'Control' || e.key === 'Meta') && !e.altKey) {
+  // ── Mark Ctrl as used with another key (prevents solo-Ctrl toggle) ──
+  if ((e.ctrlKey || e.metaKey) && e.key !== 'Control' && e.key !== 'Meta') {
+    _ctrlUsedWithKey = true;
+  }
+
+  // ── Ctrl+Esc → Shut Down ─────────────────────────────────────
+  if (e.key === 'Escape' && (e.ctrlKey || e.metaKey)) {
     e.preventDefault();
-    toggleStartMenu();
+    shutDown();
     return;
   }
 
@@ -1387,3 +1401,12 @@ function checkRotationNotice() {
 // Run on boot
 setTimeout(checkRotationNotice, 500);
 
+
+// ── Details toggle arrow for keyboard shortcuts ──────────────
+const _tipsDetails = document.querySelector('#window-hero details');
+const _tipsArrow   = document.getElementById('tips-arrow');
+if (_tipsDetails && _tipsArrow) {
+  _tipsDetails.addEventListener('toggle', () => {
+    _tipsArrow.textContent = _tipsDetails.open ? '▼' : '▶';
+  });
+}
