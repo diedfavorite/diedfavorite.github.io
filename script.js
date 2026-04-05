@@ -99,7 +99,7 @@ function bringToFront(id) {
 
 function openWindow(id) {
   // Always close start menu when opening a window
-  document.getElementById('start-menu')?.classList.add('hidden');
+  closeStartMenu();
 
   // Full window management on all devices
 
@@ -168,6 +168,19 @@ function maximizeWindow(id) {
   bringToFront(id);
 }
 
+function closeStartMenu() {
+  const menu = document.getElementById('start-menu');
+  if (!menu || menu.classList.contains('hidden') || menu.dataset.closing) return;
+  menu.dataset.closing = '1';
+  menu.classList.remove('start-opening');
+  menu.classList.add('start-closing');
+  onSelfAnimEnd(menu, () => {
+    delete menu.dataset.closing;
+    menu.classList.remove('start-closing');
+    menu.classList.add('hidden');
+  });
+}
+
 function toggleStartMenu() {
   const menu = document.getElementById('start-menu');
   if (menu.classList.contains('hidden')) {
@@ -186,13 +199,13 @@ function toggleStartMenu() {
     highestZIndex++;
     menu.style.zIndex = highestZIndex;
   } else {
-    menu.classList.add('hidden');
+    closeStartMenu();
   }
 }
 
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.start-menu') && !e.target.closest('.start-btn')) {
-    document.getElementById('start-menu')?.classList.add('hidden');
+    closeStartMenu();
   }
 });
 
@@ -1080,7 +1093,7 @@ window.addEventListener('languagechange', () => {
 // Universal orientation change handler
 window.addEventListener('orientationchange', () => {
   hideContextMenu();
-  document.getElementById('start-menu')?.classList.add('hidden');
+  closeStartMenu();
   document.getElementById('volume-popup')?.classList.add('hidden');
   
   // Re-calculate window positions if they go off-screen
