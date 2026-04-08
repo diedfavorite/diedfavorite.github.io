@@ -9,6 +9,14 @@
   <link rel="dns-prefetch" href="https://win98icons.alexmeub.com">
   <link rel="preconnect" href="https://win98icons.alexmeub.com" crossorigin>
   <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <link rel="stylesheet" href="style.css?v=35">
 </head>
 
@@ -387,11 +395,23 @@
                 <div class="media-time sunken-panel" id="time-audio-beats-6">00:00</div>
               </div>
             </div>
+            <div class="win95-media-player">
+              <div class="media-title">Halsey , 180 , + 84 Cents</div>
+              <audio id="audio-beats-7" src="beats/Halsey , 180 , + 84 Cents.mp3" preload="none"></audio>
+              <div class="media-controls">
+                <button onclick="playMedia('audio-beats-7')">&#9654;</button>
+                <button onclick="pauseMedia('audio-beats-7')"><strong>||</strong></button>
+                <button onclick="stopMedia('audio-beats-7')">&#9632;</button>
+                <button class="dl-btn" onclick="confirmDownload('beats/Halsey , 180 , + 84 Cents.mp3', 'Halsey , 180 , + 84 Cents.mp3')">Save</button>
+                <input type="range" class="media-slider" id="slider-audio-beats-7" value="0" step="0.1" oninput="seekMedia('audio-beats-7', this.value)">
+                <div class="media-time sunken-panel" id="time-audio-beats-7">00:00</div>
+              </div>
+            </div>
           </div>
         </fieldset>
         </div>
         <div class="win95-statusbar">
-          <div class="win95-statusbar-cell grow" id="beats-status">4 object(s)</div>
+          <div class="win95-statusbar-cell grow" id="beats-status">5 object(s)</div>
           <div class="win95-statusbar-cell">Free for profit</div>
         </div>
       </div>

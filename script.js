@@ -400,37 +400,39 @@ document.querySelectorAll('.draggable').forEach(windowEl => {
   titleBar.addEventListener('mousedown', (e) => {
     if (e.target.tagName.toLowerCase() === 'button') return;
     if (windowEl.classList.contains('maximized')) return;
-    dragWin = windowEl;
-    const rect = windowEl.getBoundingClientRect();
-    dragOffX = e.clientX - rect.left;
-    dragOffY = e.clientY - rect.top;
-    
-    // Force absolute pixel values instead of percentages to fix jumping
+    // Cancel any in-progress open/maximize animation so getBoundingClientRect
+    // matches offsetLeft/Top (transform from animation shifts visual vs logical pos)
+    windowEl.classList.remove('win-opening', 'win-maximize');
+    void windowEl.offsetWidth; // force reflow
+    // Snap percentage positions to pixels
     windowEl.style.left = windowEl.offsetLeft + 'px';
-    windowEl.style.top = windowEl.offsetTop + 'px';
+    windowEl.style.top  = windowEl.offsetTop  + 'px';
+    // Compute offset relative to desktop (same coordinate system as dragAnimLoop)
+    const dr = desktop.getBoundingClientRect();
+    dragOffX = e.clientX - dr.left - windowEl.offsetLeft;
+    dragOffY = e.clientY - dr.top  - windowEl.offsetTop;
     dragTargetX = windowEl.offsetLeft;
     dragTargetY = windowEl.offsetTop;
-    
+    dragWin = windowEl;
     document.body.style.userSelect = 'none';
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   });
   // Touch drag support - enabled for all devices
   titleBar.addEventListener('touchstart', (e) => {
     if (e.target.tagName.toLowerCase() === 'button') return;
-
     if (windowEl.classList.contains('maximized')) return;
     bringToFront(windowEl.id);
-    const t = e.touches[0];
-    dragWin = windowEl;
-    const rect = windowEl.getBoundingClientRect();
-    dragOffX = t.clientX - rect.left;
-    dragOffY = t.clientY - rect.top;
-    
+    windowEl.classList.remove('win-opening', 'win-maximize');
+    void windowEl.offsetWidth;
     windowEl.style.left = windowEl.offsetLeft + 'px';
-    windowEl.style.top = windowEl.offsetTop + 'px';
+    windowEl.style.top  = windowEl.offsetTop  + 'px';
+    const t = e.touches[0];
+    const dr = desktop.getBoundingClientRect();
+    dragOffX = t.clientX - dr.left - windowEl.offsetLeft;
+    dragOffY = t.clientY - dr.top  - windowEl.offsetTop;
     dragTargetX = windowEl.offsetLeft;
     dragTargetY = windowEl.offsetTop;
-    
+    dragWin = windowEl;
     if (!dragRafId) dragRafId = requestAnimationFrame(dragAnimLoop);
   }, { passive: true });
 });
