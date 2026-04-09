@@ -52,14 +52,16 @@ textarea {
   100% { transform: scale(1); filter: brightness(1); }
 }
 /* Start menu: slides up from taskbar with blur-to-clear */
+/* Start menu: Win95-style bottom-to-top reveal (no blur, no float) */
 @keyframes start-slide {
-  0%   { transform: translateY(108%); opacity: 0;   filter: blur(10px); }
-  60%  { transform: translateY(-3%);  opacity: 1;   filter: blur(1px);  }
-  100% { transform: translateY(0);    opacity: 1;   filter: blur(0);    }
+  0%   { clip-path: inset(100% 0 0 0); transform: scaleX(0.94); opacity: 0.6; }
+  55%  { clip-path: inset(0% 0 0 0);   transform: scaleX(1.015); opacity: 1;  }
+  100% { clip-path: inset(0% 0 0 0);   transform: scaleX(1);     opacity: 1;  }
 }
 @keyframes start-close-connected {
-  0%   { transform: translateY(0);    opacity: 1;   filter: blur(0);    }
-  100% { transform: translateY(110%); opacity: 0;   filter: blur(8px);  }
+  0%   { clip-path: inset(0% 0 0 0);   transform: scaleX(1);    opacity: 1;   }
+  35%  { clip-path: inset(0% 0 0 0);   transform: scaleX(0.98); opacity: 0.9; }
+  100% { clip-path: inset(100% 0 0 0); transform: scaleX(0.92); opacity: 0;   }
 }
 @keyframes taskbar-press {
   0%   { transform: scale(1); }
@@ -75,8 +77,8 @@ body { background: #008080; }
 .win-minimize  { animation: win-minimize  0.22s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
 .win-maximize  { animation: win-maximize  0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .icon-pop      { animation: icon-pop      0.2s ease-out; }
-.start-opening { animation: start-slide           0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.start-closing { animation: start-close-connected 0.18s cubic-bezier(0.4,  0, 1, 1)   forwards; }
+.start-opening { animation: start-slide           0.2s  cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.start-closing { animation: start-close-connected 0.14s cubic-bezier(0.55, 0, 1, 0.45) forwards; }
 .taskbar-press { animation: taskbar-press 0.15s ease-out forwards; }
 
 /* title bar flash on focus */
@@ -863,13 +865,13 @@ button {
   animation: logo-spin 3s linear infinite;
 }
 
-@keyframes start-icon-wiggle {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(-10deg) scale(1.1); }
-  75% { transform: rotate(10deg) scale(1.1); }
+/* Start button logo: gentle idle shimmer — not wiggle */
+@keyframes start-icon-idle {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 0px transparent); }
+  50%       { filter: brightness(1.25) drop-shadow(0 0 4px rgba(255,255,255,0.55)); }
 }
 .start-icon-anim {
-  animation: start-icon-wiggle 4s infinite ease-in-out;
+  animation: start-icon-idle 2.8s ease-in-out infinite;
 }
 
 /* CRT Overlay */
@@ -1588,9 +1590,30 @@ button.default-btn {
   color: #000080;
 }
 
-/* Start button active press */
-.start-btn:active {
-  box-shadow: inset -1px -1px #fff, inset 1px 1px #808080 !important;
+/* Start button: active (sunken) + opened state */
+.start-btn:active,
+.start-btn.menu-open {
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #000,
+              inset -2px -2px #dfdfdf, inset 2px 2px #808080 !important;
+  padding-left: 10px !important;
+  padding-top: 2px !important;
+}
+
+/* Menu item hover: full-row navy highlight with icon invert */
+.menu-item:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* Menu item stagger animation — snappier */
+@keyframes menu-item-in {
+  0%   { opacity: 0; transform: translateX(-6px); }
+  100% { opacity: 1; transform: translateX(0);    }
+}
+
+/* Start menu border glow on open */
+#start-menu:not(.hidden) {
+  box-shadow: 2px 0 0 #000, 0 2px 0 #000, 2px 2px 0 #000,
+              inset 1px 1px #fff, inset -1px -1px #808080 !important;
 }
 
 /* ══════════════════════════════════════════

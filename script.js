@@ -207,9 +207,9 @@ function closeStartMenu() {
     delete menu.dataset.closing;
     menu.classList.remove('start-closing');
     menu.classList.add('hidden');
-    // Button absorbs the menu back — brief pulse
     const btn = document.getElementById('start-btn');
     if (btn) {
+      btn.classList.remove('menu-open');
       btn.classList.remove('start-btn-absorb');
       void btn.offsetWidth;
       btn.classList.add('start-btn-absorb');
@@ -222,9 +222,9 @@ function toggleStartMenu() {
   const menu = document.getElementById('start-menu');
   if (menu.classList.contains('hidden')) {
     anchorMenuToButton();
-    // Button ejects the menu — brief push flash
     const btn = document.getElementById('start-btn');
     if (btn) {
+      btn.classList.add('menu-open');
       btn.classList.remove('start-btn-eject');
       void btn.offsetWidth;
       btn.classList.add('start-btn-eject');
