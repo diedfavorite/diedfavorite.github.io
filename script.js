@@ -725,7 +725,7 @@ function switchVideo(src, label, index) {
   if (timeDisplay) timeDisplay.innerText = '00:00';
   const status = document.getElementById('video-status');
   if (status) status.innerText = label;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 10; i++) {
     const item = document.getElementById(`vpl-${i}`);
     if (!item) continue;
     item.style.background = i === index ? '#000080' : '';
