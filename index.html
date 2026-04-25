@@ -359,6 +359,18 @@
               </div>
             </div>
             <div class="win95-media-player">
+              <div class="media-title">nu szn diedfavorite</div>
+              <audio id="audio-beats-9" src="beats/nu szn diedfavorite.wav" preload="none"></audio>
+              <div class="media-controls">
+                <button onclick="playMedia('audio-beats-9')">&#9654;</button>
+                <button onclick="pauseMedia('audio-beats-9')"><strong>||</strong></button>
+                <button onclick="stopMedia('audio-beats-9')">&#9632;</button>
+                <button class="dl-btn" onclick="confirmDownload('beats/nu szn diedfavorite.wav', 'nu szn diedfavorite.wav')">Save</button>
+                <input type="range" class="media-slider" id="slider-audio-beats-9" value="0" step="0.1" oninput="seekMedia('audio-beats-9', this.value)">
+                <div class="media-time sunken-panel" id="time-audio-beats-9">00:00</div>
+              </div>
+            </div>
+            <div class="win95-media-player">
               <div class="media-title">Windows , 150 , + 68 Cents</div>
               <audio id="audio-beats-0" src="beats/Windows , 150 , + 68 Cents.mp3" preload="none"></audio>
               <div class="media-controls">
@@ -422,7 +434,7 @@
         </fieldset>
         </div>
         <div class="win95-statusbar">
-          <div class="win95-statusbar-cell grow" id="beats-status">6 object(s)</div>
+          <div class="win95-statusbar-cell grow" id="beats-status">7 object(s)</div>
           <div class="win95-statusbar-cell">Free for profit</div>
         </div>
       </div>
