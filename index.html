@@ -345,8 +345,10 @@
         <fieldset>
           <legend>latest beats</legend>
           <div class="track-list" id="beats-content" style="max-height: 250px; overflow-y: auto;">
-            <div class="win95-media-player">
-              <div class="media-title">(beat) 2026.06.29_2 128bpm emaj 449hz @fav</div>
+            <div class="win95-media-player" style="border-left: 3px solid #000080;">
+              <div class="media-title">
+                <span style="display:inline-block; background:#000080; color:#fff; font-size:9px; font-family:Arial,sans-serif; padding:0 4px; margin-right:5px; font-weight:bold; letter-spacing:0.5px; vertical-align:middle;">&#128204; Pin</span>(beat) 2026.06.29_2 128bpm emaj 449hz @fav
+              </div>
               <audio id="audio-beats-1" src="beats/(beat) 2026.06.29_2 128bpm emaj 449hz @fav.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-1')">&#9654;</button>
@@ -417,8 +419,10 @@
                 <div class="media-time sunken-panel" id="time-audio-beats-6">00:00</div>
               </div>
             </div>
-            <div class="win95-media-player">
-              <div class="media-title">(beat) 2026.06.30_6 142bpm d#min +50c @2absnt @fav</div>
+            <div class="win95-media-player" style="border-left: 3px solid #000080;">
+              <div class="media-title">
+                <span style="display:inline-block; background:#000080; color:#fff; font-size:9px; font-family:Arial,sans-serif; padding:0 4px; margin-right:5px; font-weight:bold; letter-spacing:0.5px; vertical-align:middle;">&#128204; Pin</span>(beat) 2026.06.30_6 142bpm d#min +50c @2absnt @fav
+              </div>
               <audio id="audio-beats-7" src="beats/(beat) 2026.06.30_6 142bpm d#min +50c @2absnt @fav.mp3" preload="none"></audio>
               <div class="media-controls">
                 <button onclick="playMedia('audio-beats-7')">&#9654;</button>
@@ -429,11 +433,23 @@
                 <div class="media-time sunken-panel" id="time-audio-beats-7">00:00</div>
               </div>
             </div>
+            <div class="win95-media-player">
+              <div class="media-title">(beat) 2026.06.30_7 140bpm d#min @saesixx @diedfavorite</div>
+              <audio id="audio-beats-8" src="beats/(beat) 2026.06.30_7 140bpm d#min @saesixx @diedfavorite.mp3" preload="none"></audio>
+              <div class="media-controls">
+                <button onclick="playMedia('audio-beats-8')">&#9654;</button>
+                <button onclick="pauseMedia('audio-beats-8')"><strong>||</strong></button>
+                <button onclick="stopMedia('audio-beats-8')">&#9632;</button>
+                <button class="dl-btn" onclick="confirmDownload('beats/(beat) 2026.06.30_7 140bpm d#min @saesixx @diedfavorite.mp3', '(beat) 2026.06.30_7 140bpm d#min @saesixx @diedfavorite.mp3')">Save</button>
+                <input type="range" class="media-slider" id="slider-audio-beats-8" value="0" step="0.1" oninput="seekMedia('audio-beats-8', this.value)">
+                <div class="media-time sunken-panel" id="time-audio-beats-8">00:00</div>
+              </div>
+            </div>
           </div>
         </fieldset>
         </div>
         <div class="win95-statusbar">
-          <div class="win95-statusbar-cell grow" id="beats-status">7 object(s)</div>
+          <div class="win95-statusbar-cell grow" id="beats-status">8 object(s)</div>
           <div class="win95-statusbar-cell">Free for profit</div>
         </div>
       </div>
