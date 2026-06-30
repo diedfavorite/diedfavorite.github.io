@@ -131,10 +131,15 @@
       <img src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" alt="" loading="lazy" decoding="async">
       <span>loops</span>
     </div>
-    <div class="desktop-icon" id="icon-video" onclick="selectIcon('icon-video')" ondblclick="openWindow('window-video')"
+    <div class="desktop-icon" id="icon-songs" onclick="selectIcon('icon-songs')" ondblclick="openWindow('window-songs')"
       style="top:200px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" alt="" loading="lazy" decoding="async">
-      <span>videos</span>
+      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-0.png" alt="" loading="lazy" decoding="async">
+      <span>songs</span>
+    </div>
+    <div class="desktop-icon" id="icon-visuals" onclick="selectIcon('icon-visuals')" ondblclick="openWindow('window-visuals')"
+      style="top:20px; left:100px;">
+      <img src="https://win98icons.alexmeub.com/icons/png/paint_file-1.png" alt="" loading="lazy" decoding="async">
+      <span>visuals</span>
     </div>
     <div class="desktop-icon" id="icon-socials" onclick="selectIcon('icon-socials')"
       ondblclick="openWindow('window-socials')" style="top:290px; left:10px;">
@@ -200,7 +205,7 @@
                 Did you know...
               </div>
               <div style="margin: 0; font-size: 11px; line-height: 1.5; color: #000;">
-                You can explore <b>Beats</b>, <b>Loops</b>, and <b>Videos</b> using the icons on the desktop, or use the
+                You can explore <b>Beats</b>, <b>Loops</b>, <b>Songs</b>, and <b>Visuals</b> using the icons on the desktop, or use the
                 shortcut buttons below.
               </div>
               <details style="margin-top:6px; border-top:1px solid #c8c800; padding-top:5px;">
@@ -230,9 +235,9 @@
                 <span>New beats and loops added &mdash; check the Beats &amp; Loops windows for audition tracks.</span>
               </div>
               <div style="display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 11px;">
-                <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="16" height="16"
+                <img src="https://win98icons.alexmeub.com/icons/png/paint_file-1.png" width="16" height="16"
                   style="margin-top:1px; flex-shrink:0;" loading="lazy" decoding="async">
-                <span>New videos available &mdash; open the Videos window to watch the latest visual releases.</span>
+                <span>New visuals available &mdash; open the Visuals window to check them out.</span>
               </div>
               <div style="display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; font-size: 11px;">
                 <img src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="16" height="16"
@@ -258,9 +263,12 @@
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
                 src="https://win98icons.alexmeub.com/icons/png/computer_sound-2.png" width="14"
                 height="14" loading="lazy" decoding="async">Loops</button>
-            <button onclick="openWindow('window-video')"
+            <button onclick="openWindow('window-songs')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
-                src="https://win98icons.alexmeub.com/icons/png/camera3_vid-2.png" width="14" height="14" loading="lazy" decoding="async">Videos</button>
+                src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-0.png" width="14" height="14" loading="lazy" decoding="async">Songs</button>
+            <button onclick="openWindow('window-visuals')"
+              style="display:flex; align-items:center; gap:4px; width:100%;"><img
+                src="https://win98icons.alexmeub.com/icons/png/paint_file-1.png" width="14" height="14" loading="lazy" decoding="async">Visuals</button>
             <button onclick="openWindow('window-socials')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img
                 src="https://win98icons.alexmeub.com/icons/png/network_normal_two_pcs-0.png" width="14"
@@ -276,9 +284,6 @@
             <button onclick="window.open('https://www.instagram.com/diedfavorite/','_blank')"
               style="display:flex; align-items:center; gap:4px; width:100%;"><img src="https://win98icons.alexmeub.com/icons/png/camera3-0.png" width="14"
                 height="14" loading="lazy" decoding="async">Instagram</button>
-            <button onclick="window.open('https://discord.gg/3BmCPz6w','_blank')"
-              style="display:flex; align-items:center; gap:4px; width:100%;"><img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" width="14"
-                height="14" loading="lazy" decoding="async">Discord</button>
             <hr
               style="width:100%; border: none; border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 2px 0;">
             <button onclick="closeWindow('window-hero')" style="width:100%;">Close</button>
@@ -528,53 +533,44 @@
       </div>
     </div>
 
-    <!-- video window -->
-    <div class="window desktop-window draggable hidden" id="window-video" style="width:420px; top:15%; left:35%; overflow:hidden;">
+    <!-- songs window -->
+    <div class="window desktop-window draggable hidden" id="window-songs" style="width:400px; top:15%; left:35%;">
       <div class="title-bar">
-        <div class="title-bar-text">Videos - Windows Media Player</div>
+        <div class="title-bar-text">Songs - SoundCloud Player</div>
         <div class="title-bar-controls">
-          <button aria-label="Minimize" onclick="minimizeWindow('window-video')"></button>
-          <button aria-label="Maximize" onclick="maximizeWindow('window-video')"></button>
-          <button aria-label="Close" onclick="closeWindow('window-video')"></button>
+          <button aria-label="Minimize" onclick="minimizeWindow('window-songs')"></button>
+          <button aria-label="Maximize" onclick="maximizeWindow('window-songs')"></button>
+          <button aria-label="Close" onclick="closeWindow('window-songs')"></button>
         </div>
       </div>
-      <div class="window-body" style="padding:0; overflow:hidden;">
-        <!-- blue toolbar -->
-        <div style="background:#000080; color:#fff; padding:4px 8px; font-weight:bold; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
-          <img src="https://win98icons.alexmeub.com/icons/png/media_player-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
-          <span id="video-status">wya</span>
+      <div class="window-body" style="padding:4px;">
+        <div style="background:#000080; color:#fff; padding:4px 8px; font-weight:bold; display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+          <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-0.png" width="16" height="16" style="image-rendering:pixelated;" loading="lazy" decoding="async">
+          <span>SoundCloud Tracks</span>
         </div>
-        <div style="display:flex; gap:0; background:#c0c0c0; overflow:hidden; width:100%;">
-          <!-- video + controls -->
-          <div style="flex:1; min-width:0; padding:4px; display:flex; flex-direction:column; gap:4px;">
-            <video id="video-main" src="videos/wya.mp4" playsinline preload="none"
-              style="width:100%; height:160px; object-fit:contain; background:#000; box-shadow:inset 2px 2px #808080, inset -2px -2px #fff; display:block;"></video>
-            <div style="display:flex; align-items:center; gap:2px; background:#c0c0c0; padding:1px 0;">
-              <button class="vid-btn" onclick="playMedia('video-main')" title="Play">&#9654;</button>
-              <button class="vid-btn" onclick="pauseMedia('video-main')" title="Pause"><strong>||</strong></button>
-              <button class="vid-btn" onclick="stopMedia('video-main')" title="Stop">&#9632;</button>
-              <button class="vid-btn" onclick="fullscreenVideo('video-main')" title="Fullscreen">&#9633;</button>
-              <input type="range" id="slider-video-main" class="media-slider" value="0" step="0.1"
-                oninput="seekMedia('video-main', this.value)" style="flex:1; min-width:0; margin:0 3px;">
-              <div class="media-time sunken-panel" id="time-video-main"
-                style="width:40px; flex-shrink:0; text-align:center; background:#000; color:#00ff00; font-family:'Courier New',monospace; font-size:10px; padding:2px;">00:00</div>
-            </div>
-          </div>
-          <!-- playlist -->
-          <div style="width:88px; flex-shrink:0; padding:4px; padding-left:0; display:flex; flex-direction:column; gap:2px; overflow:hidden;">
-            <div style="font-size:11px; font-weight:bold; margin-bottom:2px; white-space:nowrap;">Playlist</div>
-            <div class="sunken-panel playlist-item playlist-select" id="vpl-0"
-              onclick="switchVideo('videos/wya.mp4','wya',0)"
-              style="background:#000080; color:#fff;">wya</div>
-            <div class="sunken-panel playlist-item" id="vpl-1"
-              onclick="switchVideo('videos/ilysm.mp4','ilysm',1)">ilysm</div>
-            <div class="sunken-panel playlist-item" id="vpl-2"
-              onclick="switchVideo('videos/Jessie.mp4','Jessie',2)">Jessie</div>
-            <div class="sunken-panel playlist-item" id="vpl-3"
-              onclick="switchVideo('videos/Speedrun.mp4','Speedrun',3)">Speedrun</div>
-            <div class="sunken-panel playlist-item" id="vpl-4"
-              onclick="switchVideo('videos/New , Season.mp4','New Season',4)">New Season</div>
-          </div>
+        <div class="sunken-panel" style="background:#fff; padding:6px; display:flex; flex-direction:column; gap:8px; max-height:280px; overflow-y:auto;">
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/diedfavorite/p-ohsushi-mnstr%3Fsi%3D0fc48e1b63ac4a21832be2519b2b9b33&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"></iframe>
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/diedfavorite/sets/2011nostalgia%3Fsi%3D4c42f1fab5d14e6eac30e385db0aa1dd&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"></iframe>
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/diedfavorite/p-inno1k-kenesukoh%3Fsi%3D571e0ed84b4e48a4852c4813ea87926f&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- visuals window -->
+    <div class="window desktop-window draggable hidden" id="window-visuals" style="width:500px; top:20%; left:20%;">
+      <div class="title-bar">
+        <div class="title-bar-text">Visuals - Paint</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" onclick="minimizeWindow('window-visuals')"></button>
+          <button aria-label="Maximize" onclick="maximizeWindow('window-visuals')"></button>
+          <button aria-label="Close" onclick="closeWindow('window-visuals')"></button>
+        </div>
+      </div>
+      <div class="window-body" style="padding:4px;">
+        <div class="sunken-panel" style="background:#808080; display:flex; flex-direction:column; gap:10px; padding:10px; max-height:400px; overflow-y:auto; align-items:center;">
+          <img src="visuals/#2011nostalgia.jpg" style="max-width:100%; border:2px solid #000;" loading="lazy">
+          <img src="visuals/yk nun bout pink clouds.png" style="max-width:100%; border:2px solid #000;" loading="lazy">
+          <img src="visuals/跑跑跑跑跑.png" style="max-width:100%; border:2px solid #000;" loading="lazy">
         </div>
       </div>
     </div>

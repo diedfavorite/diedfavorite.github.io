@@ -262,9 +262,10 @@ const WINDOW_HOTKEYS = {
   '1': 'window-hero',
   '2': 'window-beats',
   '3': 'window-loops',
-  '4': 'window-video',
-  '5': 'window-socials',
-  '6': 'window-licensing',
+  '4': 'window-songs',
+  '5': 'window-visuals',
+  '6': 'window-socials',
+  '7': 'window-licensing',
 };
 
 // Track Ctrl/Cmd solo vs combo (so Ctrl+Esc → shutdown, not start menu)
@@ -713,33 +714,7 @@ function switchHeroTab(tab) {
 }
 
 
-function switchVideo(src, label, index) {
-  const video = document.getElementById('video-main');
-  const slider = document.getElementById('slider-video-main');
-  const timeDisplay = document.getElementById('time-video-main');
-  const wasPlaying = !video.paused;
-  video.pause();
-  video.src = src;
-  video.load();
-  if (slider) { slider.value = 0; slider.max = 0; }
-  if (timeDisplay) timeDisplay.innerText = '00:00';
-  const status = document.getElementById('video-status');
-  if (status) status.innerText = label;
-  for (let i = 0; i < 10; i++) {
-    const item = document.getElementById(`vpl-${i}`);
-    if (!item) continue;
-    item.style.background = i === index ? '#000080' : '';
-    item.style.color = i === index ? '#fff' : '';
-    if (i === index) {
-      item.classList.remove('playlist-select');
-      void item.offsetWidth;
-      item.classList.add('playlist-select');
-      onSelfAnimEnd(item, () => item.classList.remove('playlist-select'));
-    }
-  }
-  if (wasPlaying) video.addEventListener('canplay', () => video.play(), { once: true });
-  applyVolume();
-}
+
 
 // Desktop right-click context menu
 document.getElementById('desktop').addEventListener('contextmenu', (e) => {
@@ -897,9 +872,6 @@ document.querySelectorAll('audio, video').forEach(el => {
       title = title.trim() || titleEl.innerText.trim();
       if (el.closest('#window-beats')) winId = 'window-beats';
       else if (el.closest('#window-loops')) winId = 'window-loops';
-    } else if (el.id === 'video-main') {
-      title = document.getElementById('video-status')?.innerText || 'video';
-      winId = 'window-video';
     }
     updateNowPlayingTicker(title, winId);
   });
@@ -1138,8 +1110,6 @@ document.querySelectorAll('audio, video').forEach(el => {
         if (node.nodeType === Node.TEXT_NODE) label += node.textContent;
       });
       label = label.trim() || titleEl.innerText.trim();
-    } else {
-      label = document.getElementById('video-status')?.innerText || '';
     }
     if (label) showBalloon('♪ Now Playing: ' + label, 3500);
   });
