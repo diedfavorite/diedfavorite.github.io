@@ -151,11 +151,7 @@
       <img src="https://win98icons.alexmeub.com/icons/png/notepad-0.png" alt="" loading="lazy" decoding="async">
       <span>licensing.txt</span>
     </div>
-    <div class="desktop-icon" id="icon-recyclebin" onclick="selectIcon('icon-recyclebin')"
-      ondblclick="openWindow('window-recyclebin')" style="top:470px; left:10px;">
-      <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-0.png" alt="recycle bin" loading="lazy" decoding="async">
-      <span>recycle bin</span>
-    </div>
+
 
     <!-- center hero window -->
     <div class="window desktop-window draggable" id="window-hero" style="width: 500px; top: 10%; left: 25%;">
@@ -666,29 +662,6 @@ Thank you for your support.</textarea>
       </div>
     </div>
 
-    <!-- recycle bin window (folder view) -->
-    <div class="window desktop-window draggable hidden" id="window-recyclebin" style="width: 300px; top: 35%; left: 35%;">
-      <div class="title-bar">
-        <div class="title-bar-text">Recycle Bin</div>
-        <div class="title-bar-controls">
-          <button aria-label="Minimize" onclick="minimizeWindow('window-recyclebin')"></button>
-          <button aria-label="Maximize" onclick="maximizeWindow('window-recyclebin')"></button>
-          <button aria-label="Close" onclick="closeWindow('window-recyclebin')"></button>
-        </div>
-      </div>
-      <div class="window-body" style="padding:4px;">
-        <div style="background:#fff; box-shadow:inset -1px -1px #fff,inset 1px 1px #808080,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a; min-height:120px; padding:2px; display:flex; flex-direction:column; align-items:stretch; gap:0;">
-          <!-- secret.txt file row (Explorer list-view style) -->
-          <div class="recycle-file explorer-row" ondblclick="openWindow('window-secrettxt')" onclick="selectRecycleFile(this)" title="secret.txt">
-            <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-0.png" width="16" height="16" style="image-rendering:pixelated; flex-shrink:0;" onerror="this.src='https://win98icons.alexmeub.com/icons/png/write_wordpad-0.png'" loading="lazy" decoding="async">
-            <span>secret.txt</span>
-          </div>
-        </div>
-        <div style="margin-top:6px; display:flex; justify-content:flex-end;">
-          <button onclick="closeWindow('window-recyclebin')">Close</button>
-        </div>
-      </div>
-    </div>
 
     <!-- secret.txt notepad window -->
     <div class="window desktop-window draggable hidden" id="window-secrettxt" style="width: 320px; top: 28%; left: 40%;">

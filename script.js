@@ -77,10 +77,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-function selectRecycleFile(el) {
-  document.querySelectorAll('.recycle-file').forEach(f => f.classList.remove('selected'));
-  el.classList.add('selected');
-}
+
 
 function bringToFront(id) {
   const el = document.getElementById(id);
@@ -337,11 +334,6 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
-  // ── R → open Recycle Bin ────────────────────────────────────
-  if (e.key === 'r' || e.key === 'R') {
-    openWindow('window-recyclebin');
-    return;
-  }
 
   // ── P → open Display Properties ────────────────────────────
   if (e.key === 'p' || e.key === 'P') {
